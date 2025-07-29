@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Instagram } from 'lucide-react';
 
 const Roster = () => {
   const { language } = useLanguage();
@@ -31,26 +32,60 @@ const Roster = () => {
 
   const content = rosterInfo[language];
 
-  // Sample player data - replace with real data later
+  // Real player data from provided spreadsheet
   const players = [
-    { id: 1, name: "Marie Dubois", position: "goalkeeper", number: 1, age: 24 },
-    { id: 2, name: "Sophie Martin", position: "defender", number: 2, age: 22 },
-    { id: 3, name: "Camille Rousseau", position: "defender", number: 3, age: 25 },
-    { id: 4, name: "Emma Leroy", position: "midfielder", number: 8, age: 21 },
-    { id: 5, name: "Léa Bernard", position: "midfielder", number: 10, age: 23 },
-    { id: 6, name: "Julie Moreau", position: "forward", number: 9, age: 20 },
-    { id: 7, name: "Amélie Petit", position: "forward", number: 11, age: 24 },
-    { id: 8, name: "Clara Thomas", position: "defender", number: 4, age: 26 },
-  ];
+    { id: 1, firstName: "Manelle", lastName: "Ben Mohammed", number: 1, position: "GK", instagram: "maanelle_bm" },
+    { id: 2, firstName: "Manon", lastName: "Frey", number: 2, position: "Defendeur", instagram: "manfoot_al1" },
+    { id: 3, firstName: "Elise", lastName: "Gaucher", number: 3, position: "Defendeur", instagram: "elise.gaucher" },
+    { id: 4, firstName: "Julie", lastName: "Lievremont", number: 4, position: "Defendeur", instagram: "julie_lvmt" },
+    { id: 5, firstName: "Solène", lastName: "Noizat", number: 5, position: "Defendeur", instagram: "solene.noizat" },
+    { id: 6, firstName: "Lina", lastName: "Chabanne", number: 6, position: "Midfield", instagram: "linaachabane22" },
+    { id: 7, firstName: "Maureen", lastName: "Bigot", number: 7, position: "Midfield", instagram: "bigotmaureen" },
+    { id: 8, firstName: "Jade", lastName: "Gaiffe", number: 8, position: "Midfield", instagram: "jadegatffe_" },
+    { id: 9, firstName: "Marie", lastName: "Lextrayt", number: 9, position: "Strike", instagram: "marie_lextrayt" },
+    { id: 10, firstName: "Laure", lastName: "Robert", number: 10, position: "Defendeur", instagram: "laure_robert_4" },
+    { id: 11, firstName: "Manon", lastName: "Issert", number: 14, position: "Midfield", instagram: "TBD" },
+    { id: 12, firstName: "Enola", lastName: "Dumontet", number: 18, position: "Midfield", instagram: "userrr.83" },
+    { id: 13, firstName: "Ines", lastName: "Koré", number: 20, position: "Strike", instagram: "kore_ines" },
+    { id: 14, firstName: "Fatoumata", lastName: "Baldé", number: 21, position: "Strike", instagram: "fatoudinho_b" },
+    { id: 15, firstName: "Salma", lastName: "Zeitouni", number: 22, position: "Defendeur", instagram: "salma_zei" },
+    { id: 16, firstName: "Chelsea", lastName: "Abrin", number: 23, position: "Strike", instagram: "chelsea_abrin" },
+    { id: 17, firstName: "Melie", lastName: "Lacolla", number: 27, position: "Defendeur", instagram: "meelie.l08" },
+    { id: 18, firstName: "Anais", lastName: "Leclerc", number: 28, position: "Defendeur", instagram: "anais_lb" },
+    { id: 19, firstName: "Pauline", lastName: "Moitrel", number: 30, position: "GK", instagram: "pauline_moitrel" },
+    { id: 20, firstName: "Yrma", lastName: "Mze Issa", number: null, position: "Strike", instagram: "yrmaajr" },
+    { id: 21, firstName: "Adama", lastName: "Tamba", number: null, position: "TBD", instagram: "TBD" },
+    { id: 22, firstName: "Ramsey", lastName: "Davis", number: null, position: "Strike", instagram: "ramsdavis" },
+  ].sort((a, b) => (a.number || 999) - (b.number || 999)); // Sort by jersey number
 
   const getPositionColor = (position: string) => {
-    switch (position) {
-      case 'goalkeeper': return 'bg-monaco-yellow';
-      case 'defender': return 'bg-primary';
-      case 'midfielder': return 'bg-accent';
-      case 'forward': return 'bg-monaco-red';
+    switch (position.toLowerCase()) {
+      case 'gk': return 'bg-monaco-yellow';
+      case 'defendeur': return 'bg-primary';
+      case 'midfield': return 'bg-accent';
+      case 'strike': return 'bg-monaco-red';
       default: return 'bg-muted';
     }
+  };
+
+  const getPositionDisplay = (position: string) => {
+    const displays = {
+      fr: {
+        'GK': 'Gardienne',
+        'Defendeur': 'Défenseure', 
+        'Midfield': 'Milieu',
+        'Strike': 'Attaquante',
+        'TBD': 'À déterminer'
+      },
+      en: {
+        'GK': 'Goalkeeper',
+        'Defendeur': 'Defender',
+        'Midfield': 'Midfielder', 
+        'Strike': 'Forward',
+        'TBD': 'To Be Determined'
+      }
+    };
+    return displays[language][position as keyof typeof displays[typeof language]] || position;
   };
 
   return (
@@ -67,37 +102,69 @@ const Roster = () => {
         </div>
       </section>
 
-      {/* Player Carousel/Grid */}
+      {/* Team Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-7xl mx-auto">
             {players.map((player, index) => (
-              <Card 
+              <div 
                 key={player.id}
-                className="p-6 hover:shadow-monaco transition-all duration-300 hover:scale-105 animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="relative group cursor-pointer animate-fade-in"
+                style={{ animationDelay: `${index * 0.05}s` }}
               >
-                <div className="text-center">
-                  {/* Player Photo Placeholder */}
-                  <div className="w-24 h-24 bg-gradient-monaco rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
-                    <span className="text-white font-bold text-xl">{player.number}</span>
+                {/* Player Card */}
+                <div className="relative overflow-hidden rounded-lg bg-gradient-to-b from-background to-muted aspect-[3/4] shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  {/* Jersey Number Background */}
+                  <div className="absolute top-4 right-4 z-10">
+                    <div className="w-12 h-12 bg-monaco-yellow rounded-full flex items-center justify-center shadow-lg">
+                      <span className="text-background font-bold text-lg">
+                        {player.number || '?'}
+                      </span>
+                    </div>
                   </div>
                   
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {player.name}
-                  </h3>
+                  {/* Player Photo Placeholder */}
+                  <div className="absolute inset-0 bg-gradient-monaco opacity-80">
+                    <div className="flex items-center justify-center h-full">
+                      <div className="text-white text-6xl font-bold opacity-20">
+                        {player.firstName.charAt(0)}{player.lastName.charAt(0)}
+                      </div>
+                    </div>
+                  </div>
                   
-                  <Badge 
-                    className={`${getPositionColor(player.position)} text-white mb-2`}
-                  >
-                    {content.positions[player.position as keyof typeof content.positions]}
-                  </Badge>
-                  
-                  <p className="text-sm text-muted-foreground">
-                    {language === 'fr' ? 'Âge' : 'Age'}: {player.age}
-                  </p>
+                  {/* Player Info Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4">
+                    <div className="text-white">
+                      <h3 className="font-bold text-sm mb-1 leading-tight">
+                        {player.firstName}
+                      </h3>
+                      <h3 className="font-bold text-sm mb-2 leading-tight">
+                        {player.lastName}
+                      </h3>
+                      
+                      <Badge 
+                        className={`${getPositionColor(player.position)} text-white text-xs mb-2`}
+                      >
+                        {getPositionDisplay(player.position)}
+                      </Badge>
+                      
+                      {/* Instagram Link */}
+                      {player.instagram && player.instagram !== 'TBD' && (
+                        <a 
+                          href={`https://instagram.com/${player.instagram}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs text-white/80 hover:text-white transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Instagram className="w-3 h-3" />
+                          @{player.instagram}
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
         </div>
