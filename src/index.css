@@ -17,24 +17,41 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Monaco Football Féminin Brand Colors */
+    --monaco-red: 350 85% 42%;        /* Pantone 7620C */
+    --monaco-yellow: 56 100% 50%;     /* Pantone 107C */
+    --monaco-gold: 45 95% 58%;        /* Warmer yellow variant */
+    
+    --primary: var(--monaco-red);
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: var(--monaco-yellow);
+    --secondary-foreground: 222.2 84% 4.9%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: var(--monaco-gold);
+    --accent-foreground: 222.2 84% 4.9%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: var(--monaco-red);
+
+    /* Custom gradients */
+    --gradient-monaco: linear-gradient(135deg, hsl(var(--monaco-red)), hsl(var(--monaco-yellow)));
+    --gradient-hero: linear-gradient(180deg, hsl(var(--monaco-red) / 0.9), hsl(var(--monaco-red) / 0.7));
+    --gradient-accent: linear-gradient(90deg, hsl(var(--monaco-yellow)), hsl(var(--monaco-gold)));
+
+    /* Shadows */
+    --shadow-monaco: 0 10px 30px -10px hsl(var(--monaco-red) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--monaco-yellow) / 0.4);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 
