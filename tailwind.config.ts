@@ -12,7 +12,7 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: '0.5rem',
 			screens: {
 				'2xl': '1400px'
 			}
@@ -64,14 +64,8 @@ export default {
 				},
 				monaco: {
 					red: 'hsl(var(--monaco-red))',
-					yellow: 'hsl(var(--monaco-yellow))',
-					gold: 'hsl(var(--monaco-gold))'
+					yellow: 'hsl(var(--monaco-yellow))'
 				}
-			},
-			backgroundImage: {
-				'gradient-monaco': 'var(--gradient-monaco)',
-				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-accent': 'var(--gradient-accent)',
 			},
 			boxShadow: {
 				'monaco': 'var(--shadow-monaco)',

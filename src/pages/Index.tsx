@@ -3,43 +3,18 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowRight, Play, Trophy, Users, Target, Star, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import bg1 from '@/assets/bg1.jpg';
-import bg2 from '@/assets/bg2.jpg';
+import background1 from '@/assets/background1.png';
+import backgound2 from '@/assets/backgound2.png';
 
 const Index = () => {
   const { t, language } = useLanguage();
-  const [scrollY, setScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
-  const statsRef = useRef<HTMLElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (statsRef.current) observer.observe(statsRef.current);
-    if (aboutRef.current) observer.observe(aboutRef.current);
-
-    // Trigger initial animation
+    // Only trigger initial load-in animation
     setTimeout(() => setIsVisible(true), 100);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
-    };
   }, []);
 
   const homeContent = {
@@ -74,27 +49,34 @@ const Index = () => {
   return (
     <div className="min-h-screen overflow-hidden">
       {/* Floating Elements */}
-      <div className="fixed inset-0 pointer-events-none z-0">
+      {/* <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-20 left-10 w-2 h-2 bg-secondary/30 rounded-full animate-float" style={{ animationDelay: '0s' }}></div>
         <div className="absolute top-40 right-20 w-1 h-1 bg-secondary/40 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
         <div className="absolute bottom-60 left-1/4 w-1.5 h-1.5 bg-secondary/25 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-secondary/35 rounded-full animate-float" style={{ animationDelay: '3s' }}></div>
-      </div>
+      </div> */}
 
       {/* Hero Section */}
       <section 
         ref={heroRef}
         className="relative h-screen flex items-center justify-center overflow-hidden"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${bg1})`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${background1})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
-          transform: `translateY(${scrollY * 0.5}px)`,
         }}
       >
+        {/* Overlay the second background image as a decorative element */}
+        <img 
+          src={backgound2} 
+          alt="Decorative background"
+          className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none z-0" 
+          style={{mixBlendMode: 'lighten'}}
+        />
+        
         {/* Animated Background Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/10 to-transparent animate-pulse"></div>
+        <div className="absolute inset-0 bg-monaco-yellow/10 animate-pulse"></div>
         
         {/* Geometric Shapes */}
         <div className="absolute inset-0">
@@ -104,16 +86,7 @@ const Index = () => {
         </div>
         
         <div className={`relative z-10 text-center text-white max-w-4xl mx-auto px-4 transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          {/* Logo with 3D effect */}
-          <div className="mb-8 perspective-1000">
-            <div className="relative transform-gpu transition-transform duration-700 hover:rotate-y-12 hover:scale-110">
-              <div className="w-28 h-28 bg-gradient-monaco rounded-full flex items-center justify-center shadow-glow mx-auto mb-6 animate-float relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent transform -skew-y-12 animate-shimmer"></div>
-                <span className="text-white font-bold text-3xl relative z-10">AS</span>
-                <Sparkles className="absolute top-2 right-2 w-4 h-4 text-secondary animate-pulse" />
-              </div>
-            </div>
-          </div>
+
           
           {/* Animated Title */}
           <h1 className="text-4xl md:text-7xl font-bold mb-8 leading-tight transform-gpu">
@@ -144,15 +117,14 @@ const Index = () => {
               >
                 <span className="relative z-10">{t('roster')}</span>
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 group-hover:animate-shimmer"></div>
+                <div className="absolute inset-0 bg-white/20 transform -skew-x-12 group-hover:animate-shimmer"></div>
               </Button>
             </Link>
             
             <Link to="/matches">
               <Button 
-                variant="outline" 
                 size="lg"
-                className="group border-white/60 text-white hover:bg-white/10 hover:border-secondary transition-all duration-500 hover:scale-110 transform-gpu backdrop-blur-sm"
+                className="group bg-monaco-red text-white hover:bg-monaco-red/90 border-2 border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-110 transform-gpu shadow-lg hover:shadow-xl"
               >
                 <Play className="mr-2 w-4 h-4 group-hover:scale-125 transition-transform duration-300" />
                 {t('matches')}
@@ -161,15 +133,8 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Enhanced Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/70 rounded-full flex justify-center backdrop-blur-sm">
-            <div className="w-1 h-3 bg-secondary rounded-full mt-2 animate-pulse"></div>
-          </div>
-        </div>
-
         {/* Particles Effect */}
-        <div className="absolute inset-0 pointer-events-none">
+        {/* <div className="absolute inset-0 pointer-events-none">
           {[...Array(20)].map((_, i) => (
             <Star 
               key={i}
@@ -182,36 +147,7 @@ const Index = () => {
               }}
             />
           ))}
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section ref={statsRef} className="py-20 bg-muted/50 relative overflow-hidden">
-        {/* Background Animation */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary/50 to-transparent animate-slide-right"></div>
-          <div className="absolute -top-20 -right-20 w-40 h-40 bg-secondary/5 rounded-full animate-float"></div>
-          <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-secondary/5 rounded-full animate-pulse"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {content.stats.map((stat, index) => (
-              <div 
-                key={index}
-                className="text-center p-8 bg-card/80 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-glow transition-all duration-500 hover:scale-110 transform-gpu animate-fade-in group border border-secondary/10"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <div className="w-20 h-20 bg-gradient-monaco rounded-full flex items-center justify-center mx-auto mb-6 shadow-glow group-hover:animate-pulse relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent transform -skew-y-12 group-hover:animate-shimmer"></div>
-                  <stat.icon className="w-10 h-10 text-white relative z-10 group-hover:scale-110 transition-transform duration-300" />
-                </div>
-                <h3 className="text-3xl font-bold text-primary mb-3 group-hover:text-secondary transition-colors duration-300">{stat.value}</h3>
-                <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        </div> */}
       </section>
 
       {/* About Section */}
@@ -229,7 +165,7 @@ const Index = () => {
                 <span className="inline-block hover:text-secondary transition-colors duration-500">
                   {language === 'fr' ? 'Notre Mission' : 'Our Mission'}
                 </span>
-                <div className="absolute -bottom-2 left-0 w-16 h-1 bg-gradient-monaco rounded-full"></div>
+                <div className="absolute -bottom-2 left-0 w-16 h-1 bg-monaco-red rounded-full"></div>
               </h2>
               
               <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
@@ -251,7 +187,7 @@ const Index = () => {
                   <Button className="group shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden">
                     <span className="relative z-10">{t('academy')}</span>
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 group-hover:animate-shimmer"></div>
+                    <div className="absolute inset-0 bg-white/10 transform -skew-x-12 group-hover:animate-shimmer"></div>
                   </Button>
                 </Link>
                 
@@ -266,21 +202,21 @@ const Index = () => {
             <div className="relative animate-slide-in-right" style={{ animationDelay: '0.4s' }}>
               {/* 3D Card Effect */}
               <div className="relative perspective-1000">
-                <div className="absolute inset-0 bg-gradient-monaco rounded-2xl transform rotate-6 opacity-20 group-hover:rotate-12 transition-transform duration-700"></div>
-                <div className="absolute inset-0 bg-gradient-to-tr from-secondary/10 to-transparent rounded-2xl transform -rotate-3 group-hover:rotate-3 transition-transform duration-700"></div>
+                <div className="absolute inset-0 bg-monaco-red rounded-2xl transform rotate-6 opacity-20 group-hover:rotate-12 transition-transform duration-700"></div>
+                <div className="absolute inset-0 bg-monaco-yellow/10 rounded-2xl transform -rotate-3 group-hover:rotate-3 transition-transform duration-700"></div>
                 
                 <div className="relative group">
                   <img 
-                    src={bg2} 
+                    src={backgound2} 
                     alt="AS Monaco Football Féminin in action"
                     className="relative z-10 w-full h-[480px] object-cover rounded-2xl shadow-2xl hover:shadow-glow transition-all duration-700 transform-gpu group-hover:scale-105 group-hover:rotate-1"
                   />
                   
                   {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-secondary/20 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
+                  <div className="absolute inset-0 bg-monaco-yellow/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
                   
                   {/* Shine Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent transform -skew-y-12 translate-x-full group-hover:translate-x-[-100%] transition-transform duration-1000 rounded-2xl z-30"></div>
+                  <div className="absolute inset-0 bg-white/10 transform -skew-y-12 translate-x-full group-hover:translate-x-[-100%] transition-transform duration-1000 rounded-2xl z-30"></div>
                 </div>
               </div>
             </div>
@@ -289,7 +225,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-monaco">
+      <section className="py-16 bg-monaco-red">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
@@ -313,15 +249,14 @@ const Index = () => {
                 </Button>
               </Link>
               
-              <Link to="/tickets">
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="group border-white text-white hover:bg-white hover:text-primary transition-all duration-300 hover:scale-105"
-                >
-                  {t('tickets')}
-                </Button>
-              </Link>
+                                            <Link to="/tickets">
+                 <Button 
+                   size="lg"
+                   className="group bg-monaco-yellow text-black font-semibold hover:bg-monaco-yellow/90 border-2 border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                 >
+                   {t('tickets')}
+                 </Button>
+               </Link>
             </div>
           </div>
         </div>

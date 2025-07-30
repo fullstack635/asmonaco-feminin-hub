@@ -147,14 +147,11 @@ const Sponsor = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="py-20 bg-gradient-monaco">
+      <section className="py-20 bg-monaco-red">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
             {content.title}
           </h1>
-          <h2 className="text-2xl text-white/90 mb-6 animate-fade-in">
-            {content.subtitle}
-          </h2>
           <p className="text-lg text-white/90 max-w-4xl mx-auto animate-fade-in leading-relaxed">
             {content.description}
           </p>
@@ -175,7 +172,7 @@ const Sponsor = () => {
                 className="p-6 text-center hover:shadow-monaco transition-all duration-300 hover:scale-105 animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="w-16 h-16 bg-gradient-monaco rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
+                <div className="w-16 h-16 bg-monaco-red rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
                   <benefit.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">
@@ -184,43 +181,6 @@ const Sponsor = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {benefit.description}
                 </p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Sponsorship Packages */}
-      <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-foreground text-center mb-12 animate-fade-in">
-            {content.packages}
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {packages.map((pkg, index) => (
-              <Card 
-                key={index}
-                className={`p-6 hover:shadow-monaco transition-all duration-300 hover:scale-105 animate-fade-in ${pkg.color}`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="text-center mb-6">
-                  <h3 className="text-xl font-bold text-foreground mb-2">{pkg.name}</h3>
-                  <p className="text-2xl font-bold text-primary">{pkg.price}</p>
-                </div>
-                
-                <ul className="space-y-3 mb-6">
-                  {pkg.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm text-muted-foreground">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <Button className="w-full shadow-monaco hover:shadow-xl transition-all duration-300 hover:scale-105">
-                  {language === 'fr' ? 'En savoir plus' : 'Learn More'}
-                </Button>
               </Card>
             ))}
           </div>

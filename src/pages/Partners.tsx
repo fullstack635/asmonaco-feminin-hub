@@ -80,7 +80,7 @@ const Partners = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="py-20 bg-gradient-monaco">
+      <section className="py-20 bg-monaco-red">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
             {content.title}
@@ -109,7 +109,22 @@ const Partners = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <Card className="p-6 text-center hover:shadow-monaco transition-all duration-300 animate-fade-in">
-              <div className="w-16 h-16 bg-gradient-monaco rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
+              <div className="w-16 h-16 bg-monaco-red rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
+                <Handshake className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3">
+                {language === 'fr' ? 'Réseau d\'Excellence' : 'Excellence Network'}
+              </h3>
+              <p className="text-muted-foreground">
+                {language === 'fr' 
+                  ? 'Rejoignez un réseau de partenaires prestigieux dans la Principauté'
+                  : 'Join a network of prestigious partners in the Principality'
+                }
+              </p>
+            </Card>
+
+            <Card className="p-6 text-center hover:shadow-monaco transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+              <div className="w-16 h-16 bg-monaco-red rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
                 <Heart className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3">
@@ -123,8 +138,8 @@ const Partners = () => {
               </p>
             </Card>
 
-            <Card className="p-6 text-center hover:shadow-monaco transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              <div className="w-16 h-16 bg-gradient-monaco rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
+            <Card className="p-6 text-center hover:shadow-monaco transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <div className="w-16 h-16 bg-monaco-red rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
                 <Star className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3">
@@ -134,21 +149,6 @@ const Partners = () => {
                 {language === 'fr' 
                   ? 'Profitez d\'une exposition unique dans le football féminin monégasque'
                   : 'Enjoy unique exposure in Monaco women\'s football'
-                }
-              </p>
-            </Card>
-
-            <Card className="p-6 text-center hover:shadow-monaco transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="w-16 h-16 bg-gradient-monaco rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
-                <Handshake className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">
-                {language === 'fr' ? 'Réseau d\'Excellence' : 'Excellence Network'}
-              </h3>
-              <p className="text-muted-foreground">
-                {language === 'fr' 
-                  ? 'Rejoignez un réseau de partenaires prestigieux dans la Principauté'
-                  : 'Join a network of prestigious partners in the Principality'
                 }
               </p>
             </Card>

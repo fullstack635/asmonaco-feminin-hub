@@ -5,10 +5,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import Index from "./pages/Index";
 import Roster from "./pages/Roster";
+import PlayerDetail from "./pages/PlayerDetail";
 import Matches from "./pages/Matches";
 import Club from "./pages/Club";
+import ClubHistory from "./pages/ClubHistory";
+import ClubLeadership from "./pages/ClubLeadership";
+import ClubFans from "./pages/ClubFans";
 import News from "./pages/News";
 import Academy from "./pages/Academy";
 import Partners from "./pages/Partners";
@@ -30,8 +35,12 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/roster" element={<Roster />} />
+            <Route path="/roster/:playerId" element={<PlayerDetail />} />
             <Route path="/matches" element={<Matches />} />
             <Route path="/club" element={<Club />} />
+            <Route path="/club/history" element={<ClubHistory />} />
+            <Route path="/club/leadership" element={<ClubLeadership />} />
+            <Route path="/club/fans" element={<ClubFans />} />
             <Route path="/news" element={<News />} />
             <Route path="/academy" element={<Academy />} />
             <Route path="/partners" element={<Partners />} />
@@ -41,6 +50,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>

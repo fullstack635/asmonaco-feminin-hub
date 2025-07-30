@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -61,7 +60,7 @@ const Academy = () => {
         ? 'Alors que les joueuses grandissent, l\'accent aussi. Ces années clés portent sur la conscience tactique, la croissance technique et le développement physique pour des niveaux de jeu plus élevés.'
         : 'As players grow, so does the focus. These key years are about tactical awareness, technical growth, and physical development for higher levels of play.',
       icon: Users,
-      color: 'bg-accent'
+      color: 'bg-monaco-yellow text-black'
     },
     {
       title: language === 'fr' ? 'Équipes Jeunes (U15 – U18)' : 'Youth Teams (U15 – U18)',
@@ -89,10 +88,11 @@ const Academy = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <section className="py-20 bg-gradient-monaco">
+      <section className="py-20 bg-monaco-red">
         <div className="container mx-auto px-4 text-center">
+
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
             {content.title}
           </h1>
@@ -105,30 +105,52 @@ const Academy = () => {
         </div>
       </section>
 
-      {/* Pathway Section */}
+      {/* Pathway Section - Red Bulls Style 2x2 Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-foreground text-center mb-12 animate-fade-in">
             {content.pathway}
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
             {pathwayStages.map((stage, index) => (
-              <Card 
-                key={index}
-                className="p-6 hover:shadow-monaco transition-all duration-300 hover:scale-105 animate-fade-in"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className={`w-12 h-12 ${stage.color} rounded-full flex items-center justify-center shadow-glow`}>
-                    <stage.icon className="w-6 h-6 text-white" />
+              <div key={index} className="flex h-80 animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
+                {/* Left Panel - Red Background with Content */}
+                <div className="flex-1 bg-monaco-red p-8 flex flex-col justify-between">
+                  {/* Logo and Title */}
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className={`w-12 h-12 ${stage.color} rounded-full flex items-center justify-center shadow-glow`}>
+                        <stage.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold text-white">{stage.title}</h3>
+                    </div>
+                    
+                    {/* Description */}
+                    <p className="text-white/90 leading-relaxed text-sm">
+                      {stage.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-foreground">{stage.title}</h3>
+                  
+                  {/* Sponsor/Logo Area */}
+                  <div className="mt-auto">
+                    <div className="text-white/70 text-xs">
+                      AS Monaco FF
+                    </div>
+                  </div>
                 </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  {stage.description}
-                </p>
-              </Card>
+
+                {/* Right Panel - Image Placeholder */}
+                <div className="flex-1 bg-gray-300 flex items-center justify-center">
+                  <div className="text-gray-500 text-center">
+                    <div className="w-16 h-16 bg-monaco-yellow rounded-full mx-auto mb-4 flex items-center justify-center">
+                      <stage.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <p className="text-sm">Image Placeholder</p>
+                    <p className="text-xs mt-1">{stage.title}</p>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -149,7 +171,7 @@ const Academy = () => {
                   className="flex items-start gap-3 animate-fade-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-6 h-6 bg-monaco-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <div className="w-2 h-2 bg-white rounded-full"></div>
                   </div>
                   <p className="text-muted-foreground leading-relaxed">{benefit}</p>
@@ -179,7 +201,7 @@ const Academy = () => {
             </p>
           </div>
 
-          <Card className="max-w-2xl mx-auto p-8 animate-fade-in">
+          <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8 animate-fade-in">
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -224,18 +246,18 @@ const Academy = () => {
               <Button 
                 type="submit" 
                 size="lg" 
-                className="w-full group shadow-monaco hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="w-full bg-monaco-red hover:bg-monaco-red/90 text-white group shadow-monaco hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 {content.submit}
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
               </Button>
             </form>
-          </Card>
+          </div>
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-gradient-monaco">
+      <section className="py-16 bg-monaco-red">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto animate-fade-in">
             <h2 className="text-3xl font-bold text-white mb-6">

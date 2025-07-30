@@ -30,10 +30,12 @@ export const Navigation: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 hover:scale-105 transition-transform duration-200">
-            <div className="w-10 h-10 bg-gradient-monaco rounded-full flex items-center justify-center shadow-glow">
-              <span className="text-primary-foreground font-bold text-lg">AS</span>
-            </div>
+          <Link to="/" className="flex items-center space-x-3 hover:scale-105 transition-transform duration-200">
+            <img 
+              src="/src/assets/team logo/AS MONACO FF.png"
+              alt="AS Monaco FF"
+              className="w-12 h-12 object-contain"
+            />
             <div className="hidden sm:block">
               <span className="font-bold text-lg text-primary">AS Monaco</span>
               <span className="text-xs text-muted-foreground block">Football Féminin</span>
