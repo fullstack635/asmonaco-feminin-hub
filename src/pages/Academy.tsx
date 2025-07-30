@@ -117,41 +117,41 @@ const Academy = () => {
 
       {/* Pathway Section - Red Bulls Style 2x2 Grid */}
       <section className="py-16">
-        <div className="container mx-auto px-2">
+        <div className="px-[150px]">
           <h2 className="text-3xl font-bold text-foreground text-center mb-12 animate-fade-in">
             {content.pathway}
           </h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {pathwayStages.map((stage, index) => (
-              <div key={index} className="flex h-80 animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
+              <div key={index} className="flex h-[500px] animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
                 {/* Left Panel - Red Background with Content */}
                 <div className="flex-1 bg-monaco-red p-8 flex flex-col justify-between">
                   {/* Logo and Title */}
                   <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className={`w-12 h-12 ${stage.color} rounded-full flex items-center justify-center shadow-glow`}>
-                        <stage.icon className="w-6 h-6 text-white" />
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className={`w-16 h-16 ${stage.color} rounded-full flex items-center justify-center shadow-glow`}>
+                        <stage.icon className="w-8 h-8 text-white" />
                       </div>
-                      <h3 className="text-xl font-bold text-white">{stage.title}</h3>
+                      <h3 className="text-2xl font-bold text-white">{stage.title}</h3>
                     </div>
                     
                     {/* Description */}
-                    <p className="text-white/90 leading-relaxed text-sm">
+                    <p className="text-white/90 leading-relaxed text-lg">
                       {stage.description}
                     </p>
                   </div>
                   
                   {/* Sponsor/Logo Area */}
                   <div className="mt-auto">
-                    <div className="text-white/70 text-xs">
+                    <div className="text-white/70 text-sm">
                       AS Monaco FF
                     </div>
                   </div>
                 </div>
 
                 {/* Right Panel - Image */}
-                <div className="flex-1 bg-gray-300 overflow-hidden">
+                <div className="flex-[2] bg-gray-300 overflow-hidden">
                   <img 
                     src={stage.image} 
                     alt={stage.title}
@@ -166,7 +166,7 @@ const Academy = () => {
 
       {/* Why Choose ASMFF */}
       <section className="py-16 bg-muted">
-        <div className="container mx-auto px-2">
+        <div className="px-[150px]">
           <h2 className="text-3xl font-bold text-foreground text-center mb-12 animate-fade-in">
             {content.whyChoose}
           </h2>
@@ -192,7 +192,7 @@ const Academy = () => {
 
       {/* Contact Form */}
       <section className="py-16">
-        <div className="container mx-auto px-2">
+        <div className="px-[150px]">
           <div className="max-w-4xl mx-auto text-center mb-12 animate-fade-in">
             <h2 className="text-3xl font-bold text-foreground mb-6">
               {content.readyToJoin}
@@ -266,7 +266,7 @@ const Academy = () => {
 
       {/* Call to Action */}
       <section className="py-16 bg-monaco-red">
-        <div className="container mx-auto px-2 text-center">
+        <div className="px-[150px] text-center">
           <div className="max-w-3xl mx-auto animate-fade-in">
             <h2 className="text-3xl font-bold text-white mb-6">
               {language === 'fr' ? 'L\'Avenir Commence Ici' : 'The Future Starts Here'}

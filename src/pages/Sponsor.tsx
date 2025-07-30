@@ -148,7 +148,7 @@ const Sponsor = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <section className="py-20 bg-monaco-red">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-2 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
             {content.title}
           </h1>
@@ -160,7 +160,7 @@ const Sponsor = () => {
 
       {/* Why Sponsor */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-2">
           <h2 className="text-3xl font-bold text-foreground text-center mb-12 animate-fade-in">
             {content.whySponsor}
           </h2>
@@ -189,7 +189,7 @@ const Sponsor = () => {
 
       {/* Contact Form */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-2">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12 animate-fade-in">
               <h2 className="text-3xl font-bold text-foreground mb-6">

@@ -66,13 +66,13 @@ const Club = () => {
         <div className="relative z-10 text-center text-white">
 
           <h1 className="text-4xl md:text-5xl font-bold mb-3">{currentContent.title}</h1>
-          <p className="text-lg md:text-xl opacity-95 max-w-4xl mx-auto px-4 leading-relaxed">{currentContent.subtitle}</p>
+          <p className="text-lg md:text-xl opacity-95 max-w-4xl mx-auto px-2 leading-relaxed">{currentContent.subtitle}</p>
         </div>
       </section>
 
       {/* Three Cards in One Row */}
       <section className="py-16">
-        <div className="max-w-[1200px] mx-auto px-4">
+        <div className="max-w-[1200px] mx-auto px-2">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {currentContent.sections.map((section, index) => (
               <div 

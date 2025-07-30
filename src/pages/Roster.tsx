@@ -108,7 +108,7 @@ const Roster = () => {
         {/* Content */}
         <div className="relative z-10 text-center text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">{content.title}</h1>
-          <p className="text-lg md:text-xl opacity-95 max-w-4xl mx-auto px-4 leading-relaxed">{content.subtitle}</p>
+          <p className="text-lg md:text-xl opacity-95 max-w-4xl mx-auto px-2 leading-relaxed">{content.subtitle}</p>
         </div>
       </section>
 

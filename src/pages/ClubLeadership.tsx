@@ -48,7 +48,7 @@ Co-Principal Owner: Marcy O'Connor`
       </section>
 
       {/* Back Button */}
-      <div className="max-w-[1200px] mx-auto px-4 pt-8">
+      <div className="max-w-[1200px] mx-auto px-2 pt-8">
         <Button 
           variant="outline" 
           onClick={() => navigate('/club')}
@@ -61,7 +61,7 @@ Co-Principal Owner: Marcy O'Connor`
 
       {/* Content Section */}
       <section className="py-16">
-        <div className="max-w-[1200px] mx-auto px-4">
+        <div className="max-w-[1200px] mx-auto px-2">
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="prose prose-lg max-w-none">
               {currentContent.content.split('\n').map((line, index) => (

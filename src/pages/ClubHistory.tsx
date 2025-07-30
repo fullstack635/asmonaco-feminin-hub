@@ -81,7 +81,7 @@ Join us on the journey. ⚽❤️🤍
 
       {/* Content Section */}
       <section className="py-16">
-        <div className="max-w-[1200px] mx-auto px-4">
+        <div className="max-w-[1200px] mx-auto px-2 pt-8">
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="prose prose-lg max-w-none">
               {currentContent.content.split('\n').map((paragraph, index) => (

@@ -40,13 +40,13 @@ const News = () => {
         <div className="relative z-10 text-center text-white">
 
           <h1 className="text-4xl md:text-5xl font-bold mb-3">{currentContent.title}</h1>
-          <p className="text-lg md:text-xl opacity-95 max-w-4xl mx-auto px-4 leading-relaxed">{currentContent.subtitle}</p>
+          <p className="text-lg md:text-xl opacity-95 max-w-4xl mx-auto px-2 leading-relaxed">{currentContent.subtitle}</p>
         </div>
       </section>
 
       {/* Coming Soon Section */}
       <section className="py-16">
-        <div className="max-w-[1200px] mx-auto px-4">
+        <div className="max-w-[1200px] mx-auto px-2">
           <div className="bg-white rounded-lg shadow-lg p-12 text-center">
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-foreground mb-4">
@@ -79,7 +79,7 @@ const News = () => {
 
       {/* Newsletter Signup Section */}
       <section className="py-16 bg-muted">
-        <div className="max-w-[1200px] mx-auto px-4">
+        <div className="max-w-[1200px] mx-auto px-2">
           <div className="bg-white rounded-lg shadow-lg p-8 text-center">
             <h2 className="text-3xl font-bold text-foreground mb-6">
               {currentContent.newsletterTitle}
@@ -114,7 +114,7 @@ const News = () => {
 
       {/* Call to Action Section */}
       <section className="py-16 bg-white">
-        <div className="max-w-[1200px] mx-auto px-4 text-center">
+        <div className="max-w-[1200px] mx-auto px-2 text-center">
           <div className="bg-gradient-to-r from-monaco-red to-monaco-red/90 rounded-lg p-8 text-white">
             <h2 className="text-2xl font-bold mb-4">
               {language === 'fr' ? 'Rejoignez Notre Communauté' : 'Join Our Community'}

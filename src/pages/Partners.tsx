@@ -81,7 +81,7 @@ const Partners = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <section className="py-20 bg-monaco-red">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-2 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
             {content.title}
           </h1>
@@ -93,7 +93,7 @@ const Partners = () => {
 
       {/* Partners Sections */}
       <section className="py-16">
-        <div className="container mx-auto px-4 max-w-6xl">
+        <div className="container mx-auto px-2 max-w-6xl">
           <PartnerSection title={content.mainPartners} partners={mainPartners} />
           <PartnerSection title={content.officialSponsors} partners={officialSponsors} />
           <PartnerSection title={content.supportingPartners} partners={supportingPartners} />
@@ -102,7 +102,7 @@ const Partners = () => {
 
       {/* Partnership Benefits */}
       <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-2">
           <h2 className="text-3xl font-bold text-foreground text-center mb-12 animate-fade-in">
             {language === 'fr' ? 'Avantages du Partenariat' : 'Partnership Benefits'}
           </h2>
@@ -158,7 +158,7 @@ const Partners = () => {
 
       {/* Call to Action */}
       <section className="py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-2 text-center">
           <div className="max-w-3xl mx-auto animate-fade-in">
             <h2 className="text-3xl font-bold text-foreground mb-6">
               {content.partnerWithUs}

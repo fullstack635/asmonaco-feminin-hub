@@ -85,7 +85,7 @@ const Index = () => {
           <div className="absolute top-1/2 left-1/6 w-16 h-16 bg-secondary/10 rounded-full animate-pulse"></div>
         </div>
         
-        <div className={`relative z-10 text-center text-white max-w-4xl mx-auto px-4 transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+        <div className={`relative z-10 text-center text-white max-w-4xl mx-auto px-2 transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
 
           
           {/* Animated Title */}
@@ -158,7 +158,7 @@ const Index = () => {
           <div className="absolute bottom-1/4 left-0 w-48 h-48 bg-secondary/5 rounded-full blur-2xl animate-pulse"></div>
         </div>
         
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-2 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
             <div className="space-y-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight relative">
@@ -226,7 +226,7 @@ const Index = () => {
 
       {/* CTA Section */}
       <section className="py-16 bg-monaco-red">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-2 text-center">
           <div className="max-w-3xl mx-auto animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               {language === 'fr' ? 'Rejoignez le Mouvement' : 'Join the Movement'}
