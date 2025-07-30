@@ -48,7 +48,7 @@ export const Navigation: React.FC = () => {
               <Link
                 key={item.key}
                 to={item.href}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:scale-105 ${
+                className={`px-3 py-2 rounded-md text-base font-bold transition-all duration-200 hover:scale-105 ${
                   isActive(item.href)
                     ? 'bg-primary text-primary-foreground shadow-monaco'
                     : 'text-foreground hover:bg-accent hover:text-accent-foreground'
@@ -83,7 +83,7 @@ export const Navigation: React.FC = () => {
                 <Link
                   key={item.key}
                   to={item.href}
-                  className={`block px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                  className={`block px-3 py-2 rounded-md text-base font-bold transition-all duration-200 ${
                     isActive(item.href)
                       ? 'bg-primary text-primary-foreground shadow-monaco'
                       : 'text-foreground hover:bg-accent hover:text-accent-foreground'

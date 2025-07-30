@@ -5,6 +5,12 @@ import { Textarea } from '@/components/ui/textarea';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { GraduationCap, Users, Trophy, Heart, Mail, ArrowRight } from 'lucide-react';
 
+// Import the academy images
+import academyImage1 from '@/assets/Academy_Image_1.jpg';
+import academyImage2 from '@/assets/Academy_Image_2.jpg';
+import academyImage3 from '@/assets/Academy_Image_3.jpg';
+import actionImage1 from '@/assets/Action_Image_1.jpg';
+
 const Academy = () => {
   const { language } = useLanguage();
 
@@ -52,7 +58,8 @@ const Academy = () => {
         ? 'Le voyage commence par le plaisir et les fondamentaux. Nos plus jeunes joueuses développent leurs compétences à travers des jeux à effectifs réduits, des tournois et des plateaux régionaux axés sur la joie, le mouvement et l\'esprit d\'équipe.'
         : 'The journey begins with fun and fundamentals. Our youngest players build their skills through small-sided games, tournaments, and regional plateaus focused on joy, movement, and team spirit.',
       icon: Heart,
-      color: 'bg-monaco-yellow text-black'
+      color: 'bg-monaco-yellow text-black',
+      image: academyImage1
     },
     {
       title: language === 'fr' ? 'Pré-Académie (U12 – U15)' : 'Pre-Academy (U12 – U15)',
@@ -60,7 +67,8 @@ const Academy = () => {
         ? 'Alors que les joueuses grandissent, l\'accent aussi. Ces années clés portent sur la conscience tactique, la croissance technique et le développement physique pour des niveaux de jeu plus élevés.'
         : 'As players grow, so does the focus. These key years are about tactical awareness, technical growth, and physical development for higher levels of play.',
       icon: Users,
-      color: 'bg-monaco-yellow text-black'
+      color: 'bg-monaco-yellow text-black',
+      image: academyImage2
     },
     {
       title: language === 'fr' ? 'Équipes Jeunes (U15 – U18)' : 'Youth Teams (U15 – U18)',
@@ -68,7 +76,8 @@ const Academy = () => {
         ? 'Où le talent rencontre la compétition. Nos équipes U15 et U18 participent aux ligues de district et régionales, construisant l\'expérience de match, la résilience mentale et le leadership.'
         : 'Where talent meets competition. Our U15 and U18 squads compete in district and regional leagues, building match experience, mental resilience, and leadership.',
       icon: Trophy,
-      color: 'bg-primary'
+      color: 'bg-primary',
+      image: academyImage3
     },
     {
       title: language === 'fr' ? 'Transition Senior (District & R1)' : 'Senior Transition (District & R1)',
@@ -76,7 +85,8 @@ const Academy = () => {
         ? 'Notre équipe de Régionale 1 est le tremplin pour les diplômées de l\'Académie vers le football féminin de haut niveau. C\'est là que les rêves se transforment en buts — littéralement.'
         : 'Our Régionale 1 team is the launchpad for Academy graduates into top-level women\'s football. This is where dreams turn into goals — literally.',
       icon: GraduationCap,
-      color: 'bg-monaco-red'
+      color: 'bg-monaco-red',
+      image: actionImage1
     }
   ];
 
@@ -91,7 +101,7 @@ const Academy = () => {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <section className="py-20 bg-monaco-red">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-2 text-center">
 
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
             {content.title}
@@ -107,7 +117,7 @@ const Academy = () => {
 
       {/* Pathway Section - Red Bulls Style 2x2 Grid */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-2">
           <h2 className="text-3xl font-bold text-foreground text-center mb-12 animate-fade-in">
             {content.pathway}
           </h2>
@@ -140,15 +150,13 @@ const Academy = () => {
                   </div>
                 </div>
 
-                {/* Right Panel - Image Placeholder */}
-                <div className="flex-1 bg-gray-300 flex items-center justify-center">
-                  <div className="text-gray-500 text-center">
-                    <div className="w-16 h-16 bg-monaco-yellow rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <stage.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <p className="text-sm">Image Placeholder</p>
-                    <p className="text-xs mt-1">{stage.title}</p>
-                  </div>
+                {/* Right Panel - Image */}
+                <div className="flex-1 bg-gray-300 overflow-hidden">
+                  <img 
+                    src={stage.image} 
+                    alt={stage.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             ))}
@@ -158,7 +166,7 @@ const Academy = () => {
 
       {/* Why Choose ASMFF */}
       <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-2">
           <h2 className="text-3xl font-bold text-foreground text-center mb-12 animate-fade-in">
             {content.whyChoose}
           </h2>
@@ -184,7 +192,7 @@ const Academy = () => {
 
       {/* Contact Form */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-2">
           <div className="max-w-4xl mx-auto text-center mb-12 animate-fade-in">
             <h2 className="text-3xl font-bold text-foreground mb-6">
               {content.readyToJoin}
@@ -258,7 +266,7 @@ const Academy = () => {
 
       {/* Call to Action */}
       <section className="py-16 bg-monaco-red">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-2 text-center">
           <div className="max-w-3xl mx-auto animate-fade-in">
             <h2 className="text-3xl font-bold text-white mb-6">
               {language === 'fr' ? 'L\'Avenir Commence Ici' : 'The Future Starts Here'}
