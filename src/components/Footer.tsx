@@ -55,7 +55,7 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-4">
               <img 
-                src="/src/assets/team logo/AS MONACO FF.png"
+                src="/teams/AS MONACO FF.png"
                 alt="AS Monaco FF"
                 className="w-16 h-16 object-contain"
               />

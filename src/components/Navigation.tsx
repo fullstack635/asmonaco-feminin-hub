@@ -32,7 +32,7 @@ export const Navigation: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 hover:scale-105 transition-transform duration-200">
             <img 
-              src="/src/assets/team logo/AS MONACO FF.png"
+              src="/teams/AS MONACO FF.png"
               alt="AS Monaco FF"
               className="w-12 h-12 object-contain"
             />
