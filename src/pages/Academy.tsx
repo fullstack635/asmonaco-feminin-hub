@@ -102,7 +102,7 @@ const Academy = () => {
       {/* Header - Fully Responsive */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 bg-monaco-red spacing-mobile">
         <div className="container-mobile text-center">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 animate-fade-in mobile-text-shadow">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-montserrat-extrabold text-white mb-4 sm:mb-6 animate-fade-in mobile-text-shadow">
             {content.title}
           </h1>
           <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white/90 mb-4 sm:mb-6 animate-fade-in">
@@ -117,7 +117,7 @@ const Academy = () => {
       {/* Pathway Section - Responsive Grid */}
       <section className="py-8 sm:py-12 md:py-16 lg:py-20">
         <div className="px-[50px]">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center mb-8 sm:mb-12 animate-fade-in">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-cinzel-decorative text-foreground text-center mb-8 sm:mb-12 animate-fade-in">
             {content.pathway}
           </h2>
 
@@ -150,7 +150,7 @@ const Academy = () => {
                     
                     <div className="mt-4 pt-4 border-t border-white/20">
                       <div className="text-white/70" style={{ fontSize: 'clamp(10px, 2.5vw, 14px)' }}>
-                        AS Monaco FF
+                        AS Monaco Football Féminin
                       </div>
                     </div>
                   </div>
@@ -178,7 +178,7 @@ const Academy = () => {
                     {/* Sponsor/Logo Area */}
                     <div className="mt-auto">
                       <div className="text-white/70 text-sm">
-                        AS Monaco FF
+                        AS Monaco Football Féminin
                       </div>
                     </div>
                   </div>
@@ -201,7 +201,7 @@ const Academy = () => {
       {/* Why Choose ASMFF - Responsive */}
       <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-muted">
         <div className="container-mobile">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center mb-8 sm:mb-12 animate-fade-in">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-cinzel-decorative text-foreground text-center mb-8 sm:mb-12 animate-fade-in">
             {content.whyChoose}
           </h2>
 
@@ -228,7 +228,7 @@ const Academy = () => {
       <section className="py-8 sm:py-12 md:py-16 lg:py-20">
         <div className="container-mobile">
           <div className="max-w-4xl mx-auto text-center mb-8 sm:mb-12 animate-fade-in">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-cinzel-decorative text-foreground mb-4 sm:mb-6">
               {content.readyToJoin}
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-4">
@@ -319,7 +319,7 @@ const Academy = () => {
       <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-monaco-red">
         <div className="container-mobile text-center">
           <div className="max-w-3xl mx-auto animate-fade-in">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 mobile-text-shadow">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-cinzel-decorative text-white mb-4 sm:mb-6 mobile-text-shadow">
               {language === 'fr' ? 'L\'Avenir Commence Ici' : 'The Future Starts Here'}
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8">

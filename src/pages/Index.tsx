@@ -80,7 +80,7 @@ const Index = () => {
         <div className={`relative z-10 text-center text-white max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           
           {/* Animated Title - Laptop responsive typography */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 leading-tight transform-gpu mobile-text-shadow">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-montserrat-extrabold mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 leading-tight transform-gpu mobile-text-shadow">
             <span className="inline-block animate-slide-in-left" style={{ animationDelay: '0.2s' }}>
               {content.title.split(' ').map((word, index) => (
                 <span 
@@ -95,7 +95,7 @@ const Index = () => {
           </h1>
           
           {/* Animated Subtitle - Laptop responsive */}
-          <p className="text-mobile-responsive lg:text-xl xl:text-2xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 opacity-90 max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto leading-relaxed animate-fade-in transform-gpu px-2 sm:px-0" style={{ animationDelay: '0.6s' }}>
+          <p className="text-mobile-responsive lg:text-xl xl:text-2xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 opacity-90 max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto leading-relaxed animate-fade-in transform-gpu px-2 sm:px-0 font-cinzel-decorative" style={{ animationDelay: '0.6s' }}>
             {content.subtitle}
           </p>
           
@@ -117,7 +117,7 @@ const Index = () => {
                 size="lg"
                 className="btn-mobile group bg-monaco-red text-white hover:bg-monaco-red/90 border-2 border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-110 transform-gpu shadow-lg hover:shadow-xl w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
               >
-                <Play className="mr-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:scale-125 transition-transform duration-300" />
+                <ArrowRight className="mr-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" />
                 {t('matches')}
               </Button>
             </Link>
@@ -136,7 +136,7 @@ const Index = () => {
         <div className="container-mobile relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-20 2xl:gap-24 items-center max-w-6xl lg:max-w-7xl mx-auto">
             <div className="space-y-6 sm:space-y-8 lg:space-y-10 xl:space-y-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight relative">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-cinzel-decorative-bold text-foreground leading-tight relative">
                 <span className="inline-block hover:text-secondary transition-colors duration-500">
                   {language === 'fr' ? 'Notre Mission' : 'Our Mission'}
                 </span>
@@ -203,7 +203,7 @@ const Index = () => {
       <section className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-monaco-red spacing-mobile">
         <div className="container-mobile text-center">
           <div className="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto animate-fade-in">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 lg:mb-8 xl:mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-cinzel-decorative-bold text-white mb-4 sm:mb-6 lg:mb-8 xl:mb-10">
               {language === 'fr' ? 'Rejoignez le Mouvement' : 'Join the Movement'}
             </h2>
             <p className="text-mobile-responsive lg:text-xl xl:text-2xl text-white/90 mb-6 sm:mb-8 lg:mb-10 xl:mb-12 px-2 sm:px-0">
@@ -223,15 +223,7 @@ const Index = () => {
                   <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-1 transition-transform duration-200" />
                 </Button>
               </Link>
-              
-              <Link to="/tickets" className="w-full sm:w-auto">
-                <Button 
-                  size="lg"
-                  className="btn-mobile group bg-monaco-yellow text-black font-semibold hover:bg-monaco-yellow/90 border-2 border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
-                >
-                  {t('tickets')}
-                </Button>
-              </Link>
+            
             </div>
           </div>
         </div>

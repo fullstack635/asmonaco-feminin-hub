@@ -11,20 +11,16 @@ const Matches = () => {
 
   const matchesInfo = {
     fr: {
-      title: "MATCHES & RÉSULTATS",
+      title: "MATCHES SCHEDULE",
       subtitle: "Retrouvez ici tous les matchs à venir et les résultats de l'AS Monaco Football Féminin.",
       upcoming: "PROCHAINS MATCHS",
-      results: "RÉSULTATS",
-      tickets: "BILLETS",
-      watch: "REGARDER"
+      results: "RÉSULTATS"
     },
     en: {
-      title: "MATCHES & RESULTS",
+      title: "MATCHES SCHEDULE", 
       subtitle: "Find all upcoming matches and results for AS Monaco Football Féminin right here.",
       upcoming: "UPCOMING MATCHES",
-      results: "RESULTS",
-      tickets: "TICKETS",
-      watch: "WATCH"
+      results: "RESULTS"
     }
   };
 
@@ -36,7 +32,7 @@ const Matches = () => {
       id: 1,
       date: "SEPT. 7, 2025",
       result: "W: 1-0",
-      homeTeam: "AS MONACO FF",
+      homeTeam: "AS Monaco Football Féminin",
       awayTeam: "GIRONDINS BORDEAUX",
       status: "completed",
       hasTickets: false,
@@ -47,7 +43,7 @@ const Matches = () => {
       date: "OCT. 12, 2025",
       result: null,
       homeTeam: "ALC LONGVIC",
-      awayTeam: "AS MONACO FF",
+      awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
@@ -57,7 +53,7 @@ const Matches = () => {
       date: "OCT. 19, 2025",
       result: null,
       homeTeam: "MONTPELLIER HSC 2",
-      awayTeam: "AS MONACO FF",
+      awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
@@ -66,7 +62,7 @@ const Matches = () => {
       id: 4,
       date: "NOV. 2, 2025",
       result: null,
-      homeTeam: "AS MONACO FF",
+      homeTeam: "AS Monaco Football Féminin",
       awayTeam: "CLERMONT FOOT 63",
       status: "upcoming",
       hasTickets: true,
@@ -77,7 +73,7 @@ const Matches = () => {
       date: "NOV. 16, 2025",
       result: null,
       homeTeam: "AS CHATENOY LE ROYAL",
-      awayTeam: "AS MONACO FF",
+      awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
@@ -86,7 +82,7 @@ const Matches = () => {
       id: 6,
       date: "NOV. 30, 2025",
       result: null,
-      homeTeam: "AS MONACO FF",
+      homeTeam: "AS Monaco Football Féminin",
       awayTeam: "AS CANNES",
       status: "upcoming",
       hasTickets: true,
@@ -97,7 +93,7 @@ const Matches = () => {
       date: "DEC. 14, 2025",
       result: null,
       homeTeam: "ALBI MARSSAC TF",
-      awayTeam: "AS MONACO FF",
+      awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
@@ -106,7 +102,7 @@ const Matches = () => {
       id: 8,
       date: "JAN. 11, 2026",
       result: null,
-      homeTeam: "AS MONACO FF",
+      homeTeam: "AS Monaco Football Féminin",
       awayTeam: "OLYMPIQUE LYONNAIS 2",
       status: "upcoming",
       hasTickets: true,
@@ -117,7 +113,7 @@ const Matches = () => {
       date: "JAN. 25, 2026",
       result: null,
       homeTeam: "MONTAUBAN FC TG",
-      awayTeam: "AS MONACO FF",
+      awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
@@ -126,7 +122,7 @@ const Matches = () => {
       id: 10,
       date: "FEB. 8, 2026",
       result: null,
-      homeTeam: "AS MONACO FF",
+      homeTeam: "AS Monaco Football Féminin",
       awayTeam: "LE PUY FOOT 43 AUV",
       status: "upcoming",
       hasTickets: true,
@@ -137,7 +133,7 @@ const Matches = () => {
       date: "FEB. 22, 2026",
       result: null,
       homeTeam: "GIRONDINS BORDEAUX",
-      awayTeam: "AS MONACO FF",
+      awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
@@ -146,7 +142,7 @@ const Matches = () => {
       id: 12,
       date: "MAR. 8, 2026",
       result: null,
-      homeTeam: "AS MONACO FF",
+      homeTeam: "AS Monaco Football Féminin",
       awayTeam: "ALC LONGVIC",
       status: "upcoming",
       hasTickets: true,
@@ -156,7 +152,7 @@ const Matches = () => {
       id: 13,
       date: "MAR. 22, 2026",
       result: null,
-      homeTeam: "AS MONACO FF",
+      homeTeam: "AS Monaco Football Féminin",
       awayTeam: "MONTPELLIER HSC 2",
       status: "upcoming",
       hasTickets: true,
@@ -166,7 +162,7 @@ const Matches = () => {
       id: 14,
       date: "MAR. 29, 2026",
       result: null,
-      homeTeam: "AS MONACO FF",
+      homeTeam: "AS Monaco Football Féminin",
       awayTeam: "EXEMPT",
       status: "exempt",
       hasTickets: false,
@@ -177,7 +173,7 @@ const Matches = () => {
       date: "APR. 12, 2026",
       result: null,
       homeTeam: "CLERMONT FOOT 63",
-      awayTeam: "AS MONACO FF",
+      awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
@@ -186,7 +182,7 @@ const Matches = () => {
       id: 16,
       date: "APR. 26, 2026",
       result: null,
-      homeTeam: "AS MONACO FF",
+      homeTeam: "AS Monaco Football Féminin",
       awayTeam: "AS CHATENOY LE ROYAL",
       status: "upcoming",
       hasTickets: true,
@@ -197,7 +193,7 @@ const Matches = () => {
       date: "MAY. 3, 2026",
       result: null,
       homeTeam: "AS CANNES",
-      awayTeam: "AS MONACO FF",
+      awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
@@ -206,7 +202,7 @@ const Matches = () => {
       id: 18,
       date: "MAY. 17, 2026",
       result: null,
-      homeTeam: "AS MONACO FF",
+      homeTeam: "AS Monaco Football Féminin",
       awayTeam: "ALBI MARSSAC TF",
       status: "upcoming",
       hasTickets: true,
@@ -217,91 +213,7 @@ const Matches = () => {
       date: "MAY. 31, 2026",
       result: null,
       homeTeam: "OLYMPIQUE LYONNAIS 2",
-      awayTeam: "AS MONACO FF",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    }
-  ];
-
-  // TST Tournament match data
-  const tstMatches = [
-    {
-      id: 1,
-      date: "JUN. 15, 2025",
-      result: null,
-      homeTeam: "AS MONACO FF",
-      awayTeam: "PARIS SAINT-GERMAIN",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 2,
-      date: "JUN. 22, 2025",
-      result: null,
-      homeTeam: "OLYMPIQUE LYONNAIS",
-      awayTeam: "AS MONACO FF",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 3,
-      date: "JUN. 29, 2025",
-      result: null,
-      homeTeam: "AS MONACO FF",
-      awayTeam: "MARSEILLE",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 4,
-      date: "JUL. 6, 2025",
-      result: null,
-      homeTeam: "NICE",
-      awayTeam: "AS MONACO FF",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 5,
-      date: "JUL. 13, 2025",
-      result: null,
-      homeTeam: "AS MONACO FF",
-      awayTeam: "LILLE",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 6,
-      date: "JUL. 20, 2025",
-      result: null,
-      homeTeam: "RENNES",
-      awayTeam: "AS MONACO FF",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 7,
-      date: "JUL. 27, 2025",
-      result: null,
-      homeTeam: "AS MONACO FF",
-      awayTeam: "STRASBOURG",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 8,
-      date: "AUG. 3, 2025",
-      result: null,
-      homeTeam: "NANTES",
-      awayTeam: "AS MONACO FF",
+      awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
@@ -310,7 +222,7 @@ const Matches = () => {
 
   const getTeamLogo = (teamName: string) => {
     const logoMap: { [key: string]: string } = {
-      'AS MONACO FF': '/teams/AS MONACO FF.png',
+      'AS Monaco Football Féminin': '/teams/AS MONACO FF.png',
       'GIRONDINS BORDEAUX': '/teams/GIRONDINS BORDEAUX.png',
       'ALC LONGVIC': '/teams/ALC LONGVIC.png',
       'MONTPELLIER HSC 2': '/teams/MONTPELLIER HSC 2.png',
@@ -321,16 +233,7 @@ const Matches = () => {
       'OLYMPIQUE LYONNAIS 2': '/teams/OLYMPIQUE LYONNAIS 2.png',
       'MONTAUBAN FC TG': '/teams/MONTAUBAN FC TG.png',
       'LE PUY FOOT 43 AUV': '/teams/LE PUY FOOT 43 AUV.png',
-      'EXEMPT': '/teams/EXEMPT.png',
-      // TST Tournament teams
-      'PARIS SAINT-GERMAIN': '/teams/EXEMPT.png',
-      'OLYMPIQUE LYONNAIS': '/teams/OLYMPIQUE LYONNAIS 2.png',
-      'MARSEILLE': '/teams/EXEMPT.png',
-      'NICE': '/teams/EXEMPT.png',
-      'LILLE': '/teams/EXEMPT.png',
-      'RENNES': '/teams/EXEMPT.png',
-      'STRASBOURG': '/teams/EXEMPT.png',
-      'NANTES': '/teams/EXEMPT.png'
+      'EXEMPT': '/teams/EXEMPT.png'
     };
     return logoMap[teamName] || '/teams/EXEMPT.png';
   };
@@ -364,20 +267,6 @@ const Matches = () => {
               </div>
             </div>
           </div>
-          
-          {/* Action Links */}
-          <div className="flex justify-center space-x-4">
-            {match.hasTickets && (
-              <Button size="sm" variant="outline" className="text-xs">
-                {content.tickets}
-              </Button>
-            )}
-            {match.hasYoutube && (
-              <Button size="sm" variant="outline" className="text-xs">
-                {content.watch}
-              </Button>
-            )}
-          </div>
         </div>
       </div>
 
@@ -395,7 +284,7 @@ const Matches = () => {
           </div>
 
           {/* Teams with small logos */}
-          <div className="col-span-6 flex items-center justify-center">
+          <div className="col-span-9 flex items-center justify-center">
             <div className="flex items-center space-x-2 w-full">
               <div className="flex items-center space-x-2 flex-1 justify-end">
                 <div className="text-sm font-semibold text-[#1A2A44] text-right uppercase tracking-wide">
@@ -434,20 +323,6 @@ const Matches = () => {
               </div>
             </div>
           </div>
-
-          {/* Action Links */}
-          <div className="col-span-3 flex flex-col gap-1 items-end">
-            {match.hasTickets && (
-              <a href="#" className="text-red-600 font-semibold underline text-xs hover:text-red-700 transition-colors">
-                {content.tickets}
-              </a>
-            )}
-            {match.hasYoutube && (
-              <a href="#" className="text-red-600 font-semibold underline text-xs hover:text-red-700 transition-colors">
-                {content.watch}
-              </a>
-            )}
-          </div>
         </div>
       </div>
 
@@ -468,7 +343,7 @@ const Matches = () => {
           <div className="col-span-8 flex items-center justify-center">
             {/* Home Team */}
             <div className="flex items-center space-x-4 w-1/3 justify-end">
-              <div className="text-lg font-serif font-semibold text-[#1A2A44] text-right uppercase tracking-wide flex-1">
+              <div className="text-lg font-cinzel-decorative font-semibold text-[#1A2A44] text-right uppercase tracking-wide flex-1">
                 {match.homeTeam}
               </div>
               <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white flex items-center justify-center flex-shrink-0">
@@ -502,24 +377,10 @@ const Matches = () => {
                   }}
                 />
               </div>
-              <div className="text-lg font-serif font-semibold text-[#1A2A44] text-left uppercase tracking-wide flex-1">
+              <div className="text-lg font-cinzel-decorative font-semibold text-[#1A2A44] text-left uppercase tracking-wide flex-1">
                 {match.awayTeam}
               </div>
             </div>
-          </div>
-
-          {/* Action Links - Right Column */}
-          <div className="col-span-2 flex flex-col gap-1 items-end">
-            {match.hasTickets && (
-              <a href="#" className="text-red-600 font-semibold underline text-xs hover:text-red-700 transition-colors">
-                {content.tickets}
-              </a>
-            )}
-            {match.hasYoutube && (
-              <a href="#" className="text-red-600 font-semibold underline text-xs hover:text-red-700 transition-colors">
-                {content.watch}
-              </a>
-            )}
           </div>
         </div>
       </div>
@@ -529,7 +390,7 @@ const Matches = () => {
   const MatchesList = ({ matches, title }: { matches: any[], title: string }) => (
     <section className="py-8 sm:py-12 md:py-16 bg-white">
       <div className="container-mobile">
-        <h2 className="text-2xl sm:text-3xl font-serif font-bold text-gray-900 mb-6 sm:mb-8 text-center">{title}</h2>
+        <h2 className="text-2xl sm:text-3xl font-cinzel-decorative font-bold text-gray-900 mb-6 sm:mb-8 text-center">{title}</h2>
         <div className="bg-white rounded-lg overflow-hidden max-w-6xl mx-auto">
           {matches.map((match, index) => (
             <div 
@@ -567,23 +428,15 @@ const Matches = () => {
                   : 'text-gray-600 border-transparent hover:text-red-600 hover:border-red-600 hover:bg-gray-50'
               }`}
             >
-              WPSL
+              Matches
             </button>
             <button
               onClick={() => {
-                setActiveTab('tst');
-                const element = document.getElementById('tst-tournament');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
+                window.open('https://epreuves.fff.fr/competition/engagement/436508-d3-feminine/phase/1/2/resultats-et-calendrier', '_blank');
               }}
-              className={`font-semibold text-sm sm:text-base md:text-lg transition-all duration-200 border-b-2 pb-2 touch-friendly px-6 py-2 rounded-md min-w-[120px] text-center ${
-                activeTab === 'tst'
-                  ? 'text-red-600 border-red-600 bg-red-50'
-                  : 'text-gray-600 border-transparent hover:text-red-600 hover:border-red-600 hover:bg-gray-50'
-              }`}
+              className="font-semibold text-sm sm:text-base md:text-lg transition-all duration-200 border-b-2 pb-2 touch-friendly px-6 py-2 rounded-md min-w-[120px] text-center text-gray-600 border-transparent hover:text-red-600 hover:border-red-600 hover:bg-gray-50"
             >
-              TST Tournament
+              Standings
             </button>
           </div>
           {/* Horizontal line under tabs */}
@@ -594,17 +447,12 @@ const Matches = () => {
       </section>
 
       {/* WPSL Matches */}
-      <MatchesList matches={wpslMatches} title="WPSL Season Schedule" />
-
-      {/* TST Tournament Matches */}
-      <div id="tst-tournament">
-        <MatchesList matches={tstMatches} title="TST Tournament Schedule" />
-      </div>
+      <MatchesList matches={wpslMatches} title="D3 FEMININE - French Football Federation" />
 
       {/* Season Stats - Responsive */}
       <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
         <div className="container-mobile text-center">
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-gray-900 mb-8 sm:mb-12 animate-fade-in">
+          <h2 className="text-2xl sm:text-3xl font-cinzel-decorative font-bold text-gray-900 mb-8 sm:mb-12 animate-fade-in">
             {language === 'fr' ? 'Statistiques de la saison' : 'Season Statistics'}
           </h2>
           

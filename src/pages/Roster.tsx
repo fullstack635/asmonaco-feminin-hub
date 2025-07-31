@@ -12,7 +12,7 @@ const Roster = () => {
   const rosterInfo = {
     fr: {
       title: "Notre Équipe",
-      subtitle: "AS Monaco Football Féminin évolue en Division 3 FFF, le troisième niveau du football féminin en France. La ligue met en valeur les talents émergents et sert d'étape clé dans le développement du jeu féminin à travers le pays.",
+      subtitle: "AS Monaco Football Féminin competes in FFF Division 3 — A national stage for rising talent and the next generation of women's football in France.",
       positions: {
         goalkeeper: "Gardienne",
         defender: "Défenseure",
@@ -22,7 +22,7 @@ const Roster = () => {
     },
     en: {
       title: "Our Team",
-      subtitle: "AS Monaco Football Féminin competes in FFF Division 3, the third tier of women's football in France. The league showcases rising talent and serves as a key stepping stone in the development of the women's game across the country.",
+      subtitle: "AS Monaco Football Féminin competes in FFF Division 3 — A national stage for rising talent and the next generation of women's football in France.",
       positions: {
         goalkeeper: "Goalkeeper",
         defender: "Defender", 
@@ -62,11 +62,11 @@ const Roster = () => {
 
   const getPositionColor = (position: string) => {
     switch (position.toLowerCase()) {
-      case 'gk': return 'bg-monaco-yellow text-black';
+      case 'gk': return 'bg-monaco-red text-white';
       case 'defendeur': return 'bg-monaco-red text-white';
-      case 'midfield': return 'bg-monaco-yellow text-black';
+      case 'midfield': return 'bg-monaco-red text-white';
       case 'strike': return 'bg-monaco-red text-white';
-      default: return 'bg-muted text-foreground';
+      default: return 'bg-monaco-red text-white';
     }
   };
 
@@ -107,8 +107,8 @@ const Roster = () => {
       <section className="relative h-48 sm:h-56 md:h-64 lg:h-[250px] bg-monaco-red flex items-center justify-center px-4 sm:px-6 lg:px-8">
         {/* Content */}
         <div className="relative z-10 text-center text-white">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 mobile-text-shadow">{content.title}</h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-95 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">{content.subtitle}</p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-montserrat-extrabold mb-3 sm:mb-4 md:mb-6 mobile-text-shadow">{content.title}</h1>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-95 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0 font-cinzel-decorative">{content.subtitle}</p>
         </div>
       </section>
 
@@ -131,13 +131,11 @@ const Roster = () => {
                       {/* Main Number Container */}
                       <div className="relative w-full h-full flex items-center justify-center">
                         <span 
-                          className="number"
+                          className="number font-montserrat-extrabold"
                           style={{
-                            fontFamily: 'Arial Black, Impact, sans-serif',
                             fontSize: 'clamp(32px, 6vw, 120px)',
                             color: 'white',
                             textShadow: '3px 3px 0 red, -3px -3px 0 red, 3px -3px 0 red, -3px 3px 0 red, 0 3px 0 red, 0 -3px 0 red, 3px 0 0 red, -3px 0 0 red',
-                            fontWeight: '900',
                             letterSpacing: '2px',
                             lineHeight: '1',
                             marginRight: (player.number && player.number > 9) ? '10px' : '0px'
@@ -218,7 +216,7 @@ const Roster = () => {
       {/* Personal List Table - Mobile responsive */}
       <section className="py-8 sm:py-12 md:py-16 bg-muted">
         <div className="w-full px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-6 sm:mb-8 md:mb-12 animate-fade-in">
+          <h2 className="text-2xl sm:text-3xl font-cinzel-decorative-bold text-foreground text-center mb-6 sm:mb-8 md:mb-12 animate-fade-in">
             {language === 'fr' ? 'Liste Personnelle' : 'Personal List'}
           </h2>
           
@@ -307,43 +305,6 @@ const Roster = () => {
                 </table>
               </div>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Competition Info - Mobile responsive */}
-      <section className="py-8 sm:py-12 md:py-16 bg-background">
-        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-4xl mx-auto animate-fade-in">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4 sm:mb-6">
-              {language === 'fr' ? 'Division 3 FFF' : 'FFF Division 3'}
-            </h2>
-            <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8">
-              {language === 'fr' 
-                ? 'Notre équipe représente fièrement Monaco dans la Division 3 du championnat féminin français, un niveau compétitif qui nous permet de développer nos talents et de viser une promotion vers les divisions supérieures.'
-                : 'Our team proudly represents Monaco in the French women\'s Division 3 championship, a competitive level that allows us to develop our talents and aim for promotion to higher divisions.'
-              }
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-primary mb-2">150+</div>
-                <p className="text-muted-foreground text-sm sm:text-base">
-                  {language === 'fr' ? 'Joueuses licenciées' : 'Licensed Players'}
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-primary mb-2">2024</div>
-                <p className="text-muted-foreground text-sm sm:text-base">
-                  {language === 'fr' ? 'Promotion en D3' : 'Promoted to D3'}
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-primary mb-2">2022</div>
-                <p className="text-muted-foreground text-sm sm:text-base">
-                  {language === 'fr' ? '16e de finale Coupe' : 'Cup Round of 16'}
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>

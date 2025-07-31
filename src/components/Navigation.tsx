@@ -33,14 +33,14 @@ export const Navigation: React.FC = () => {
           <Link to="/" className="flex items-center space-x-2 sm:space-x-3 hover:scale-105 transition-transform duration-200 touch-friendly flex-shrink-0">
             <img 
               src="/teams/AS MONACO FF.png"
-              alt="AS Monaco FF"
+              alt="AS Monaco Football Féminin"
               className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain flex-shrink-0"
             />
             <div className="hidden xs:block flex-shrink-0">
-              <span className="font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-primary leading-tight block">
+              <span className="font-montserrat-extrabold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-primary leading-tight block">
                 AS Monaco
               </span>
-              <span className="text-xs sm:text-xs md:text-sm lg:text-base text-muted-foreground block leading-tight">
+              <span className="font-cinzel-decorative text-xs sm:text-xs md:text-sm lg:text-base text-muted-foreground block leading-tight">
                 Football Féminin
               </span>
             </div>
@@ -52,7 +52,7 @@ export const Navigation: React.FC = () => {
               <Link
                 key={item.key}
                 to={item.href}
-                className={`px-2 py-2 xl:px-3 xl:py-2 2xl:px-4 2xl:py-3 rounded-md text-xs xl:text-sm 2xl:text-base font-bold transition-all duration-200 hover:scale-105 touch-friendly text-center whitespace-nowrap flex-shrink-0 ${
+                className={`px-2 py-2 xl:px-3 xl:py-2 2xl:px-4 2xl:py-3 rounded-md text-xs xl:text-sm 2xl:text-base font-montserrat-extrabold transition-all duration-200 hover:scale-105 touch-friendly text-center whitespace-nowrap flex-shrink-0 ${
                   isActive(item.href)
                     ? 'bg-primary text-primary-foreground shadow-monaco'
                     : 'text-foreground hover:bg-accent hover:text-accent-foreground'
@@ -69,7 +69,7 @@ export const Navigation: React.FC = () => {
               <Link
                 key={item.key}
                 to={item.href}
-                className={`px-1 py-2 rounded-md text-xs font-bold transition-all duration-200 hover:scale-105 touch-friendly text-center whitespace-nowrap flex-shrink-0 ${
+                className={`px-1 py-2 rounded-md text-xs font-montserrat-extrabold transition-all duration-200 hover:scale-105 touch-friendly text-center whitespace-nowrap flex-shrink-0 ${
                   isActive(item.href)
                     ? 'bg-primary text-primary-foreground shadow-monaco'
                     : 'text-foreground hover:bg-accent hover:text-accent-foreground'
@@ -123,7 +123,7 @@ export const Navigation: React.FC = () => {
                 <Link
                   key={item.key}
                   to={item.href}
-                  className={`block px-4 py-3 rounded-md text-base font-bold transition-all duration-200 touch-friendly text-center ${
+                  className={`block px-4 py-3 rounded-md text-base font-montserrat-extrabold transition-all duration-200 touch-friendly text-center ${
                     isActive(item.href)
                       ? 'bg-primary text-primary-foreground shadow-monaco'
                       : 'text-foreground hover:bg-accent hover:text-accent-foreground'
@@ -145,7 +145,7 @@ export const Navigation: React.FC = () => {
                 <Link
                   key={item.key}
                   to={item.href}
-                  className={`block px-4 py-3 rounded-md text-sm font-bold transition-all duration-200 touch-friendly text-center ${
+                  className={`block px-4 py-3 rounded-md text-sm font-montserrat-extrabold transition-all duration-200 touch-friendly text-center ${
                     isActive(item.href)
                       ? 'bg-primary text-primary-foreground shadow-monaco'
                       : 'text-foreground hover:bg-accent hover:text-accent-foreground'

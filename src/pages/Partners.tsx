@@ -10,7 +10,31 @@ const Partners = () => {
   const partnersContent = {
     fr: {
       title: "Partenaires & Sponsors",
-      subtitle: "Merci à nos Partenaires & Sponsors. Nous exprimons nos sincères remerciements à tous nos partenaires et sponsors pour leur soutien continu. Votre engagement joue un rôle vital en nous aidant à développer le football féminin à Monaco et à autonomiser la prochaine génération de joueuses. Ensemble, nous construisons quelque chose de spécial — à la fois sur et en dehors du terrain.",
+      subtitle: "Merci à nos Partenaires & Sponsors",
+      tagline: "Ensemble, nous construisons quelque chose de spécial",
+      values: [
+        {
+          icon: "🤝",
+          title: "Soutien Continu",
+          description: "Nous exprimons nos sincères remerciements pour votre engagement"
+        },
+        {
+          icon: "⚽",
+          title: "Développement du Football",
+          description: "Aider à développer le football féminin à Monaco"
+        },
+        {
+          icon: "🌟",
+          title: "Prochaine Génération",
+          description: "Autonomiser la prochaine génération de joueuses"
+        },
+        {
+          icon: "🏆",
+          title: "Excellence",
+          description: "À la fois sur et en dehors du terrain"
+        }
+      ],
+      impactStatement: "Votre engagement joue un rôle vital dans notre succès",
       mainPartners: "Partenaires Principaux",
       officialSponsors: "Sponsors Officiels",
       supportingPartners: "Partenaires de Soutien",
@@ -20,7 +44,31 @@ const Partners = () => {
     },
     en: {
       title: "Partners & Sponsors", 
-      subtitle: "Thank You to Our Partners & Sponsors. We extend our sincere thanks to all of our partners and sponsors for their continued support. Your commitment plays a vital role in helping us grow women's football in Monaco and empower the next generation of players. Together, we are building something special — both on and off the pitch.",
+      subtitle: "Thank You to Our Partners & Sponsors",
+      tagline: "Together, we are building something special",
+      values: [
+        {
+          icon: "🤝",
+          title: "Continued Support",
+          description: "We extend our sincere thanks for your commitment"
+        },
+        {
+          icon: "⚽",
+          title: "Growing Football",
+          description: "Helping us grow women's football in Monaco"
+        },
+        {
+          icon: "🌟",
+          title: "Next Generation",
+          description: "Empowering the next generation of players"
+        },
+        {
+          icon: "🏆",
+          title: "Excellence",
+          description: "Both on and off the pitch"
+        }
+      ],
+      impactStatement: "Your commitment plays a vital role in our success",
       mainPartners: "Main Partners",
       officialSponsors: "Official Sponsors", 
       supportingPartners: "Supporting Partners",
@@ -81,13 +129,52 @@ const Partners = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <section className="py-20 bg-monaco-red">
-        <div className="container mx-auto px-2 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-5xl font-montserrat-extrabold text-white mb-4 animate-fade-in">
             {content.title}
           </h1>
-          <p className="text-lg text-white/90 max-w-4xl mx-auto animate-fade-in leading-relaxed">
+          <p className="text-xl md:text-2xl font-cinzel-decorative text-white/95 mb-2 animate-fade-in">
             {content.subtitle}
           </p>
+          <p className="text-lg text-white/90 mb-8 animate-fade-in">
+            {content.tagline}
+          </p>
+          
+          {/* Decorative Line */}
+          <div className="w-24 h-1 bg-monaco-yellow mx-auto rounded-full"></div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="py-16 bg-gradient-to-r from-gray-50 to-white">
+        <div className="container mx-auto px-4 max-w-6xl">
+          {/* Section Title */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-cinzel-decorative-bold text-foreground mb-4">
+              {content.impactStatement}
+            </h2>
+          </div>
+
+          {/* Values Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {content.values.map((value, index) => (
+              <div 
+                key={index}
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-center group"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  {value.icon}
+                </div>
+                <h3 className="text-lg font-cinzel-decorative-bold text-foreground mb-3 group-hover:text-monaco-red transition-colors duration-300">
+                  {value.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {value.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -103,7 +190,7 @@ const Partners = () => {
       {/* Partnership Benefits */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-2">
-          <h2 className="text-3xl font-bold text-foreground text-center mb-12 animate-fade-in">
+          <h2 className="text-3xl font-cinzel-decorative-bold text-foreground text-center mb-12 animate-fade-in">
             {language === 'fr' ? 'Avantages du Partenariat' : 'Partnership Benefits'}
           </h2>
 
@@ -160,7 +247,7 @@ const Partners = () => {
       <section className="py-16">
         <div className="container mx-auto px-2 text-center">
           <div className="max-w-3xl mx-auto animate-fade-in">
-            <h2 className="text-3xl font-bold text-foreground mb-6">
+            <h2 className="text-3xl font-cinzel-decorative-bold text-foreground mb-6">
               {content.partnerWithUs}
             </h2>
             <p className="text-lg text-muted-foreground mb-8">

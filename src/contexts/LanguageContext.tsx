@@ -38,7 +38,7 @@ const translations = {
     // Navigation
     home: 'Home',
     roster: 'Roster',
-    matches: 'Matches Table',
+    matches: 'Matches Schedule',
     club: 'Club',
     news: 'News',
     academy: 'Academy',

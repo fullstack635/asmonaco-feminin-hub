@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Mail, Instagram, Facebook, Twitter } from 'lucide-react';
 
@@ -8,112 +7,37 @@ export const Footer: React.FC = () => {
 
   const content = {
     fr: {
-      description: "AS Monaco Football Féminin - Développer les stars de demain dans la Principauté de Monaco.",
-      quickLinks: "Liens Rapides",
-      contact: "Contact",
+      contactUs: "Contactez-nous",
       followUs: "Suivez-nous",
-      allRights: "Tous droits réservés",
-      address: "Stade Louis II, Monaco",
-      email: "contact@asm-ff.com",
-      phone: "+377 92 05 74 73"
+      allRights: "Tous droits réservés"
     },
     en: {
-      description: "AS Monaco Football Féminin - Developing tomorrow's stars in the Principality of Monaco.",
-      quickLinks: "Quick Links",
-      contact: "Contact",
-      followUs: "Follow Us",
-      allRights: "All rights reserved",
-      address: "Stade Louis II, Monaco",
-      email: "contact@asm-ff.com",
-      phone: "+377 92 05 74 73"
+      contactUs: "Contact Us",
+      followUs: "Follow Us", 
+      allRights: "All rights reserved"
     }
   };
 
   const currentContent = content[language];
 
-  const quickLinks = [
-    { name: language === 'fr' ? 'Accueil' : 'Home', href: '/' },
-    { name: language === 'fr' ? 'Effectif' : 'Roster', href: '/roster' },
-    { name: language === 'fr' ? 'Matchs' : 'Matches', href: '/matches' },
-    { name: language === 'fr' ? 'Club' : 'Club', href: '/club' },
-    { name: language === 'fr' ? 'Académie' : 'Academy', href: '/academy' },
-    { name: language === 'fr' ? 'Actualités' : 'News', href: '/news' }
-  ];
-
   const socialLinks = [
     { icon: Instagram, href: '#', label: 'Instagram' },
     { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Mail, href: `mailto:${currentContent.email}`, label: 'Email' }
+    { icon: Twitter, href: '#', label: 'Twitter' }
   ];
 
   return (
     <footer className="bg-monaco-red text-white">
       <div className="container mx-auto px-2 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Logo and Description */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center space-x-3 mb-4">
-              <img 
-                src="/teams/AS MONACO FF.png"
-                alt="AS Monaco FF"
-                className="w-16 h-16 object-contain"
-              />
-              <div>
-                <h3 className="font-bold text-lg">AS Monaco</h3>
-                <p className="text-sm opacity-90">Football Féminin</p>
-              </div>
-            </div>
-            <p className="text-sm opacity-90 leading-relaxed">
-              {currentContent.description}
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-bold text-lg mb-4">{currentContent.quickLinks}</h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link 
-                    to={link.href}
-                    className="text-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h4 className="font-bold text-lg mb-4">{currentContent.contact}</h4>
-            <div className="space-y-2 text-sm opacity-90">
-              <p>{currentContent.address}</p>
-              <p>
-                <a 
-                  href={`mailto:${currentContent.email}`}
-                  className="hover:opacity-100 transition-opacity duration-200"
-                >
-                  {currentContent.email}
-                </a>
-              </p>
-              <p>
-                <a 
-                  href={`tel:${currentContent.phone}`}
-                  className="hover:opacity-100 transition-opacity duration-200"
-                >
-                  {currentContent.phone}
-                </a>
-              </p>
-            </div>
-          </div>
-
-          {/* Social Links */}
-          <div>
-            <h4 className="font-bold text-lg mb-4">{currentContent.followUs}</h4>
-            <div className="flex space-x-4">
+        {/* Main Footer Content */}
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 relative">
+          
+          {/* Follow Us Section - Left Side */}
+          <div className="lg:absolute lg:left-0 lg:w-1/4">
+            <h4 className="font-bold text-lg mb-4 text-center lg:text-left">
+              {currentContent.followUs}
+            </h4>
+            <div className="flex justify-center lg:justify-start space-x-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -126,9 +50,46 @@ export const Footer: React.FC = () => {
               ))}
             </div>
           </div>
+
+          {/* Contact Us Section - Center */}
+          <div className="flex items-center justify-center space-x-6">
+            {/* Team Logo - Left Side */}
+            <div className="flex-shrink-0">
+              <img 
+                src="/teams/AS MONACO FF.png"
+                alt="AS Monaco FF"
+                className="w-40 h-40 object-contain"
+              />
+            </div>
+
+            {/* Contact Information - Right Side */}
+            <div className="text-center lg:text-left">
+              <h2 className="text-2xl font-bold mb-2">
+                {currentContent.contactUs}
+              </h2>
+              <div className="space-y-1">
+                <p className="text-lg">
+                  <a 
+                    href="tel:+330675326255"
+                    className="hover:opacity-80 transition-opacity duration-200 underline"
+                  >
+                    +33 (0)6 75 32 62 55
+                  </a>
+                </p>
+                <p className="text-lg">
+                  <a 
+                    href="mailto:contact@asm-ff.com"
+                    className="hover:opacity-80 transition-opacity duration-200 underline"
+                  >
+                    contact@asm-ff.com
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Bar - Ownership Section */}
         <div className="border-t border-white/20 mt-8 pt-8 text-center">
           <p className="text-sm opacity-90">
             © 2024 AS Monaco Football Féminin. {currentContent.allRights}

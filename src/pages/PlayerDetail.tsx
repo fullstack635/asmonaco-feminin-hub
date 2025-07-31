@@ -25,8 +25,8 @@ const PlayerDetail = () => {
     nationality: "Monaco",
     joinedDate: "2020",
     bio: language === 'fr' 
-      ? "Manelle Ben Mohammed est une gardienne de but talentueuse qui a rejoint AS Monaco FF en 2020. Née et élevée à Monaco, elle représente parfaitement l'esprit local du club."
-      : "Manelle Ben Mohammed is a talented goalkeeper who joined AS Monaco FF in 2020. Born and raised in Monaco, she perfectly represents the local spirit of the club.",
+      ? "Manelle Ben Mohammed est une gardienne de but talentueuse qui a rejoint AS Monaco Football Féminin en 2020. Née et élevée à Monaco, elle représente parfaitement l'esprit local du club."
+      : "Manelle Ben Mohammed is a talented goalkeeper who joined AS Monaco Football Féminin in 2020. Born and raised in Monaco, she perfectly represents the local spirit of the club.",
     achievements: language === 'fr' 
       ? ["Meilleure gardienne de la saison 2022-2023", "Capitaine de l'équipe U19 en 2021"]
       : ["Best Goalkeeper of the 2022-2023 Season", "Captain of the U19 team in 2021"],
@@ -102,13 +102,11 @@ const PlayerDetail = () => {
                       {/* Main Number Container */}
                       <div className="relative w-full h-full flex items-center justify-center">
                         <span 
-                          className="number"
+                          className="number font-montserrat-extrabold"
                           style={{
-                            fontFamily: 'Arial Black, Impact, sans-serif',
                             fontSize: '100px',
                             color: 'white',
                             textShadow: '2px 2px 0 red, -2px -2px 0 red, 2px -2px 0 red, -2px 2px 0 red, 0 2px 0 red, 0 -2px 0 red, 2px 0 0 red, -2px 0 0 red',
-                            fontWeight: '900',
                             letterSpacing: '2px',
                             lineHeight: '1',
                             marginRight: (player.number && player.number > 9) ? '10px' : '0px'

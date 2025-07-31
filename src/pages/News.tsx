@@ -9,8 +9,33 @@ const News = () => {
 
   const content = {
     fr: {
-      title: "Actualités",
-      subtitle: "Restez au courant avec ASMFF. Ne manquez jamais un moment ! Des résultats de matchs passionnants et des mises à jour exclusives sur les joueuses au contenu en coulisses et aux annonces du club — c'est votre foyer pour tout ce qui concerne AS Monaco Football Féminin. Revenez souvent et restez connectés au cœur de l'équipe. Parce que chaque histoire commence ici.",
+      title: "News",
+      subtitle: "Restez informés avec ASMFF",
+      tagline: "Ne manquez jamais un moment !",
+      features: [
+        {
+          icon: "⚽",
+          title: "Résultats de Matchs",
+          description: "Résultats passionnants et analyses"
+        },
+        {
+          icon: "👥",
+          title: "Actualités Joueurs",
+          description: "Mises à jour exclusives de l'équipe"
+        },
+        {
+          icon: "🎬",
+          title: "Coulisses",
+          description: "Contenu exclusif des coulisses"
+        },
+        {
+          icon: "📢",
+          title: "Annonces du Club",
+          description: "Toutes les actualités officielles"
+        }
+      ],
+      callToAction: "Votre source pour tout ce qui concerne AS Monaco Football Féminin",
+      footerText: "Revenez souvent • Restez connectés • Chaque histoire commence ici",
       newsletterTitle: "Restez Informés",
       newsletterSubtitle: "Abonnez-vous à notre newsletter pour recevoir les dernières actualités directement dans votre boîte mail",
       subscribe: "S'abonner",
@@ -20,7 +45,32 @@ const News = () => {
     },
     en: {
       title: "News",
-      subtitle: "Stay in the Know with ASMFF. Never miss a moment! From thrilling match results and exclusive player updates to behind-the-scenes content and club announcements — this is your home for all things AS Monaco Football Féminin. Check back often and stay connected to the heart of the team. Because every story starts here.",
+      subtitle: "Stay in the Know with ASMFF",
+      tagline: "Never miss a moment!",
+      features: [
+        {
+          icon: "⚽",
+          title: "Match Results",
+          description: "Thrilling results and analysis"
+        },
+        {
+          icon: "👥",
+          title: "Player Updates",
+          description: "Exclusive team updates"
+        },
+        {
+          icon: "🎬",
+          title: "Behind-the-Scenes",
+          description: "Exclusive behind-the-scenes content"
+        },
+        {
+          icon: "📢",
+          title: "Club Announcements",
+          description: "All official news and updates"
+        }
+      ],
+      callToAction: "Your home for all things AS Monaco Football Féminin",
+      footerText: "Check back often • Stay connected • Every story starts here",
       newsletterTitle: "Stay Informed",
       newsletterSubtitle: "Subscribe to our newsletter to receive the latest news directly in your inbox",
       subscribe: "Subscribe",
@@ -34,13 +84,59 @@ const News = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header Section with Brand Colors */}
-      <section className="relative h-[250px] bg-monaco-red flex items-center justify-center">
+      {/* Header Section */}
+      <section className="relative h-[400px] bg-monaco-red flex items-center justify-center">
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-opacity-40"></div>
+        
         {/* Content */}
-        <div className="relative z-10 text-center text-white">
+        <div className="relative z-10 text-center text-white px-4">
+          <h1 className="text-4xl md:text-5xl font-montserrat-extrabold mb-4">{currentContent.title}</h1>
+          <p className="text-xl md:text-2xl font-cinzel-decorative mb-2 opacity-95">{currentContent.subtitle}</p>
+          <p className="text-lg md:text-xl opacity-90 mb-8">{currentContent.tagline}</p>
+          
+          {/* Decorative Line */}
+          <div className="w-24 h-1 bg-monaco-yellow mx-auto rounded-full"></div>
+        </div>
+      </section>
 
-          <h1 className="text-4xl md:text-5xl font-bold mb-3">{currentContent.title}</h1>
-          <p className="text-lg md:text-xl opacity-95 max-w-4xl mx-auto px-2 leading-relaxed">{currentContent.subtitle}</p>
+      {/* Features Overview Section */}
+      <section className="py-16 bg-gradient-to-r from-gray-50 to-white">
+        <div className="max-w-[1200px] mx-auto px-4">
+          {/* Section Title */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-cinzel-decorative-bold text-foreground mb-4">
+              {currentContent.callToAction}
+            </h2>
+          </div>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {currentContent.features.map((feature, index) => (
+              <div 
+                key={index}
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-center group"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-cinzel-decorative-bold text-foreground mb-3 group-hover:text-monaco-red transition-colors duration-300">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Footer Text */}
+          <div className="text-center">
+            <p className="text-lg text-muted-foreground font-medium">
+              {currentContent.footerText}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -49,7 +145,7 @@ const News = () => {
         <div className="max-w-[1200px] mx-auto px-2">
           <div className="bg-white rounded-lg shadow-lg p-12 text-center">
             <div className="mb-8">
-              <h2 className="text-3xl font-bold text-foreground mb-4">
+              <h2 className="text-3xl font-cinzel-decorative-bold text-foreground mb-4">
                 {currentContent.comingSoon}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -81,7 +177,7 @@ const News = () => {
       <section className="py-16 bg-muted">
         <div className="max-w-[1200px] mx-auto px-2">
           <div className="bg-white rounded-lg shadow-lg p-8 text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-6">
+            <h2 className="text-3xl font-cinzel-decorative-bold text-foreground mb-6">
               {currentContent.newsletterTitle}
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -116,7 +212,7 @@ const News = () => {
       <section className="py-16 bg-white">
         <div className="max-w-[1200px] mx-auto px-2 text-center">
           <div className="bg-gradient-to-r from-monaco-red to-monaco-red/90 rounded-lg p-8 text-white">
-            <h2 className="text-2xl font-bold mb-4">
+            <h2 className="text-2xl font-cinzel-decorative-bold mb-4">
               {language === 'fr' ? 'Rejoignez Notre Communauté' : 'Join Our Community'}
             </h2>
             <p className="text-lg mb-6 opacity-90">

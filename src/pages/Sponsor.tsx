@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,6 +9,121 @@ import { Building, TrendingUp, Users, Trophy, ArrowRight, Phone, Mail, Globe } f
 
 const Sponsor = () => {
   const { language } = useLanguage();
+
+  // Form state management
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    organization: '',
+    website: '',
+    interests: [] as string[],
+    newsletter: '',
+    hearAbout: [] as string[],
+    additionalInfo: ''
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Handle form input changes
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  // Handle checkbox changes for interests and hearAbout
+  const handleCheckboxChange = (field: 'interests' | 'hearAbout', value: string, checked: boolean) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: checked 
+        ? [...prev[field], value]
+        : prev[field].filter(item => item !== value)
+    }));
+  };
+
+  // Handle newsletter radio button change
+  const handleNewsletterChange = (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      newsletter: value
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Create email content
+      const emailSubject = encodeURIComponent('Sponsor Interest Form - AS Monaco Football Féminin');
+      const emailBody = encodeURIComponent(`
+Sponsor Interest Form Submission
+
+Personal Information:
+- First Name: ${formData.firstName}
+- Last Name: ${formData.lastName}
+- Email: ${formData.email}
+- Phone: ${formData.phone}
+
+Organization Information:
+- Organization Name: ${formData.organization}
+- Website: ${formData.website}
+
+Areas of Interest:
+${formData.interests.length > 0 ? formData.interests.map(interest => `- ${interest}`).join('\n') : '- None selected'}
+
+Newsletter Subscription: ${formData.newsletter}
+
+How did you hear about us:
+${formData.hearAbout.length > 0 ? formData.hearAbout.map(source => `- ${source}`).join('\n') : '- None selected'}
+
+Additional Information:
+${formData.additionalInfo || 'None provided'}
+
+---
+This form was submitted through the AS Monaco Football Féminin website.
+      `);
+
+      // Create mailto link
+      const mailtoLink = `mailto:stevenlai.contact@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+
+      // Show success message (you can replace this with a toast notification)
+      alert(language === 'fr' 
+        ? 'Merci ! Votre client de messagerie va s\'ouvrir avec le formulaire pré-rempli. Veuillez envoyer l\'e-mail pour finaliser votre soumission.'
+        : 'Thank you! Your email client will open with the pre-filled form. Please send the email to complete your submission.'
+      );
+
+      // Reset form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        organization: '',
+        website: '',
+        interests: [],
+        newsletter: '',
+        hearAbout: [],
+        additionalInfo: ''
+      });
+
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert(language === 'fr' 
+        ? 'Une erreur s\'est produite. Veuillez réessayer.'
+        : 'An error occurred. Please try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const sponsorContent = {
     fr: {
@@ -25,7 +140,7 @@ const Sponsor = () => {
       phone: "Numéro de Téléphone",
       organization: "Nom de l'Organisation",
       website: "Site Web de l'Organisation",
-      interests: "Sélectionnez les options ci-dessous pour indiquer quels domaines d'AS Monaco FF vous intéressent pour soutenir ou en apprendre davantage.",
+      interests: "Sélectionnez les options ci-dessous pour indiquer quels domaines d'AS Monaco Football Féminin vous intéressent pour soutenir ou en apprendre davantage.",
       newsletter: "Souhaiteriez-vous recevoir des informations sur les prochaines opportunités de sponsoring et de partenariat?",
       howHeard: "Comment avez-vous entendu parler de nous?",
       additionalInfo: "Y a-t-il des informations supplémentaires que vous aimeriez que nous sachions?",
@@ -47,7 +162,7 @@ const Sponsor = () => {
       phone: "Phone Number",
       organization: "Organization's Name",
       website: "Organization's Website",
-      interests: "Select the options below to indicate which areas of AS Monaco FF you are interested in supporting or learning more about.",
+      interests: "Select the options below to indicate which areas of AS Monaco Football Féminin you are interested in supporting or learning more about.",
       newsletter: "Would you like to receive information about upcoming sponsorship and partnership opportunities?",
       howHeard: "How did you hear about us?",
       additionalInfo: "Is there any additional info you would like us to know?",
@@ -149,7 +264,7 @@ const Sponsor = () => {
       {/* Header */}
       <section className="py-20 bg-monaco-red">
         <div className="container mx-auto px-2 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
+          <h1 className="text-4xl md:text-5xl font-montserrat-extrabold text-white mb-6 animate-fade-in">
             {content.title}
           </h1>
           <p className="text-lg text-white/90 max-w-4xl mx-auto animate-fade-in leading-relaxed">
@@ -161,7 +276,7 @@ const Sponsor = () => {
       {/* Why Sponsor */}
       <section className="py-16">
         <div className="container mx-auto px-2">
-          <h2 className="text-3xl font-bold text-foreground text-center mb-12 animate-fade-in">
+          <h2 className="text-3xl font-cinzel-decorative-bold text-foreground text-center mb-12 animate-fade-in">
             {content.whySponsor}
           </h2>
 
@@ -192,7 +307,7 @@ const Sponsor = () => {
         <div className="container mx-auto px-2">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12 animate-fade-in">
-              <h2 className="text-3xl font-bold text-foreground mb-6">
+              <h2 className="text-3xl font-cinzel-decorative-bold text-foreground mb-6">
                 {content.contactForm}
               </h2>
               <p className="text-lg text-muted-foreground">
@@ -201,19 +316,19 @@ const Sponsor = () => {
             </div>
 
             <Card className="p-8 animate-fade-in">
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       {content.firstName} *
                     </label>
-                    <Input required />
+                    <Input required value={formData.firstName} onChange={(e) => handleInputChange('firstName', e.target.value)} />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       {content.lastName} *
                     </label>
-                    <Input required />
+                    <Input required value={formData.lastName} onChange={(e) => handleInputChange('lastName', e.target.value)} />
                   </div>
                 </div>
 
@@ -222,13 +337,13 @@ const Sponsor = () => {
                     <label className="block text-sm font-medium text-foreground mb-2">
                       {content.email} *
                     </label>
-                    <Input type="email" required />
+                    <Input type="email" required value={formData.email} onChange={(e) => handleInputChange('email', e.target.value)} />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       {content.phone} *
                     </label>
-                    <Input type="tel" required />
+                    <Input type="tel" required value={formData.phone} onChange={(e) => handleInputChange('phone', e.target.value)} />
                   </div>
                 </div>
 
@@ -237,13 +352,13 @@ const Sponsor = () => {
                     <label className="block text-sm font-medium text-foreground mb-2">
                       {content.organization}
                     </label>
-                    <Input />
+                    <Input value={formData.organization} onChange={(e) => handleInputChange('organization', e.target.value)} />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       {content.website}
                     </label>
-                    <Input type="url" />
+                    <Input type="url" value={formData.website} onChange={(e) => handleInputChange('website', e.target.value)} />
                   </div>
                 </div>
 
@@ -254,7 +369,11 @@ const Sponsor = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {interestOptions.map((option, index) => (
                       <div key={index} className="flex items-center space-x-2">
-                        <Checkbox id={`interest-${index}`} />
+                        <Checkbox 
+                          id={`interest-${index}`} 
+                          checked={formData.interests.includes(option)} 
+                          onCheckedChange={(checked) => handleCheckboxChange('interests', option, !!checked)}
+                        />
                         <label htmlFor={`interest-${index}`} className="text-sm text-muted-foreground">
                           {option}
                         </label>
@@ -269,13 +388,21 @@ const Sponsor = () => {
                   </label>
                   <div className="flex gap-4">
                     <div className="flex items-center space-x-2">
-                      <Checkbox id="newsletter-yes" name="newsletter" />
+                      <Checkbox 
+                        id="newsletter-yes" 
+                        checked={formData.newsletter === content.yes} 
+                        onCheckedChange={() => handleNewsletterChange(content.yes)}
+                      />
                       <label htmlFor="newsletter-yes" className="text-sm text-muted-foreground">
                         {content.yes}
                       </label>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Checkbox id="newsletter-no" name="newsletter" />
+                      <Checkbox 
+                        id="newsletter-no" 
+                        checked={formData.newsletter === content.no} 
+                        onCheckedChange={() => handleNewsletterChange(content.no)}
+                      />
                       <label htmlFor="newsletter-no" className="text-sm text-muted-foreground">
                         {content.no}
                       </label>
@@ -290,7 +417,11 @@ const Sponsor = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {hearAboutOptions.map((option, index) => (
                       <div key={index} className="flex items-center space-x-2">
-                        <Checkbox id={`heard-${index}`} name="hearAbout" />
+                        <Checkbox 
+                          id={`heard-${index}`} 
+                          checked={formData.hearAbout.includes(option)} 
+                          onCheckedChange={(checked) => handleCheckboxChange('hearAbout', option, !!checked)}
+                        />
                         <label htmlFor={`heard-${index}`} className="text-sm text-muted-foreground">
                           {option}
                         </label>
@@ -303,15 +434,16 @@ const Sponsor = () => {
                   <label className="block text-sm font-medium text-foreground mb-2">
                     {content.additionalInfo}
                   </label>
-                  <Textarea rows={4} />
+                  <Textarea rows={4} value={formData.additionalInfo} onChange={(e) => handleInputChange('additionalInfo', e.target.value)} />
                 </div>
 
                 <Button 
                   type="submit" 
                   size="lg" 
                   className="w-full group shadow-monaco hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  disabled={isSubmitting}
                 >
-                  {content.submit}
+                  {isSubmitting ? (language === 'fr' ? 'Soumission...' : 'Submitting...') : content.submit}
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
                 </Button>
               </form>
