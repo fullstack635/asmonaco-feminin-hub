@@ -56,13 +56,13 @@ Join us on the journey. ⚽❤️🤍
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Enhanced Header Section */}
-      <section className="relative h-[300px] bg-gradient-to-br from-monaco-red via-monaco-red to-red-700 flex items-center justify-center overflow-hidden">
+      <section className="relative h-[250px] sm:h-[300px] bg-gradient-to-br from-monaco-red via-monaco-red to-red-700 flex items-center justify-center overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-10 w-32 h-32 border border-white/30 rounded-full"></div>
-          <div className="absolute bottom-10 left-10 w-24 h-24 border border-white/20 rounded-lg rotate-45"></div>
-          <div className="absolute top-1/2 left-1/4 w-16 h-16 border border-white/15 rounded-full"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-20 h-20 border border-white/25 rounded-lg rotate-12"></div>
+          <div className="absolute top-10 right-10 w-16 h-16 sm:w-32 sm:h-32 border border-white/30 rounded-full"></div>
+          <div className="absolute bottom-10 left-10 w-12 h-12 sm:w-24 sm:h-24 border border-white/20 rounded-lg rotate-45"></div>
+          <div className="absolute top-1/2 left-1/4 w-8 h-8 sm:w-16 sm:h-16 border border-white/15 rounded-full"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-10 h-10 sm:w-20 sm:h-20 border border-white/25 rounded-lg rotate-12"></div>
         </div>
         
         {/* Gradient Overlay */}
@@ -70,22 +70,22 @@ Join us on the journey. ⚽❤️🤍
         
         {/* Content */}
         <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-4xl md:text-6xl font-montserrat-extrabold mb-4 animate-fade-in">{currentContent.title}</h1>
-          <p className="text-lg md:text-xl opacity-95 max-w-3xl mx-auto leading-relaxed font-cinzel-decorative">{currentContent.subtitle}</p>
+          <h1 className="text-2xl sm:text-4xl md:text-6xl font-montserrat-extrabold mb-2 sm:mb-4 animate-fade-in">{currentContent.title}</h1>
+          <p className="text-sm sm:text-lg md:text-xl opacity-95 max-w-3xl mx-auto leading-relaxed font-cinzel-decorative">{currentContent.subtitle}</p>
           
           {/* Decorative Line */}
-          <div className="mt-6 flex justify-center">
-            <div className="w-24 h-1 bg-monaco-yellow rounded-full"></div>
+          <div className="mt-4 sm:mt-6 flex justify-center">
+            <div className="w-16 sm:w-24 h-1 bg-monaco-yellow rounded-full"></div>
           </div>
         </div>
       </section>
 
       {/* Back Button */}
-      <div className="max-w-[1200px] mx-auto px-4 pt-8">
+      <div className="max-w-[1200px] mx-auto px-4 pt-6 sm:pt-8">
         <Button 
           variant="outline" 
           onClick={() => navigate('/club')}
-          className="flex items-center gap-2 hover:bg-monaco-red hover:text-white hover:border-monaco-red transition-all duration-300 group"
+          className="flex items-center gap-2 hover:bg-monaco-red hover:text-white hover:border-monaco-red transition-all duration-300 group text-sm sm:text-base"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
           {currentContent.backButton}
@@ -93,29 +93,29 @@ Join us on the journey. ⚽❤️🤍
       </div>
 
       {/* Content Section */}
-      <section className="py-16">
+      <section className="py-8 sm:py-16">
         <div className="max-w-[900px] mx-auto px-4">
-          <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-12 relative overflow-hidden">
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-8 lg:p-12 relative overflow-hidden">
             {/* Enhanced Background Pattern */}
-            <div className="absolute top-0 right-0 w-40 h-40 bg-monaco-yellow/5 rounded-full -translate-y-20 translate-x-20"></div>
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-monaco-red/5 rounded-full translate-y-16 -translate-x-16"></div>
+            <div className="absolute top-0 right-0 w-20 h-20 sm:w-40 sm:h-40 bg-monaco-yellow/5 rounded-full -translate-y-10 sm:-translate-y-20 translate-x-10 sm:translate-x-20"></div>
+            <div className="absolute bottom-0 left-0 w-16 h-16 sm:w-32 sm:h-32 bg-monaco-red/5 rounded-full translate-y-8 sm:translate-y-16 -translate-x-8 sm:-translate-x-16"></div>
             
             {/* Heritage Timeline Accent */}
-            <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-monaco-red via-monaco-yellow to-monaco-red opacity-20"></div>
+            <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 sm:w-1 bg-gradient-to-b from-monaco-red via-monaco-yellow to-monaco-red opacity-20"></div>
             
-            <div className="relative z-10 pl-8">
-            <div className="prose prose-lg max-w-none">
+            <div className="relative z-10 pl-4 sm:pl-8">
+            <div className="prose prose-sm sm:prose-lg max-w-none">
                 {currentContent.content.split('\n\n').map((paragraph, index) => {
                   // Welcome message - Hero style
                   if (paragraph.includes('Welcome to AS Monaco Football Féminin') || paragraph.includes('Bienvenue à AS Monaco Football Féminin')) {
                     return (
-                      <div key={index} className="mb-12 text-center">
-                        <div className="inline-block bg-gradient-to-r from-monaco-red/10 to-monaco-yellow/10 rounded-full px-8 py-4 mb-6">
-                          <p className="text-xl lg:text-2xl font-cinzel-decorative text-foreground leading-relaxed m-0">
+                      <div key={index} className="mb-8 sm:mb-12 text-center">
+                        <div className="inline-block bg-gradient-to-r from-monaco-red/10 to-monaco-yellow/10 rounded-2xl sm:rounded-full px-4 sm:px-8 py-3 sm:py-4 mb-4 sm:mb-6">
+                          <p className="text-base sm:text-xl lg:text-2xl font-cinzel-decorative text-foreground leading-relaxed m-0">
                             {paragraph}
                           </p>
                         </div>
-                        <div className="w-24 h-1 bg-gradient-to-r from-monaco-red to-monaco-yellow mx-auto rounded-full"></div>
+                        <div className="w-16 sm:w-24 h-0.5 sm:h-1 bg-gradient-to-r from-monaco-red to-monaco-yellow mx-auto rounded-full"></div>
                       </div>
                     );
                   }
@@ -123,18 +123,18 @@ Join us on the journey. ⚽❤️🤍
                   // Foundation story - 1976
                   else if (paragraph.includes('Founded in 1976') || paragraph.includes('Fondé en 1976')) {
                     return (
-                      <div key={index} className="mb-10 relative">
-                        <div className="absolute -left-12 top-2 w-8 h-8 bg-gradient-to-r from-monaco-red to-red-600 rounded-full flex items-center justify-center shadow-lg">
-                          <Heart className="w-4 h-4 text-white" />
+                      <div key={index} className="mb-6 sm:mb-10 relative">
+                        <div className="absolute -left-8 sm:-left-12 top-2 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-monaco-red to-red-600 rounded-full flex items-center justify-center shadow-lg">
+                          <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                         </div>
-                        <div className="bg-gradient-to-r from-monaco-red/5 to-transparent rounded-r-2xl p-6 border-l-4 border-monaco-red">
-                          <div className="flex items-center mb-3">
-                            <span className="bg-monaco-red text-white px-3 py-1 rounded-full text-sm font-montserrat-extrabold mr-3">1976</span>
-                            <h3 className="text-lg font-cinzel-decorative-bold text-monaco-red m-0">
+                        <div className="bg-gradient-to-r from-monaco-red/5 to-transparent rounded-r-xl sm:rounded-r-2xl p-4 sm:p-6 border-l-2 sm:border-l-4 border-monaco-red">
+                          <div className="flex flex-col sm:flex-row sm:items-center mb-3 gap-2 sm:gap-0">
+                            <span className="bg-monaco-red text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-montserrat-extrabold mr-0 sm:mr-3 w-fit">1976</span>
+                            <h3 className="text-base sm:text-lg font-cinzel-decorative-bold text-monaco-red m-0">
                               {language === 'fr' ? 'Les Fondations' : 'The Foundation'}
                             </h3>
                           </div>
-                          <p className="text-muted-foreground leading-relaxed m-0">
+                          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed m-0">
                             {paragraph}
                           </p>
                         </div>
@@ -145,18 +145,18 @@ Join us on the journey. ⚽❤️🤍
                   // Rebuild story - 2019
                   else if (paragraph.includes('After a challenging period') || paragraph.includes('Après une période difficile')) {
                     return (
-                      <div key={index} className="mb-10 relative">
-                        <div className="absolute -left-12 top-2 w-8 h-8 bg-gradient-to-r from-monaco-yellow to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
-                          <Target className="w-4 h-4 text-white" />
+                      <div key={index} className="mb-6 sm:mb-10 relative">
+                        <div className="absolute -left-8 sm:-left-12 top-2 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-monaco-yellow to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+                          <Target className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                         </div>
-                        <div className="bg-gradient-to-r from-monaco-yellow/5 to-transparent rounded-r-2xl p-6 border-l-4 border-monaco-yellow">
-                          <div className="flex items-center mb-3">
-                            <span className="bg-monaco-yellow text-white px-3 py-1 rounded-full text-sm font-montserrat-extrabold mr-3">2019</span>
-                            <h3 className="text-lg font-cinzel-decorative-bold text-monaco-yellow m-0">
+                        <div className="bg-gradient-to-r from-monaco-yellow/5 to-transparent rounded-r-xl sm:rounded-r-2xl p-4 sm:p-6 border-l-2 sm:border-l-4 border-monaco-yellow">
+                          <div className="flex flex-col sm:flex-row sm:items-center mb-3 gap-2 sm:gap-0">
+                            <span className="bg-monaco-yellow text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-montserrat-extrabold mr-0 sm:mr-3 w-fit">2019</span>
+                            <h3 className="text-base sm:text-lg font-cinzel-decorative-bold text-monaco-yellow m-0">
                               {language === 'fr' ? 'La Renaissance' : 'The Renaissance'}
                             </h3>
                           </div>
-                          <p className="text-muted-foreground leading-relaxed m-0">
+                          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed m-0">
                             {paragraph}
                           </p>
                         </div>
@@ -167,18 +167,18 @@ Join us on the journey. ⚽❤️🤍
                   // Recent achievements - 2022-2024
                   else if (paragraph.includes('In 2022') || paragraph.includes('En 2022')) {
                     return (
-                      <div key={index} className="mb-10 relative">
-                        <div className="absolute -left-12 top-2 w-8 h-8 bg-gradient-to-r from-green-600 to-green-700 rounded-full flex items-center justify-center shadow-lg">
-                          <Trophy className="w-4 h-4 text-white" />
+                      <div key={index} className="mb-6 sm:mb-10 relative">
+                        <div className="absolute -left-8 sm:-left-12 top-2 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-green-600 to-green-700 rounded-full flex items-center justify-center shadow-lg">
+                          <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                         </div>
-                        <div className="bg-gradient-to-r from-green-50 to-transparent rounded-r-2xl p-6 border-l-4 border-green-600">
-                          <div className="flex items-center mb-3">
-                            <span className="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-montserrat-extrabold mr-3">2022-2024</span>
-                            <h3 className="text-lg font-cinzel-decorative-bold text-green-700 m-0">
+                        <div className="bg-gradient-to-r from-green-50 to-transparent rounded-r-xl sm:rounded-r-2xl p-4 sm:p-6 border-l-2 sm:border-l-4 border-green-600">
+                          <div className="flex flex-col sm:flex-row sm:items-center mb-3 gap-2 sm:gap-0">
+                            <span className="bg-green-600 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-montserrat-extrabold mr-0 sm:mr-3 w-fit">2022-2024</span>
+                            <h3 className="text-base sm:text-lg font-cinzel-decorative-bold text-green-700 m-0">
                               {language === 'fr' ? 'Le Retour' : 'The Return'}
                             </h3>
                           </div>
-                          <p className="text-muted-foreground leading-relaxed m-0">
+                          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed m-0">
                             {paragraph}
                           </p>
                         </div>
@@ -189,39 +189,39 @@ Join us on the journey. ⚽❤️🤍
                   // "More than a club" section
                   else if (paragraph.includes('AS Monaco FF is more than a club') || paragraph.includes('AS Monaco FF est plus qu\'un club')) {
                     return (
-                      <div key={index} className="text-center border-t-2 border-gradient-to-r from-monaco-red to-monaco-yellow pt-12 mt-12">
-                        <div className="bg-gradient-to-r from-monaco-red/10 via-monaco-yellow/10 to-monaco-red/10 rounded-3xl p-8 mb-8">
-                          <div className="w-16 h-16 bg-gradient-to-r from-monaco-red to-monaco-yellow rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                            <span className="text-2xl">⚽</span>
+                      <div key={index} className="text-center border-t-2 border-gradient-to-r from-monaco-red to-monaco-yellow pt-8 sm:pt-12 mt-8 sm:mt-12">
+                        <div className="bg-gradient-to-r from-monaco-red/10 via-monaco-yellow/10 to-monaco-red/10 rounded-2xl sm:rounded-3xl p-4 sm:p-8 mb-6 sm:mb-8">
+                          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-monaco-red to-monaco-yellow rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
+                            <span className="text-xl sm:text-2xl">⚽</span>
                           </div>
-                          <h2 className="text-2xl lg:text-3xl font-cinzel-decorative-bold text-foreground mb-8">
+                          <h2 className="text-lg sm:text-2xl lg:text-3xl font-cinzel-decorative-bold text-foreground mb-6 sm:mb-8">
                             {language === 'fr' ? 'AS Monaco FF est plus qu\'un club.' : 'AS Monaco FF is more than a club.'}
                           </h2>
                           
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                              <div className="w-12 h-12 bg-monaco-red/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span className="text-2xl">📈</span>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+                            <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-monaco-red/20 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                                <span className="text-lg sm:text-2xl">📈</span>
                               </div>
-                              <p className="text-lg font-medium text-monaco-red">
+                              <p className="text-sm sm:text-lg font-medium text-monaco-red">
                                 {language === 'fr' ? 'Une histoire de résurgence' : 'A story of resurgence'}
                               </p>
                             </div>
                             
-                            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                              <div className="w-12 h-12 bg-monaco-yellow/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span className="text-2xl">🌟</span>
+                            <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-monaco-yellow/20 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                                <span className="text-lg sm:text-2xl">🌟</span>
                               </div>
-                              <p className="text-lg font-medium text-monaco-yellow">
+                              <p className="text-sm sm:text-lg font-medium text-monaco-yellow">
                                 {language === 'fr' ? 'Un foyer pour les talents émergents' : 'A home for rising talent'}
                               </p>
                             </div>
                             
-                            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                              <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span className="text-2xl">🚀</span>
+                            <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                                <span className="text-lg sm:text-2xl">🚀</span>
                               </div>
-                              <p className="text-lg font-medium text-blue-600">
+                              <p className="text-sm sm:text-lg font-medium text-blue-600">
                                 {language === 'fr' ? 'L\'avenir du football féminin à Monaco' : 'The future of women\'s football in Monaco'}
                               </p>
                             </div>
@@ -234,23 +234,23 @@ Join us on the journey. ⚽❤️🤍
                   // Call to action
                   else if (paragraph.includes('Join us on the journey') || paragraph.includes('Rejoignez-nous dans ce voyage')) {
                     return (
-                      <div key={index} className="text-center mt-8">
-                        <div className="bg-gradient-to-r from-monaco-red to-red-600 rounded-3xl p-8 text-white relative overflow-hidden">
+                      <div key={index} className="text-center mt-6 sm:mt-8">
+                        <div className="bg-gradient-to-r from-monaco-red to-red-600 rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden">
                           <div className="absolute inset-0 opacity-20">
-                            <div className="absolute top-4 right-4 w-16 h-16 border border-white/30 rounded-full"></div>
-                            <div className="absolute bottom-4 left-4 w-12 h-12 border border-white/20 rounded-lg rotate-45"></div>
+                            <div className="absolute top-4 right-4 w-8 h-8 sm:w-16 sm:h-16 border border-white/30 rounded-full"></div>
+                            <div className="absolute bottom-4 left-4 w-6 h-6 sm:w-12 sm:h-12 border border-white/20 rounded-lg rotate-45"></div>
                           </div>
                           
                           <div className="relative z-10">
-                            <div className="flex justify-center gap-2 text-3xl mb-4">
+                            <div className="flex justify-center gap-2 text-2xl sm:text-3xl mb-3 sm:mb-4">
                               <span>⚽</span>
                               <span>❤️</span>
                               <span>🤍</span>
                             </div>
-                            <p className="text-2xl font-cinzel-decorative mb-6">
+                            <p className="text-lg sm:text-2xl font-cinzel-decorative mb-4 sm:mb-6">
                               {language === 'fr' ? 'Rejoignez-nous dans ce voyage.' : 'Join us on the journey.'}
                             </p>
-                            <div className="text-sm opacity-90 font-medium">
+                            <div className="text-xs sm:text-sm opacity-90 font-medium">
                               #RiseWithUs #ASMonacoFF #UneÉquipeUneAmbition
                             </div>
                           </div>
@@ -272,7 +272,7 @@ Join us on the journey. ⚽❤️🤍
                   // Default paragraph styling
                   else {
                     return (
-                      <p key={index} className="text-muted-foreground leading-relaxed mb-6 text-lg">
+                      <p key={index} className="text-muted-foreground leading-relaxed mb-4 sm:mb-6 text-sm sm:text-lg">
                   {paragraph}
                 </p>
                     );
