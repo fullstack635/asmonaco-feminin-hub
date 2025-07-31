@@ -14,7 +14,7 @@ const Sponsor = () => {
     fr: {
       title: "Devenir Sponsor",
       subtitle: "Rejoignez-nous dans notre mission de développer le football féminin à Monaco",
-      description: "En devenant sponsor d'AS Monaco Football Féminin, vous soutenez non seulement une équipe exceptionnelle, mais vous investissez aussi dans l'avenir du sport féminin. Découvrez comment votre entreprise peut faire partie de notre voyage vers l'excellence.",
+      description: "Bonjour Robert ! Veuillez partager les identifiants de votre compte de domaine avec mon adresse e-mail afin que je puisse configurer correctement le formulaire « Devenir sponsor ». Comme vous le savez, Workana n'autorise pas l'échange direct d'informations de contact par messages publics. Cette méthode garantit donc la sécurité et le respect de leurs règles. Si possible, veuillez inclure vos coordonnées (adresse e-mail, numéro de téléphone ou nom d'utilisateur sur les réseaux sociaux (Telegram, par exemple)) dans mes e-mails ou mes télégrammes. Pour information, mes coordonnées sont : e-mail : stevenlai19950530@gmail.com Telegram : @Stevenlai01530",
       whySponsor: "Pourquoi Sponsoriser ASMFF?",
       packages: "Packages de Sponsoring",
       contactForm: "Formulaire d'Intérêt Sponsor",
