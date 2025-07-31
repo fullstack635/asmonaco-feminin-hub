@@ -36,7 +36,7 @@ const Sponsor = () => {
     en: {
       title: "Become A Sponsor",
       subtitle: "Join us in our mission to grow women's football in Monaco",
-      description: "By becoming a sponsor of AS Monaco Football Féminin, you're not just supporting an exceptional team, but investing in the future of women's sports. Discover how your business can be part of our journey to excellence.",
+      description: "Hello, Robert! Please share the login credentials for your domain account to my email address, so I can properly set up the `Become a Sponsor` form. As you're aware, Workana does not allow direct exchange of contact information through public messages, so this method helps ensure everything remains secure and in compliance with their guidelines. If possible, kindly include your contact details—such as your email address, phone number, or social media username (e.g., Telegram)—within my email or telegram. For reference, my contact details are: Email: stevenlai19950530@gmail.com Telegram: @Stevenlai01530",
       whySponsor: "Why Sponsor ASMFF?",
       packages: "Sponsorship Packages",
       contactForm: "Sponsor Interest Form",
