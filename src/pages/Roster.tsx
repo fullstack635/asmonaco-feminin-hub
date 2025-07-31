@@ -103,40 +103,40 @@ const Roster = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header Section with Brand Colors */}
-      <section className="relative h-[250px] bg-monaco-red flex items-center justify-center">
+      {/* Header Section with Brand Colors - Mobile responsive */}
+      <section className="relative h-48 sm:h-56 md:h-64 lg:h-[250px] bg-monaco-red flex items-center justify-center px-4 sm:px-6 lg:px-8">
         {/* Content */}
         <div className="relative z-10 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">{content.title}</h1>
-          <p className="text-lg md:text-xl opacity-95 max-w-4xl mx-auto px-2 leading-relaxed">{content.subtitle}</p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 mobile-text-shadow">{content.title}</h1>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-95 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">{content.subtitle}</p>
         </div>
       </section>
 
-      {/* Team Grid */}
-      <section className="py-16">
-        <div className="px-2">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {/* Team Grid - Mobile responsive */}
+      <section className="py-8 sm:py-12 md:py-16">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {players.map((player, index) => (
               <div 
                 key={player.id}
-                className="relative group cursor-pointer animate-fade-in"
+                className="relative group cursor-pointer animate-fade-in touch-friendly"
                 style={{ animationDelay: `${index * 0.05}s` }}
                 onClick={() => navigate(`/roster/${player.id}`)}
               >
-                {/* Player Card */}
-                <div className="relative overflow-hidden rounded-lg bg-background aspect-[3/4] shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 pr-6">
-                  {/* Jersey Number - Professional Sports Design */}
-                  <div className="absolute top-2 right-2 z-10">
-                    <div className="relative w-20 h-20 md:w-24 md:h-24 flex items-center justify-center transform hover:scale-110 transition-transform duration-200">
+                {/* Player Card - Mobile optimized with doubled width */}
+                <div className="relative overflow-hidden rounded-lg bg-background aspect-[3/4] shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 pr-4 sm:pr-6">
+                  {/* Jersey Number - Responsive sizing */}
+                  <div className="absolute top-1 sm:top-2 right-1 sm:right-2 z-10">
+                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 flex items-center justify-center transform hover:scale-110 transition-transform duration-200">
                       {/* Main Number Container */}
                       <div className="relative w-full h-full flex items-center justify-center">
                         <span 
                           className="number"
                           style={{
                             fontFamily: 'Arial Black, Impact, sans-serif',
-                            fontSize: '100px',
+                            fontSize: 'clamp(32px, 6vw, 120px)',
                             color: 'white',
-                            textShadow: '2px 2px 0 red, -2px -2px 0 red, 2px -2px 0 red, -2px 2px 0 red, 0 2px 0 red, 0 -2px 0 red, 2px 0 0 red, -2px 0 0 red',
+                            textShadow: '3px 3px 0 red, -3px -3px 0 red, 3px -3px 0 red, -3px 3px 0 red, 0 3px 0 red, 0 -3px 0 red, 3px 0 0 red, -3px 0 0 red',
                             fontWeight: '900',
                             letterSpacing: '2px',
                             lineHeight: '1',
@@ -168,40 +168,41 @@ const Roster = () => {
                         }}
                       />
                       {/* Fallback Initials */}
-                      <div className="text-white/30 text-8xl font-bold absolute inset-0 flex items-center justify-center" style={{ display: 'none' }}>
+                      <div className="text-white/30 text-6xl sm:text-8xl lg:text-9xl font-bold absolute inset-0 flex items-center justify-center" style={{ display: 'none' }}>
                         {player.firstName.charAt(0)}{player.lastName.charAt(0)}
                       </div>
                     </div>
                   </div>
                   
-                  {/* Player Info Overlay - Black Bottom Section */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-black p-4 rounded-b-lg">
+                  {/* Player Info Overlay - Black Bottom Section - Mobile responsive */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-black p-3 sm:p-4 md:p-6 rounded-b-lg">
                     <div className="text-white">
-                      <h3 className="font-bold text-lg md:text-xl mb-1 leading-tight">
+                      <h3 className="font-bold text-base sm:text-lg md:text-xl lg:text-2xl mb-1 leading-tight">
                         {player.firstName}
                       </h3>
-                      <h3 className="font-bold text-base md:text-lg mb-3 leading-tight">
+                      <h3 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl mb-2 sm:mb-3 leading-tight">
                         {player.lastName}
                       </h3>
                       
-                      <div className="flex items-center justify-between gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
                         <Badge 
-                          className={`${getPositionColor(player.position)} text-white text-sm md:text-base px-3 py-1 rounded-full`}
+                          className={`${getPositionColor(player.position)} text-white text-sm sm:text-base md:text-lg px-3 sm:px-4 py-1 sm:py-2 rounded-full`}
                         >
                           {getPositionDisplay(player.position)}
                         </Badge>
                         
-                        {/* Instagram Link */}
+                        {/* Instagram Link - Mobile responsive */}
                         {player.instagram && player.instagram !== 'TBD' && (
                           <a 
                             href={`https://instagram.com/${player.instagram}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-sm md:text-base text-white/80 hover:text-white transition-colors"
+                            className="inline-flex items-center gap-1 text-sm sm:text-base md:text-lg text-white/80 hover:text-white transition-colors"
                             onClick={(e) => e.stopPropagation()}
                           >
-                            <Instagram className="w-4 h-4" />
-                            @{player.instagram}
+                            <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
+                            <span className="hidden sm:inline">@{player.instagram}</span>
+                            <span className="sm:hidden">@{player.instagram.split('_')[0]}</span>
                           </a>
                         )}
                       </div>
@@ -214,10 +215,10 @@ const Roster = () => {
         </div>
       </section>
 
-      {/* Personal List Table */}
-      <section className="py-16 bg-muted">
-        <div className="px-64">
-          <h2 className="text-3xl font-bold text-foreground text-center mb-12 animate-fade-in">
+      {/* Personal List Table - Mobile responsive */}
+      <section className="py-8 sm:py-12 md:py-16 bg-muted">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-6 sm:mb-8 md:mb-12 animate-fade-in">
             {language === 'fr' ? 'Liste Personnelle' : 'Personal List'}
           </h2>
           
@@ -227,19 +228,19 @@ const Roster = () => {
                 <table className="w-full">
                   <thead>
                     <tr className="bg-primary text-primary-foreground">
-                      <th className="px-6 py-4 text-left font-bold uppercase text-sm">
+                      <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold uppercase text-xs sm:text-sm">
                         {language === 'fr' ? 'Joueuse' : 'Player'}
                       </th>
-                      <th className="px-6 py-4 text-left font-bold uppercase text-sm">
+                      <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold uppercase text-xs sm:text-sm">
                         {language === 'fr' ? 'Numéro' : 'Jersey #'}
                       </th>
-                      <th className="px-6 py-4 text-left font-bold uppercase text-sm">
+                      <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold uppercase text-xs sm:text-sm">
                         {language === 'fr' ? 'Position' : 'Position'}
                       </th>
-                      <th className="px-6 py-4 text-left font-bold uppercase text-sm">
+                      <th className="hidden sm:table-cell px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold uppercase text-xs sm:text-sm">
                         {language === 'fr' ? 'Origine' : 'Hometown'}
                       </th>
-                      <th className="px-6 py-4 text-left font-bold uppercase text-sm">
+                      <th className="hidden md:table-cell px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold uppercase text-xs sm:text-sm">
                         {language === 'fr' ? 'Taille' : 'Height'}
                       </th>
                     </tr>
@@ -252,9 +253,9 @@ const Roster = () => {
                           index % 2 === 0 ? 'bg-background' : 'bg-muted/30'
                         }`}
                       >
-                        <td className="px-6 py-4">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-monaco-red rounded-full flex items-center justify-center overflow-hidden">
+                        <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4">
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-monaco-red rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
                               <img 
                                 src={player.photo} 
                                 alt={`${player.firstName} ${player.lastName}`}
@@ -269,31 +270,35 @@ const Roster = () => {
                                   }
                                 }}
                               />
-                              <span className="text-white font-bold text-sm" style={{ display: 'none' }}>
+                              <span className="text-white font-bold text-xs sm:text-sm" style={{ display: 'none' }}>
                                 {player.firstName.charAt(0)}{player.lastName.charAt(0)}
                               </span>
                             </div>
-                            <div>
-                              <div className="font-semibold text-foreground">
+                            <div className="min-w-0 flex-1">
+                              <div className="font-semibold text-foreground text-xs sm:text-sm md:text-base truncate">
                                 {player.firstName} {player.lastName}
+                              </div>
+                              {/* Show hometown on mobile */}
+                              <div className="text-muted-foreground text-xs sm:hidden">
+                                {getPlayerHometown(player)}
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
-                          <span className="font-mono text-lg font-bold text-primary">
+                        <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4">
+                          <span className="font-mono text-sm sm:text-base md:text-lg font-bold text-primary">
                             {player.number || '-'}
                           </span>
                         </td>
-                        <td className="px-6 py-4">
-                          <Badge className={`${getPositionColor(player.position)} text-white`}>
+                        <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4">
+                          <Badge className={`${getPositionColor(player.position)} text-white text-xs sm:text-sm`}>
                             {getPositionDisplay(player.position)}
                           </Badge>
                         </td>
-                        <td className="px-6 py-4 text-muted-foreground">
+                        <td className="hidden sm:table-cell px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-muted-foreground text-xs sm:text-sm">
                           {getPlayerHometown(player)}
                         </td>
-                        <td className="px-6 py-4 text-muted-foreground">
+                        <td className="hidden md:table-cell px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-muted-foreground text-xs sm:text-sm">
                           {getPlayerHeight(player)}
                         </td>
                       </tr>
@@ -306,35 +311,35 @@ const Roster = () => {
         </div>
       </section>
 
-      {/* Competition Info */}
-      <section className="py-16 bg-background">
-        <div className="px-2 text-center">
+      {/* Competition Info - Mobile responsive */}
+      <section className="py-8 sm:py-12 md:py-16 bg-background">
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto animate-fade-in">
-            <h2 className="text-3xl font-bold text-foreground mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4 sm:mb-6">
               {language === 'fr' ? 'Division 3 FFF' : 'FFF Division 3'}
             </h2>
-            <p className="text-lg text-muted-foreground mb-8">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8">
               {language === 'fr' 
                 ? 'Notre équipe représente fièrement Monaco dans la Division 3 du championnat féminin français, un niveau compétitif qui nous permet de développer nos talents et de viser une promotion vers les divisions supérieures.'
                 : 'Our team proudly represents Monaco in the French women\'s Division 3 championship, a competitive level that allows us to develop our talents and aim for promotion to higher divisions.'
               }
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">150+</div>
-                <p className="text-muted-foreground">
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-2">150+</div>
+                <p className="text-muted-foreground text-sm sm:text-base">
                   {language === 'fr' ? 'Joueuses licenciées' : 'Licensed Players'}
                 </p>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">2024</div>
-                <p className="text-muted-foreground">
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-2">2024</div>
+                <p className="text-muted-foreground text-sm sm:text-base">
                   {language === 'fr' ? 'Promotion en D3' : 'Promoted to D3'}
                 </p>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">2022</div>
-                <p className="text-muted-foreground">
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-2">2022</div>
+                <p className="text-muted-foreground text-sm sm:text-base">
                   {language === 'fr' ? '16e de finale Coupe' : 'Cup Round of 16'}
                 </p>
               </div>

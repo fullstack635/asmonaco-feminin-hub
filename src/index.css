@@ -161,6 +161,75 @@ All colors MUST be HSL.
   .rotate-y-12 {
     transform: rotateY(12deg);
   }
+
+  /* Mobile-specific utilities */
+  .touch-friendly {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .mobile-safe-area {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .mobile-text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .mobile-button-tap {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Enhanced navigation utilities */
+  .nav-item-mobile {
+    @apply touch-friendly mobile-button-tap;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-responsive {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .nav-backdrop {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Mobile-optimized animations */
+  @media (max-width: 768px) {
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    .animate-spin-slow {
+      animation: spin 30s linear infinite;
+    }
+    
+    .animate-shimmer {
+      animation: shimmer 2s ease-in-out infinite;
+    }
+  }
+
+  /* Reduced motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-spin-slow,
+    .animate-shimmer,
+    .animate-twinkle {
+      animation: none;
+    }
+    
+    .transform-gpu {
+      transform: none;
+    }
+  }
 }
 
 @keyframes float {
@@ -255,4 +324,224 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--secondary) / 0.8);
+}
+
+/* Mobile-specific improvements */
+@layer components {
+  /* Mobile-optimized buttons */
+  .btn-mobile {
+    @apply touch-friendly mobile-button-tap;
+    min-height: 48px;
+    padding: 12px 24px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* Mobile-optimized text */
+  .text-mobile-responsive {
+    @apply text-sm sm:text-base md:text-lg lg:text-xl;
+    line-height: 1.4;
+  }
+
+  /* Mobile-optimized spacing */
+  .spacing-mobile {
+    @apply px-4 sm:px-6 md:px-8 lg:px-12;
+  }
+
+  /* Mobile-optimized grid */
+  .grid-mobile-responsive {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+    gap: 1rem;
+  }
+
+  /* Mobile-optimized images */
+  .img-mobile-responsive {
+    @apply w-full h-auto object-cover;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Mobile-optimized containers */
+  .container-mobile {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Mobile-optimized hero section */
+  .hero-mobile {
+    @apply min-h-screen flex items-center justify-center;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Mobile-optimized navigation */
+  .nav-mobile {
+    @apply fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm;
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* Enhanced navigation components */
+  .nav-link-mobile {
+    @apply nav-item-mobile px-4 py-3 rounded-md font-bold transition-all duration-200;
+    text-decoration: none;
+  }
+
+  .nav-link-mobile:hover {
+    @apply bg-accent text-accent-foreground scale-105;
+  }
+
+  .nav-link-mobile.active {
+    @apply bg-primary text-primary-foreground shadow-monaco;
+  }
+
+  /* Responsive logo component */
+  .logo-container {
+    @apply flex items-center logo-responsive;
+  }
+
+  .logo-image {
+    @apply object-contain transition-all duration-200;
+  }
+
+  .logo-text {
+    @apply font-bold text-primary leading-tight;
+  }
+
+  .logo-subtitle {
+    @apply text-muted-foreground block leading-tight;
+  }
+
+  /* Language switcher enhancements */
+  .lang-switcher {
+    @apply flex items-center gap-1 sm:gap-2;
+  }
+
+  .lang-button {
+    @apply touch-friendly mobile-button-tap font-medium transition-all duration-200 hover:scale-105;
+  }
+
+  /* Mobile-optimized cards */
+  .card-mobile {
+    @apply bg-card rounded-lg shadow-lg p-4 sm:p-6;
+    border: 1px solid hsl(var(--border));
+  }
+
+  /* Mobile-optimized forms */
+  .form-mobile {
+    @apply space-y-4;
+  }
+
+  .input-mobile {
+    @apply w-full px-4 py-3 text-base border border-input rounded-md;
+    min-height: 48px;
+  }
+
+  /* Mobile-optimized modals */
+  .modal-mobile {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Mobile-optimized loading states */
+  .loading-mobile {
+    @apply flex items-center justify-center p-8;
+    min-height: 200px;
+  }
+
+  /* Mobile-optimized error states */
+  .error-mobile {
+    @apply flex flex-col items-center justify-center p-8 text-center;
+    min-height: 200px;
+  }
+
+  /* Mobile-optimized success states */
+  .success-mobile {
+    @apply flex flex-col items-center justify-center p-8 text-center;
+    min-height: 200px;
+  }
+}
+
+/* Mobile-specific media queries */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .text-4xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+  
+  .text-5xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  
+  .text-6xl {
+    font-size: 2.5rem;
+    line-height: 2.75rem;
+  }
+  
+  .text-7xl {
+    font-size: 3rem;
+    line-height: 3.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .perspective-1000 {
+    perspective: none;
+  }
+  
+  .transform-gpu {
+    transform: none;
+  }
+  
+  .animate-float {
+    animation: none;
+  }
+  
+  .animate-spin-slow {
+    animation: none;
+  }
+  
+  .animate-shimmer {
+    animation: none;
+  }
+  
+  .animate-twinkle {
+    animation: none;
+  }
+}
+
+/* Navigation-specific responsive improvements */
+@media (max-width: 1024px) {
+  .nav-mobile {
+    position: sticky;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-mobile {
+    position: sticky;
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .bg-secondary {
+    background-color: hsl(var(--secondary) / 0.9);
+  }
+  
+  .text-muted-foreground {
+    color: hsl(var(--foreground) / 0.8);
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  .mobile-text-shadow {
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+  }
 }

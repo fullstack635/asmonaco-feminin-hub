@@ -336,92 +336,201 @@ const Matches = () => {
   };
 
   const MatchCard = ({ match }: { match: any }) => (
-    <div className="py-6 last:border-b-0">
-      <div className="grid grid-cols-12 items-center gap-4">
-        {/* Date and Result - Left Column */}
-        <div className="col-span-2 text-center">
-          <div className="font-bold text-sm text-gray-900">
-            {match.date}
+    <div className="py-3 sm:py-4 md:py-6 last:border-b-0 border-b border-gray-100 lg:border-b-0">
+      {/* Mobile Layout */}
+      <div className="block sm:hidden">
+        <div className="flex flex-col space-y-3 p-4 bg-gray-50 rounded-lg">
+          {/* Date and Result */}
+          <div className="flex justify-between items-center">
+            <span className="font-bold text-sm text-gray-900">{match.date}</span>
+            <span className={`text-sm font-medium ${
+              match.result ? 'text-gray-900' : 'text-gray-500'
+            }`}>
+              {match.result || (match.status === 'exempt' ? 'EXEMPT' : 'TBD')}
+            </span>
           </div>
-          <div className={`text-base font-medium mt-1 ${
-            match.result ? 'text-gray-900' : 'text-gray-500'
-          }`}>
-            {match.result || (match.status === 'exempt' ? 'EXEMPT' : 'TBD')}
+          
+          {/* Teams */}
+          <div className="flex items-center justify-center space-x-3">
+            <div className="text-center flex-1">
+              <div className="text-sm font-semibold text-[#1A2A44] uppercase tracking-wide">
+                {match.homeTeam}
+              </div>
+            </div>
+            <div className="text-gray-900 font-bold text-sm px-2">VS</div>
+            <div className="text-center flex-1">
+              <div className="text-sm font-semibold text-[#1A2A44] uppercase tracking-wide">
+                {match.awayTeam}
+              </div>
+            </div>
+          </div>
+          
+          {/* Action Links */}
+          <div className="flex justify-center space-x-4">
+            {match.hasTickets && (
+              <Button size="sm" variant="outline" className="text-xs">
+                {content.tickets}
+              </Button>
+            )}
+            {match.hasYoutube && (
+              <Button size="sm" variant="outline" className="text-xs">
+                {content.watch}
+              </Button>
+            )}
           </div>
         </div>
+      </div>
 
-        {/* Teams and VS - Center */}
-        <div className="col-span-8 flex items-center justify-center">
-          {/* Home Team */}
-          <div className="flex items-center space-x-4 w-1/3 justify-end">
-            <div className="text-lg font-serif font-semibold text-[#1A2A44] text-right uppercase tracking-wide flex-1">
-              {match.homeTeam}
-            </div>
-            <div className="w-20 h-20 bg-white flex items-center justify-center flex-shrink-0">
-              <img 
-                src={getTeamLogo(match.homeTeam)}
-                alt={match.homeTeam}
-                className="w-20 h-20 object-contain"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                }}
-              />
+      {/* Tablet Layout */}
+      <div className="hidden sm:block md:hidden">
+        <div className="grid grid-cols-12 items-center gap-2">
+          {/* Date and Result */}
+          <div className="col-span-3 text-center">
+            <div className="font-bold text-sm text-gray-900">{match.date}</div>
+            <div className={`text-sm font-medium mt-1 ${
+              match.result ? 'text-gray-900' : 'text-gray-500'
+            }`}>
+              {match.result || (match.status === 'exempt' ? 'EXEMPT' : 'TBD')}
             </div>
           </div>
 
-          {/* VS Separator */}
-          <div className="text-gray-900 font-bold text-lg px-2 flex items-center justify-center w-1/6">
-            VS
+          {/* Teams with small logos */}
+          <div className="col-span-6 flex items-center justify-center">
+            <div className="flex items-center space-x-2 w-full">
+              <div className="flex items-center space-x-2 flex-1 justify-end">
+                <div className="text-sm font-semibold text-[#1A2A44] text-right uppercase tracking-wide">
+                  {match.homeTeam}
+                </div>
+                <div className="w-8 h-8 bg-white flex items-center justify-center flex-shrink-0">
+                  <img 
+                    src={getTeamLogo(match.homeTeam)}
+                    alt={match.homeTeam}
+                    className="w-8 h-8 object-contain"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                    }}
+                  />
+                </div>
+              </div>
+              
+              <div className="text-gray-900 font-bold text-sm px-2">VS</div>
+              
+              <div className="flex items-center space-x-2 flex-1 justify-start">
+                <div className="w-8 h-8 bg-white flex items-center justify-center flex-shrink-0">
+                  <img 
+                    src={getTeamLogo(match.awayTeam)}
+                    alt={match.awayTeam}
+                    className="w-8 h-8 object-contain"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                    }}
+                  />
+                </div>
+                <div className="text-sm font-semibold text-[#1A2A44] text-left uppercase tracking-wide">
+                  {match.awayTeam}
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Away Team */}
-          <div className="flex items-center space-x-4 w-1/3 justify-start">
-            <div className="w-20 h-20 bg-white flex items-center justify-center flex-shrink-0">
-              <img 
-                src={getTeamLogo(match.awayTeam)}
-                alt={match.awayTeam}
-                className="w-20 h-20 object-contain"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                }}
-              />
-            </div>
-            <div className="text-lg font-serif font-semibold text-[#1A2A44] text-left uppercase tracking-wide flex-1">
-              {match.awayTeam}
-            </div>
+          {/* Action Links */}
+          <div className="col-span-3 flex flex-col gap-1 items-end">
+            {match.hasTickets && (
+              <a href="#" className="text-red-600 font-semibold underline text-xs hover:text-red-700 transition-colors">
+                {content.tickets}
+              </a>
+            )}
+            {match.hasYoutube && (
+              <a href="#" className="text-red-600 font-semibold underline text-xs hover:text-red-700 transition-colors">
+                {content.watch}
+              </a>
+            )}
           </div>
         </div>
+      </div>
 
-        {/* Action Links - Right Column */}
-        <div className="col-span-2 flex flex-col gap-1 items-end">
-          {match.hasTickets && (
-            <a 
-              href="#" 
-              className="text-red-600 font-semibold underline text-xs hover:text-red-700 transition-colors"
-            >
-              Match Tickets
-            </a>
-          )}
-          {match.hasYoutube && (
-            <a 
-              href="#" 
-              className="text-red-600 font-semibold underline text-xs hover:text-red-700 transition-colors"
-            >
-              Youtube
-            </a>
-          )}
+      {/* Desktop Layout - Original */}
+      <div className="hidden md:block">
+        <div className="grid grid-cols-12 items-center gap-4">
+          {/* Date and Result - Left Column */}
+          <div className="col-span-2 text-center">
+            <div className="font-bold text-sm text-gray-900">{match.date}</div>
+            <div className={`text-base font-medium mt-1 ${
+              match.result ? 'text-gray-900' : 'text-gray-500'
+            }`}>
+              {match.result || (match.status === 'exempt' ? 'EXEMPT' : 'TBD')}
+            </div>
+          </div>
+
+          {/* Teams and VS - Center */}
+          <div className="col-span-8 flex items-center justify-center">
+            {/* Home Team */}
+            <div className="flex items-center space-x-4 w-1/3 justify-end">
+              <div className="text-lg font-serif font-semibold text-[#1A2A44] text-right uppercase tracking-wide flex-1">
+                {match.homeTeam}
+              </div>
+              <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white flex items-center justify-center flex-shrink-0">
+                <img 
+                  src={getTeamLogo(match.homeTeam)}
+                  alt={match.homeTeam}
+                  className="w-16 h-16 lg:w-20 lg:h-20 object-contain"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* VS Separator */}
+            <div className="text-gray-900 font-bold text-lg px-2 flex items-center justify-center w-1/6">
+              VS
+            </div>
+
+            {/* Away Team */}
+            <div className="flex items-center space-x-4 w-1/3 justify-start">
+              <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white flex items-center justify-center flex-shrink-0">
+                <img 
+                  src={getTeamLogo(match.awayTeam)}
+                  alt={match.awayTeam}
+                  className="w-16 h-16 lg:w-20 lg:h-20 object-contain"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
+                />
+              </div>
+              <div className="text-lg font-serif font-semibold text-[#1A2A44] text-left uppercase tracking-wide flex-1">
+                {match.awayTeam}
+              </div>
+            </div>
+          </div>
+
+          {/* Action Links - Right Column */}
+          <div className="col-span-2 flex flex-col gap-1 items-end">
+            {match.hasTickets && (
+              <a href="#" className="text-red-600 font-semibold underline text-xs hover:text-red-700 transition-colors">
+                {content.tickets}
+              </a>
+            )}
+            {match.hasYoutube && (
+              <a href="#" className="text-red-600 font-semibold underline text-xs hover:text-red-700 transition-colors">
+                {content.watch}
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 
   const MatchesList = ({ matches, title }: { matches: any[], title: string }) => (
-    <section className="py-16 bg-white">
-              <div className="container mx-auto pr-4 pl-0 max-w-5xl">
-        <h2 className="text-3xl font-serif font-bold text-gray-900 mb-8 text-center">{title}</h2>
-        <div className="bg-white rounded-lg overflow-hidden max-w-5xl mx-auto">
+    <section className="py-8 sm:py-12 md:py-16 bg-white">
+      <div className="container-mobile">
+        <h2 className="text-2xl sm:text-3xl font-serif font-bold text-gray-900 mb-6 sm:mb-8 text-center">{title}</h2>
+        <div className="bg-white rounded-lg overflow-hidden max-w-6xl mx-auto">
           {matches.map((match, index) => (
             <div 
               key={match.id}
@@ -438,23 +547,21 @@ const Matches = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header Section with Brand Colors */}
-      <section className="relative h-[250px] bg-monaco-red flex items-center justify-center">
-        {/* Content */}
+      {/* Header Section - Responsive */}
+      <section className="relative h-48 sm:h-56 md:h-64 lg:h-[250px] bg-monaco-red flex items-center justify-center spacing-mobile">
         <div className="relative z-10 text-center text-white">
-
-          <h1 className="text-4xl md:text-5xl font-bold mb-3">{content.title}</h1>
-          <p className="text-lg md:text-xl opacity-95 max-w-4xl mx-auto px-2 leading-relaxed">{content.subtitle}</p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 mobile-text-shadow">{content.title}</h1>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-95 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">{content.subtitle}</p>
         </div>
       </section>
 
-      {/* Tabs */}
-      <section className="py-8 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-center space-x-8 bg-white py-4 max-w-md mx-auto">
+      {/* Tabs - Responsive */}
+      <section className="py-4 sm:py-6 md:py-8 bg-gray-50">
+        <div className="container-mobile">
+          <div className="flex justify-center space-x-4 sm:space-x-8 bg-white py-3 sm:py-4 max-w-md mx-auto rounded-lg shadow-sm">
             <button
               onClick={() => setActiveTab('wpsl')}
-              className={`font-semibold text-sm transition-colors border-b-2 ${
+              className={`font-semibold text-xs sm:text-sm transition-colors border-b-2 pb-2 touch-friendly ${
                 activeTab === 'wpsl'
                   ? 'text-red-600 border-red-600'
                   : 'text-gray-600 border-transparent hover:text-red-600 hover:border-red-600'
@@ -470,7 +577,7 @@ const Matches = () => {
                   element.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className={`font-semibold text-sm transition-colors border-b-2 ${
+              className={`font-semibold text-xs sm:text-sm transition-colors border-b-2 pb-2 touch-friendly ${
                 activeTab === 'tst'
                   ? 'text-red-600 border-red-600'
                   : 'text-gray-600 border-transparent hover:text-red-600 hover:border-red-600'
@@ -485,40 +592,40 @@ const Matches = () => {
       {/* WPSL Matches */}
       <MatchesList matches={wpslMatches} title="WPSL Season Schedule" />
 
-      {/* TST Tournament Matches - Always at bottom */}
+      {/* TST Tournament Matches */}
       <div id="tst-tournament">
         <MatchesList matches={tstMatches} title="TST Tournament Schedule" />
       </div>
 
-      {/* Season Stats */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-12 animate-fade-in">
+      {/* Season Stats - Responsive */}
+      <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
+        <div className="container-mobile text-center">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-gray-900 mb-8 sm:mb-12 animate-fade-in">
             {language === 'fr' ? 'Statistiques de la saison' : 'Season Statistics'}
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
             <div className="text-center animate-fade-in">
-              <div className="text-3xl font-bold text-gray-900 mb-2">19</div>
-              <p className="text-gray-600">
+              <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">19</div>
+              <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 {language === 'fr' ? 'Matchs programmés' : 'Scheduled Matches'}
               </p>
             </div>
             <div className="text-center animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              <div className="text-3xl font-bold text-green-600 mb-2">1</div>
-              <p className="text-gray-600">
+              <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-2">1</div>
+              <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 {language === 'fr' ? 'Victoires' : 'Wins'}
               </p>
             </div>
             <div className="text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="text-3xl font-bold text-blue-600 mb-2">0</div>
-              <p className="text-gray-600">
+              <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">0</div>
+              <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 {language === 'fr' ? 'Nuls' : 'Draws'}
               </p>
             </div>
             <div className="text-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              <div className="text-3xl font-bold text-red-600 mb-2">0</div>
-              <p className="text-gray-600">
+              <div className="text-2xl sm:text-3xl font-bold text-red-600 mb-2">0</div>
+              <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 {language === 'fr' ? 'Défaites' : 'Losses'}
               </p>
             </div>

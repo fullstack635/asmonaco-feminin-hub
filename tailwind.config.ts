@@ -17,6 +17,14 @@ export default {
 				'2xl': '1400px'
 			}
 		},
+		screens: {
+			'xs': '475px',
+			'sm': '640px',
+			'md': '768px',
+			'lg': '1024px',
+			'xl': '1280px',
+			'2xl': '1536px',
+		},
 		extend: {
 			colors: {
 				border: 'hsl(var(--border))',
@@ -76,6 +84,21 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			spacing: {
+				'18': '4.5rem',
+				'88': '22rem',
+				'128': '32rem',
+			},
+			fontSize: {
+				'2xs': ['0.625rem', { lineHeight: '0.75rem' }],
+				'3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+				'4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+				'5xl': ['3rem', { lineHeight: '1' }],
+				'6xl': ['3.75rem', { lineHeight: '1' }],
+				'7xl': ['4.5rem', { lineHeight: '1' }],
+				'8xl': ['6rem', { lineHeight: '1' }],
+				'9xl': ['8rem', { lineHeight: '1' }],
+			},
 			keyframes: {
 				'accordion-down': {
 					from: {
@@ -124,6 +147,34 @@ export default {
 					'50%': { 
 						boxShadow: '0 0 40px hsl(var(--monaco-yellow) / 0.8)'
 					}
+				},
+				'slide-in-left': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateX(-50px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateX(0)'
+					}
+				},
+				'shimmer': {
+					'0%': {
+						transform: 'translateX(-100%) skewX(-15deg)'
+					},
+					'100%': {
+						transform: 'translateX(200%) skewX(-15deg)'
+					}
+				},
+				'twinkle': {
+					'0%, 100%': {
+						opacity: '0.3',
+						transform: 'scale(1)'
+					},
+					'50%': {
+						opacity: '1',
+						transform: 'scale(1.2)'
+					}
 				}
 			},
 			animation: {
@@ -131,8 +182,25 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out',
 				'slide-in-right': 'slide-in-right 0.5s ease-out',
+				'slide-in-left': 'slide-in-left 0.8s ease-out',
 				'float': 'float 3s ease-in-out infinite',
-				'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'shimmer': 'shimmer 1.5s ease-in-out infinite',
+				'twinkle': 'twinkle 2s ease-in-out infinite',
+				'spin-slow': 'spin 20s linear infinite'
+			},
+			aspectRatio: {
+				'4/3': '4 / 3',
+				'3/2': '3 / 2',
+				'2/3': '2 / 3',
+				'9/16': '9 / 16',
+			},
+			zIndex: {
+				'60': '60',
+				'70': '70',
+				'80': '80',
+				'90': '90',
+				'100': '100',
 			}
 		}
 	},

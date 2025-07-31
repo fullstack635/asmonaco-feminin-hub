@@ -48,18 +48,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen overflow-hidden">
-      {/* Floating Elements */}
-      {/* <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-20 left-10 w-2 h-2 bg-secondary/30 rounded-full animate-float" style={{ animationDelay: '0s' }}></div>
-        <div className="absolute top-40 right-20 w-1 h-1 bg-secondary/40 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-60 left-1/4 w-1.5 h-1.5 bg-secondary/25 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-secondary/35 rounded-full animate-float" style={{ animationDelay: '3s' }}></div>
-      </div> */}
-
-      {/* Hero Section */}
+      {/* Hero Section - Laptop optimized */}
       <section 
         ref={heroRef}
-        className="relative h-screen flex items-center justify-center overflow-hidden"
+        className="hero-mobile spacing-mobile flex items-center justify-center overflow-hidden min-h-screen lg:h-screen xl:min-h-screen"
         style={{
           backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${background1})`,
           backgroundSize: 'cover',
@@ -78,23 +70,22 @@ const Index = () => {
         {/* Animated Background Overlay */}
         <div className="absolute inset-0 bg-monaco-yellow/10 animate-pulse"></div>
         
-        {/* Geometric Shapes */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 border border-secondary/20 rounded-full animate-spin-slow"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 border border-secondary/15 rounded-lg animate-float transform rotate-45"></div>
-          <div className="absolute top-1/2 left-1/6 w-16 h-16 bg-secondary/10 rounded-full animate-pulse"></div>
+        {/* Geometric Shapes - Enhanced for laptop */}
+        <div className="absolute inset-0 hidden md:block">
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 lg:w-40 lg:h-40 xl:w-48 xl:h-48 border border-secondary/20 rounded-full animate-spin-slow"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 border border-secondary/15 rounded-lg animate-float transform rotate-45"></div>
+          <div className="absolute top-1/2 left-1/6 w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 bg-secondary/10 rounded-full animate-pulse"></div>
         </div>
         
-        <div className={`relative z-10 text-center text-white max-w-4xl mx-auto px-2 transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-
+        <div className={`relative z-10 text-center text-white max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           
-          {/* Animated Title */}
-          <h1 className="text-4xl md:text-7xl font-bold mb-8 leading-tight transform-gpu">
+          {/* Animated Title - Laptop responsive typography */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 leading-tight transform-gpu mobile-text-shadow">
             <span className="inline-block animate-slide-in-left" style={{ animationDelay: '0.2s' }}>
               {content.title.split(' ').map((word, index) => (
                 <span 
                   key={index}
-                  className="inline-block mr-4 hover:text-secondary transition-colors duration-300 hover:scale-105 transform-gpu"
+                  className="inline-block mr-1 sm:mr-2 md:mr-4 lg:mr-5 xl:mr-6 hover:text-secondary transition-colors duration-300 hover:scale-105 transform-gpu"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {word}
@@ -103,72 +94,56 @@ const Index = () => {
             </span>
           </h1>
           
-          {/* Animated Subtitle */}
-          <p className="text-lg md:text-xl mb-10 opacity-90 max-w-3xl mx-auto leading-relaxed animate-fade-in transform-gpu" style={{ animationDelay: '0.6s' }}>
+          {/* Animated Subtitle - Laptop responsive */}
+          <p className="text-mobile-responsive lg:text-xl xl:text-2xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 opacity-90 max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto leading-relaxed animate-fade-in transform-gpu px-2 sm:px-0" style={{ animationDelay: '0.6s' }}>
             {content.subtitle}
           </p>
           
-          {/* CTA Buttons with enhanced animations */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-in" style={{ animationDelay: '0.8s' }}>
-            <Link to="/roster">
+          {/* CTA Buttons with laptop responsiveness */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 xl:gap-10 justify-center items-center animate-fade-in px-4 sm:px-0" style={{ animationDelay: '0.8s' }}>
+            <Link to="/roster" className="w-full sm:w-auto">
               <Button 
                 size="lg" 
-                className="group bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden"
+                className="btn-mobile group bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
               >
                 <span className="relative z-10">{t('roster')}</span>
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+                <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-white/20 transform -skew-x-12 group-hover:animate-shimmer"></div>
               </Button>
             </Link>
             
-            <Link to="/matches">
+            <Link to="/matches" className="w-full sm:w-auto">
               <Button 
                 size="lg"
-                className="group bg-monaco-red text-white hover:bg-monaco-red/90 border-2 border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-110 transform-gpu shadow-lg hover:shadow-xl"
+                className="btn-mobile group bg-monaco-red text-white hover:bg-monaco-red/90 border-2 border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-110 transform-gpu shadow-lg hover:shadow-xl w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
               >
-                <Play className="mr-2 w-4 h-4 group-hover:scale-125 transition-transform duration-300" />
+                <Play className="mr-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:scale-125 transition-transform duration-300" />
                 {t('matches')}
               </Button>
             </Link>
           </div>
         </div>
-
-        {/* Particles Effect */}
-        {/* <div className="absolute inset-0 pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <Star 
-              key={i}
-              className="absolute text-secondary/30 animate-twinkle"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                fontSize: `${Math.random() * 8 + 4}px`
-              }}
-            />
-          ))}
-        </div> */}
       </section>
 
-      {/* About Section */}
-      <section ref={aboutRef} className="py-24 bg-background relative overflow-hidden">
-        {/* Background Elements */}
+      {/* About Section - Laptop responsive */}
+      <section ref={aboutRef} className="py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 bg-background relative overflow-hidden spacing-mobile">
+        {/* Background Elements - Enhanced for laptop */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-1/4 left-0 w-48 h-48 bg-secondary/5 rounded-full blur-2xl animate-pulse"></div>
+          <div className="absolute top-1/4 right-0 w-32 sm:w-48 md:w-64 lg:w-80 xl:w-96 h-32 sm:h-48 md:h-64 lg:h-80 xl:h-96 bg-secondary/5 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-1/4 left-0 w-24 sm:w-32 md:w-48 lg:w-64 xl:w-80 h-24 sm:h-32 md:h-48 lg:h-64 xl:h-80 bg-secondary/5 rounded-full blur-2xl animate-pulse"></div>
         </div>
         
-        <div className="container mx-auto px-2 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-            <div className="space-y-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight relative">
+        <div className="container-mobile relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-20 2xl:gap-24 items-center max-w-6xl lg:max-w-7xl mx-auto">
+            <div className="space-y-6 sm:space-y-8 lg:space-y-10 xl:space-y-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight relative">
                 <span className="inline-block hover:text-secondary transition-colors duration-500">
                   {language === 'fr' ? 'Notre Mission' : 'Our Mission'}
                 </span>
-                <div className="absolute -bottom-2 left-0 w-16 h-1 bg-monaco-red rounded-full"></div>
+                <div className="absolute -bottom-2 left-0 w-12 sm:w-16 lg:w-20 xl:w-24 h-1 lg:h-1.5 xl:h-2 bg-monaco-red rounded-full"></div>
               </h2>
               
-              <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-2xl text-muted-foreground leading-relaxed">
                 <p className="transform hover:translate-x-2 transition-transform duration-300">
                   {content.description}
                 </p>
@@ -182,34 +157,34 @@ const Index = () => {
                 </p>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-6 pt-6">
-                <Link to="/academy">
-                  <Button className="group shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 pt-4 sm:pt-6 lg:pt-8">
+                <Link to="/academy" className="w-full sm:w-auto">
+                  <Button className="btn-mobile group shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl">
                     <span className="relative z-10">{t('academy')}</span>
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+                    <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" />
                     <div className="absolute inset-0 bg-white/10 transform -skew-x-12 group-hover:animate-shimmer"></div>
                   </Button>
                 </Link>
                 
-                <Link to="/club">
-                  <Button variant="outline" className="group hover:scale-110 transition-all duration-500 transform-gpu border-secondary/30 hover:border-secondary">
+                <Link to="/club" className="w-full sm:w-auto">
+                  <Button variant="outline" className="btn-mobile group hover:scale-110 transition-all duration-500 transform-gpu border-secondary/30 hover:border-secondary w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl">
                     {t('learn_more')}
                   </Button>
                 </Link>
               </div>
             </div>
             
-            <div className="relative animate-slide-in-right" style={{ animationDelay: '0.4s' }}>
-              {/* 3D Card Effect */}
+            <div className="relative animate-slide-in-right order-first lg:order-last" style={{ animationDelay: '0.4s' }}>
+              {/* 3D Card Effect - Laptop optimized */}
               <div className="relative perspective-1000">
-                <div className="absolute inset-0 bg-monaco-red rounded-2xl transform rotate-6 opacity-20 group-hover:rotate-12 transition-transform duration-700"></div>
-                <div className="absolute inset-0 bg-monaco-yellow/10 rounded-2xl transform -rotate-3 group-hover:rotate-3 transition-transform duration-700"></div>
+                <div className="absolute inset-0 bg-monaco-red rounded-2xl transform rotate-6 opacity-20 group-hover:rotate-12 transition-transform duration-700 hidden md:block"></div>
+                <div className="absolute inset-0 bg-monaco-yellow/10 rounded-2xl transform -rotate-3 group-hover:rotate-3 transition-transform duration-700 hidden md:block"></div>
                 
                 <div className="relative group">
                   <img 
                     src={backgound2} 
                     alt="AS Monaco Football Féminin in action"
-                    className="relative z-10 w-full h-[480px] object-cover rounded-2xl shadow-2xl hover:shadow-glow transition-all duration-700 transform-gpu group-hover:scale-105 group-hover:rotate-1"
+                    className="img-mobile-responsive relative z-10 w-full h-64 sm:h-80 md:h-96 lg:h-[520px] xl:h-[600px] 2xl:h-[680px] object-cover rounded-2xl shadow-2xl hover:shadow-glow transition-all duration-700 transform-gpu group-hover:scale-105 group-hover:rotate-1"
                   />
                   
                   {/* Hover Overlay */}
@@ -224,39 +199,39 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-monaco-red">
-        <div className="container mx-auto px-2 text-center">
-          <div className="max-w-3xl mx-auto animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+      {/* CTA Section - Laptop responsive */}
+      <section className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-monaco-red spacing-mobile">
+        <div className="container-mobile text-center">
+          <div className="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto animate-fade-in">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 lg:mb-8 xl:mb-10">
               {language === 'fr' ? 'Rejoignez le Mouvement' : 'Join the Movement'}
             </h2>
-            <p className="text-lg text-white/90 mb-8">
+            <p className="text-mobile-responsive lg:text-xl xl:text-2xl text-white/90 mb-6 sm:mb-8 lg:mb-10 xl:mb-12 px-2 sm:px-0">
               {language === 'fr' 
                 ? 'Découvrez comment vous pouvez faire partie de l\'avenir du football féminin à Monaco.'
                 : 'Discover how you can be part of the future of women\'s football in Monaco.'
               }
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/sponsor">
+            <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 xl:gap-8 justify-center">
+              <Link to="/sponsor" className="w-full sm:w-auto">
                 <Button 
                   variant="secondary" 
                   size="lg"
-                  className="group shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                  className="btn-mobile group shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
                 >
                   {t('sponsor')}
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                  <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-1 transition-transform duration-200" />
                 </Button>
               </Link>
               
-                                            <Link to="/tickets">
-                 <Button 
-                   size="lg"
-                   className="group bg-monaco-yellow text-black font-semibold hover:bg-monaco-yellow/90 border-2 border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-                 >
-                   {t('tickets')}
-                 </Button>
-               </Link>
+              <Link to="/tickets" className="w-full sm:w-auto">
+                <Button 
+                  size="lg"
+                  className="btn-mobile group bg-monaco-yellow text-black font-semibold hover:bg-monaco-yellow/90 border-2 border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
+                >
+                  {t('tickets')}
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

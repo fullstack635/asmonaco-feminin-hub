@@ -99,64 +99,98 @@ const Academy = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <section className="py-20 bg-monaco-red">
-        <div className="container mx-auto px-2 text-center">
-
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
+      {/* Header - Fully Responsive */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 bg-monaco-red spacing-mobile">
+        <div className="container-mobile text-center">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 animate-fade-in mobile-text-shadow">
             {content.title}
           </h1>
-          <h2 className="text-2xl text-white/90 mb-6 animate-fade-in">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white/90 mb-4 sm:mb-6 animate-fade-in">
             {content.subtitle}
           </h2>
-          <p className="text-lg text-white/90 max-w-4xl mx-auto animate-fade-in leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-4xl mx-auto animate-fade-in leading-relaxed">
             {content.description}
           </p>
         </div>
       </section>
 
-      {/* Pathway Section - Red Bulls Style 2x2 Grid */}
-      <section className="py-16">
-        <div className="px-[150px]">
-          <h2 className="text-3xl font-bold text-foreground text-center mb-12 animate-fade-in">
+      {/* Pathway Section - Responsive Grid */}
+      <section className="py-8 sm:py-12 md:py-16 lg:py-20">
+        <div className="container-mobile">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center mb-8 sm:mb-12 animate-fade-in">
             {content.pathway}
           </h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 xl:gap-12">
             {pathwayStages.map((stage, index) => (
-              <div key={index} className="flex h-[500px] animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
-                {/* Left Panel - Red Background with Content */}
-                <div className="flex-1 bg-monaco-red p-8 flex flex-col justify-between">
-                  {/* Logo and Title */}
-                  <div>
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className={`w-16 h-16 ${stage.color} rounded-full flex items-center justify-center shadow-glow`}>
-                        <stage.icon className="w-8 h-8 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-white">{stage.title}</h3>
-                    </div>
-                    
-                    {/* Description */}
-                    <p className="text-white/90 leading-relaxed text-lg">
-                      {stage.description}
-                    </p>
+              <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
+                {/* Mobile Layout - Stacked */}
+                <div className="block lg:hidden bg-white rounded-lg shadow-lg overflow-hidden">
+                  {/* Image */}
+                  <div className="h-48 sm:h-56 md:h-64 overflow-hidden">
+                    <img 
+                      src={stage.image} 
+                      alt={stage.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   
-                  {/* Sponsor/Logo Area */}
-                  <div className="mt-auto">
-                    <div className="text-white/70 text-sm">
-                      AS Monaco FF
+                  {/* Content */}
+                  <div className="p-4 sm:p-6 bg-monaco-red">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className={`w-12 h-12 sm:w-14 sm:h-14 ${stage.color} rounded-full flex items-center justify-center shadow-glow`}>
+                        <stage.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                      </div>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white">{stage.title}</h3>
+                    </div>
+                    
+                    <p className="text-white/90 leading-relaxed text-sm sm:text-base">
+                      {stage.description}
+                    </p>
+                    
+                    <div className="mt-4 pt-4 border-t border-white/20">
+                      <div className="text-white/70 text-xs sm:text-sm">
+                        AS Monaco FF
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Right Panel - Image */}
-                <div className="flex-[2] bg-gray-300 overflow-hidden">
-                  <img 
-                    src={stage.image} 
-                    alt={stage.title}
-                    className="w-full h-full object-cover"
-                  />
+                {/* Desktop Layout - Side by Side */}
+                <div className="hidden lg:flex h-[400px] xl:h-[500px]">
+                  {/* Left Panel - Red Background with Content */}
+                  <div className="flex-1 bg-monaco-red p-6 xl:p-8 flex flex-col justify-between">
+                    {/* Logo and Title */}
+                    <div>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className={`w-14 h-14 xl:w-16 xl:h-16 ${stage.color} rounded-full flex items-center justify-center shadow-glow`}>
+                          <stage.icon className="w-7 h-7 xl:w-8 xl:h-8 text-white" />
+                        </div>
+                        <h3 className="text-xl xl:text-2xl font-bold text-white">{stage.title}</h3>
+                      </div>
+                      
+                      {/* Description */}
+                      <p className="text-white/90 leading-relaxed text-base xl:text-lg">
+                        {stage.description}
+                      </p>
+                    </div>
+                    
+                    {/* Sponsor/Logo Area */}
+                    <div className="mt-auto">
+                      <div className="text-white/70 text-sm">
+                        AS Monaco FF
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Panel - Image */}
+                  <div className="flex-[2] bg-gray-300 overflow-hidden">
+                    <img 
+                      src={stage.image} 
+                      alt={stage.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
                 </div>
               </div>
             ))}
@@ -164,25 +198,25 @@ const Academy = () => {
         </div>
       </section>
 
-      {/* Why Choose ASMFF */}
-      <section className="py-16 bg-muted">
-        <div className="px-[150px]">
-          <h2 className="text-3xl font-bold text-foreground text-center mb-12 animate-fade-in">
+      {/* Why Choose ASMFF - Responsive */}
+      <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-muted">
+        <div className="container-mobile">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center mb-8 sm:mb-12 animate-fade-in">
             {content.whyChoose}
           </h2>
 
           <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
               {benefits.map((benefit, index) => (
                 <div 
                   key={index}
                   className="flex items-start gap-3 animate-fade-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="w-6 h-6 bg-monaco-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-monaco-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full"></div>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed">{benefit}</p>
+                  <p className="text-muted-foreground leading-relaxed text-sm sm:text-base lg:text-lg">{benefit}</p>
                 </div>
               ))}
             </div>
@@ -190,39 +224,48 @@ const Academy = () => {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="py-16">
-        <div className="px-[150px]">
-          <div className="max-w-4xl mx-auto text-center mb-12 animate-fade-in">
-            <h2 className="text-3xl font-bold text-foreground mb-6">
+      {/* Contact Form - Responsive */}
+      <section className="py-8 sm:py-12 md:py-16 lg:py-20">
+        <div className="container-mobile">
+          <div className="max-w-4xl mx-auto text-center mb-8 sm:mb-12 animate-fade-in">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
               {content.readyToJoin}
             </h2>
-            <p className="text-lg text-muted-foreground mb-4">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-4">
               {content.joinText}
             </p>
-            <div className="flex items-center justify-center gap-2 text-muted-foreground mb-8">
-              <Mail className="w-4 h-4" />
-              <span>contact@asm-ff.com</span>
+            <div className="flex items-center justify-center gap-2 text-muted-foreground mb-6 sm:mb-8">
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="text-sm sm:text-base">contact@asm-ff.com</span>
             </div>
-            <p className="text-muted-foreground">
+            <p className="text-sm sm:text-base text-muted-foreground">
               {content.contactForm}
             </p>
           </div>
 
-          <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8 animate-fade-in">
-            <form className="space-y-6">
+          <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-4 sm:p-6 md:p-8 animate-fade-in">
+            <form className="space-y-4 sm:space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
                     {content.name} *
                   </label>
-                  <Input placeholder={content.name} required />
+                  <Input 
+                    placeholder={content.name} 
+                    required 
+                    className="input-mobile"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
                     {content.email} *
                   </label>
-                  <Input type="email" placeholder={content.email} required />
+                  <Input 
+                    type="email" 
+                    placeholder={content.email} 
+                    required 
+                    className="input-mobile"
+                  />
                 </div>
               </div>
 
@@ -231,13 +274,20 @@ const Academy = () => {
                   <label className="block text-sm font-medium text-foreground mb-2">
                     {content.birthDate} *
                   </label>
-                  <Input type="date" required />
+                  <Input 
+                    type="date" 
+                    required 
+                    className="input-mobile"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
                     {content.currentClub}
                   </label>
-                  <Input placeholder={content.currentClub} />
+                  <Input 
+                    placeholder={content.currentClub} 
+                    className="input-mobile"
+                  />
                 </div>
               </div>
 
@@ -248,30 +298,31 @@ const Academy = () => {
                 <Textarea 
                   placeholder={content.message}
                   rows={4}
+                  className="input-mobile"
                 />
               </div>
 
               <Button 
                 type="submit" 
                 size="lg" 
-                className="w-full bg-monaco-red hover:bg-monaco-red/90 text-white group shadow-monaco hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="btn-mobile w-full bg-monaco-red hover:bg-monaco-red/90 text-white group shadow-monaco hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 {content.submit}
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" />
               </Button>
             </form>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-16 bg-monaco-red">
-        <div className="px-[150px] text-center">
+      {/* Call to Action - Responsive */}
+      <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-monaco-red">
+        <div className="container-mobile text-center">
           <div className="max-w-3xl mx-auto animate-fade-in">
-            <h2 className="text-3xl font-bold text-white mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 mobile-text-shadow">
               {language === 'fr' ? 'L\'Avenir Commence Ici' : 'The Future Starts Here'}
             </h2>
-            <p className="text-lg text-white/90 mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8">
               {language === 'fr' 
                 ? 'Rejoignez une académie qui croit en votre potentiel et vous aide à le réaliser.'
                 : 'Join an academy that believes in your potential and helps you achieve it.'
@@ -280,10 +331,10 @@ const Academy = () => {
             <Button 
               variant="secondary" 
               size="lg"
-              className="group shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+              className="btn-mobile group shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
             >
               {language === 'fr' ? 'Commencer le Voyage' : 'Start the Journey'}
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+              <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" />
             </Button>
           </div>
         </div>

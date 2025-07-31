@@ -26,29 +26,33 @@ export const Navigation: React.FC = () => {
   const isActive = (href: string) => location.pathname === href;
 
   return (
-    <nav className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b shadow-sm">
-      <div className="px-[150px]">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 hover:scale-105 transition-transform duration-200">
+    <nav className="nav-mobile bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b shadow-sm">
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+        <div className="flex items-center justify-between h-14 sm:h-16 md:h-18 lg:h-20">
+          {/* Logo - Fully responsive */}
+          <Link to="/" className="flex items-center space-x-2 sm:space-x-3 hover:scale-105 transition-transform duration-200 touch-friendly">
             <img 
               src="/teams/AS MONACO FF.png"
               alt="AS Monaco FF"
-              className="w-12 h-12 object-contain"
+              className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
             />
-            <div className="hidden sm:block">
-              <span className="font-bold text-lg text-primary">AS Monaco</span>
-              <span className="text-xs text-muted-foreground block">Football Féminin</span>
+            <div className="hidden xs:block">
+              <span className="font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-primary leading-tight">
+                AS Monaco
+              </span>
+              <span className="text-xs sm:text-xs md:text-sm lg:text-base text-muted-foreground block leading-tight">
+                Football Féminin
+              </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          {/* Desktop Navigation - Enhanced responsive */}
+          <div className="hidden lg:flex items-center space-x-2 xl:space-x-4 2xl:space-x-6">
             {navigationItems.map((item) => (
               <Link
                 key={item.key}
                 to={item.href}
-                className={`px-3 py-2 rounded-md text-base font-bold transition-all duration-200 hover:scale-105 ${
+                className={`px-2 py-2 xl:px-3 xl:py-2 2xl:px-4 2xl:py-3 rounded-md text-sm xl:text-base 2xl:text-lg font-bold transition-all duration-200 hover:scale-105 touch-friendly ${
                   isActive(item.href)
                     ? 'bg-primary text-primary-foreground shadow-monaco'
                     : 'text-foreground hover:bg-accent hover:text-accent-foreground'
@@ -59,15 +63,51 @@ export const Navigation: React.FC = () => {
             ))}
           </div>
 
-          {/* Language Switcher & Mobile Menu */}
-          <div className="flex items-center space-x-4">
-            <LanguageSwitcher />
-            
-            {/* Mobile menu button */}
+          {/* Tablet Navigation - Medium screens */}
+          <div className="hidden md:flex lg:hidden items-center space-x-1">
+            {navigationItems.slice(0, 6).map((item) => (
+              <Link
+                key={item.key}
+                to={item.href}
+                className={`px-2 py-2 rounded-md text-sm font-bold transition-all duration-200 hover:scale-105 touch-friendly ${
+                  isActive(item.href)
+                    ? 'bg-primary text-primary-foreground shadow-monaco'
+                    : 'text-foreground hover:bg-accent hover:text-accent-foreground'
+                }`}
+              >
+                {t(item.key)}
+              </Link>
+            ))}
+            {/* More button for remaining items */}
             <Button
               variant="outline"
               size="sm"
-              className="lg:hidden"
+              className="px-2 py-1 text-xs"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              +{navigationItems.length - 6}
+            </Button>
+          </div>
+
+          {/* Language Switcher & Mobile Menu - Responsive */}
+          <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
+            <LanguageSwitcher />
+            
+            {/* Mobile menu button - Enhanced */}
+            <Button
+              variant="outline"
+              size="sm"
+              className="md:hidden touch-friendly p-2 w-10 h-10 sm:w-11 sm:h-11"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
+            </Button>
+
+            {/* Tablet overflow menu button */}
+            <Button
+              variant="outline"
+              size="sm"
+              className="hidden md:block lg:hidden touch-friendly p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -75,15 +115,37 @@ export const Navigation: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Enhanced responsive */}
         {isMenuOpen && (
-          <div className="lg:hidden animate-fade-in">
-            <div className="px-2 pt-2 pb-3 space-y-1 border-t">
+          <div className="md:hidden animate-fade-in bg-background/98 backdrop-blur-sm">
+            <div className="px-2 py-3 space-y-1 border-t">
               {navigationItems.map((item) => (
                 <Link
                   key={item.key}
                   to={item.href}
-                  className={`block px-3 py-2 rounded-md text-base font-bold transition-all duration-200 ${
+                  className={`block px-4 py-3 rounded-md text-base font-bold transition-all duration-200 touch-friendly ${
+                    isActive(item.href)
+                      ? 'bg-primary text-primary-foreground shadow-monaco'
+                      : 'text-foreground hover:bg-accent hover:text-accent-foreground'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t(item.key)}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Tablet overflow menu */}
+        {isMenuOpen && (
+          <div className="hidden md:block lg:hidden animate-fade-in bg-background/98 backdrop-blur-sm">
+            <div className="px-2 py-3 space-y-1 border-t">
+              {navigationItems.slice(6).map((item) => (
+                <Link
+                  key={item.key}
+                  to={item.href}
+                  className={`block px-4 py-3 rounded-md text-sm font-bold transition-all duration-200 touch-friendly ${
                     isActive(item.href)
                       ? 'bg-primary text-primary-foreground shadow-monaco'
                       : 'text-foreground hover:bg-accent hover:text-accent-foreground'
