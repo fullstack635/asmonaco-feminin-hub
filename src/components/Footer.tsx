@@ -92,7 +92,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar - Ownership Section */}
         <div className="border-t border-white/20 mt-8 pt-8 text-center">
           <p className="text-sm opacity-90">
-            © 2024 AS Monaco Football Féminin. {currentContent.allRights}
+            © 2025 AS Monaco Football Féminin. {currentContent.allRights}
           </p>
         </div>
       </div>
