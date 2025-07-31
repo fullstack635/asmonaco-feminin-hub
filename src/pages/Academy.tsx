@@ -116,7 +116,7 @@ const Academy = () => {
 
       {/* Pathway Section - Responsive Grid */}
       <section className="py-8 sm:py-12 md:py-16 lg:py-20">
-        <div className="container-mobile">
+        <div className="px-[50px]">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center mb-8 sm:mb-12 animate-fade-in">
             {content.pathway}
           </h2>
@@ -141,15 +141,15 @@ const Academy = () => {
                       <div className={`w-12 h-12 sm:w-14 sm:h-14 ${stage.color} rounded-full flex items-center justify-center shadow-glow`}>
                         <stage.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                       </div>
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white">{stage.title}</h3>
+                      <h3 className="font-bold text-white" style={{ fontSize: 'clamp(16px, 4vw, 24px)' }}>{stage.title}</h3>
                     </div>
                     
-                    <p className="text-white/90 leading-relaxed text-sm sm:text-base">
+                    <p className="text-white/90 leading-relaxed font-bold" style={{ fontSize: 'clamp(14px, 3.5vw, 18px)' }}>
                       {stage.description}
                     </p>
                     
                     <div className="mt-4 pt-4 border-t border-white/20">
-                      <div className="text-white/70 text-xs sm:text-sm">
+                      <div className="text-white/70" style={{ fontSize: 'clamp(10px, 2.5vw, 14px)' }}>
                         AS Monaco FF
                       </div>
                     </div>

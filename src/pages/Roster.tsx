@@ -109,32 +109,6 @@ const Roster = () => {
         <div className="relative z-10 text-center text-white">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 mobile-text-shadow">{content.title}</h1>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-95 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">{content.subtitle}</p>
-          
-          {/* Team Logo Section - Mobile responsive */}
-          <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-            {/* Team Name */}
-            <div className="text-center sm:text-left">
-              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2">
-                AS Monaco Football Féminin
-              </h2>
-              <p className="text-sm sm:text-base md:text-lg text-white/80">
-                {language === 'fr' ? 'Division 3 FFF' : 'FFF Division 3'}
-              </p>
-            </div>
-            
-            {/* Team Logo - Positioned under team name on mobile */}
-            <div className="flex-shrink-0">
-              <img 
-                src="/teams/AS MONACO FF.png"
-                alt="AS Monaco FF"
-                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 object-contain"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                }}
-              />
-            </div>
-          </div>
         </div>
       </section>
 
