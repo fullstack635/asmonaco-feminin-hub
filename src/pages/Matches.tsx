@@ -556,15 +556,15 @@ const Matches = () => {
       </section>
 
       {/* Tabs - Responsive */}
-      <section className="py-4 sm:py-6 md:py-8 bg-gray-50">
+      <section className="py-4 sm:py-6 md:py-8 bg-white">
         <div className="container-mobile">
-          <div className="flex justify-center space-x-4 sm:space-x-8 bg-white py-3 sm:py-4 max-w-md mx-auto rounded-lg shadow-sm">
+          <div className="flex justify-center space-x-4 sm:space-x-8 bg-white py-3 sm:py-4 max-w-md mx-auto rounded-lg">
             <button
               onClick={() => setActiveTab('wpsl')}
-              className={`font-semibold text-xs sm:text-sm transition-colors border-b-2 pb-2 touch-friendly ${
+              className={`font-semibold text-sm sm:text-base md:text-lg transition-all duration-200 border-b-2 pb-2 touch-friendly px-6 py-2 rounded-md min-w-[120px] text-center ${
                 activeTab === 'wpsl'
-                  ? 'text-red-600 border-red-600'
-                  : 'text-gray-600 border-transparent hover:text-red-600 hover:border-red-600'
+                  ? 'text-red-600 border-red-600 bg-red-50'
+                  : 'text-gray-600 border-transparent hover:text-red-600 hover:border-red-600 hover:bg-gray-50'
               }`}
             >
               WPSL
@@ -577,14 +577,18 @@ const Matches = () => {
                   element.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className={`font-semibold text-xs sm:text-sm transition-colors border-b-2 pb-2 touch-friendly ${
+              className={`font-semibold text-sm sm:text-base md:text-lg transition-all duration-200 border-b-2 pb-2 touch-friendly px-6 py-2 rounded-md min-w-[120px] text-center ${
                 activeTab === 'tst'
-                  ? 'text-red-600 border-red-600'
-                  : 'text-gray-600 border-transparent hover:text-red-600 hover:border-red-600'
+                  ? 'text-red-600 border-red-600 bg-red-50'
+                  : 'text-gray-600 border-transparent hover:text-red-600 hover:border-red-600 hover:bg-gray-50'
               }`}
             >
               TST Tournament
             </button>
+          </div>
+          {/* Horizontal line under tabs */}
+          <div className="w-full max-w-6xl mx-auto mt-4">
+            <div className="h-px bg-gray-200"></div>
           </div>
         </div>
       </section>
