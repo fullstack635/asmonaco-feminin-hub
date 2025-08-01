@@ -105,7 +105,7 @@ const Academy = () => {
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-montserrat-extrabold text-white mb-4 sm:mb-6 animate-fade-in mobile-text-shadow">
             {content.title}
           </h1>
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white/90 mb-4 sm:mb-6 animate-fade-in">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-2xl text-white/90 mb-4 sm:mb-6 animate-fade-in font-cinzel-decorative">
             {content.subtitle}
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-4xl mx-auto animate-fade-in leading-relaxed">

@@ -19,7 +19,7 @@ const Index = () => {
 
   const homeContent = {
     fr: {
-      title: "Bienvenue à AS Monaco Football Féminin",
+      title: "Bienvenue à\nAS Monaco Football Féminin",
       subtitle: "Enracinée au cœur de la Principauté, AS Monaco Football Féminin est plus qu'une équipe — nous sommes un mouvement qui défend la croissance du football féminin à Monaco et au-delà.",
       description: "Notre club rassemble des athlètes talentueuses, des supporters passionnés et un engagement partagé vers l'excellence sur et en dehors du terrain. En tant que fière représentation de l'esprit sportif de Monaco, nous visons à élever le jeu féminin à travers la compétition, l'engagement communautaire et le développement des jeunes.",
       mission: "Nous compétitionnons avec un but. Nous nous entraînons avec fierté. Et nous croyons que lorsque les filles et les femmes ont la plateforme pour briller, tout le jeu devient plus fort.",
@@ -31,7 +31,7 @@ const Index = () => {
       ]
     },
     en: {
-      title: "Welcome to AS Monaco Football Féminin",
+      title: "Welcome to\nAS Monaco Football Féminin",
       subtitle: "Rooted in the heart of the Principality, AS Monaco Football Féminin is more than just a team — we are a movement championing the growth of women's football in Monaco and beyond.",
       description: "Our club brings together talented athletes, passionate supporters, and a shared commitment to excellence on and off the pitch. As a proud representation of Monaco's sporting spirit, we aim to elevate the women's game through competition, community engagement, and youth development.",
       mission: "We compete with purpose. We train with pride. And we believe that when girls and women are given the platform to shine, the entire game gets stronger.",
@@ -82,14 +82,22 @@ const Index = () => {
           {/* Animated Title - Laptop responsive typography */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-montserrat-extrabold mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 leading-tight transform-gpu mobile-text-shadow">
             <span className="inline-block animate-slide-in-left" style={{ animationDelay: '0.2s' }}>
-              {content.title.split(' ').map((word, index) => (
+              {content.title.split('\n').map((line, lineIndex) => (
+                <div 
+                  key={lineIndex}
+                  className="block"
+                  style={{ animationDelay: `${lineIndex * 0.1}s` }}
+                >
+                  {line.split(' ').map((word, wordIndex) => (
                 <span 
-                  key={index}
+                      key={`${lineIndex}-${wordIndex}`}
                   className="inline-block mr-1 sm:mr-2 md:mr-4 lg:mr-5 xl:mr-6 hover:text-secondary transition-colors duration-300 hover:scale-105 transform-gpu"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                      style={{ animationDelay: `${(lineIndex * 5 + wordIndex) * 0.1}s` }}
                 >
                   {word}
                 </span>
+                  ))}
+                </div>
               ))}
             </span>
           </h1>
@@ -100,7 +108,7 @@ const Index = () => {
           </p>
           
           {/* CTA Buttons with laptop responsiveness */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 xl:gap-10 justify-center items-center animate-fade-in px-4 sm:px-0" style={{ animationDelay: '0.8s' }}>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 xl:gap-10 justify-center items-center animate-fade-in px-4 sm:px-0 mb-8 sm:mb-12 lg:mb-16 xl:mb-20" style={{ animationDelay: '0.8s' }}>
             <Link to="/roster" className="w-full sm:w-auto">
               <Button 
                 size="lg" 
@@ -143,16 +151,18 @@ const Index = () => {
                 <div className="absolute -bottom-2 left-0 w-12 sm:w-16 lg:w-20 xl:w-24 h-1 lg:h-1.5 xl:h-2 bg-monaco-red rounded-full"></div>
               </h2>
               
-              <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-2xl text-muted-foreground leading-relaxed">
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-xl text-muted-foreground leading-relaxed">
                 <p className="transform hover:translate-x-2 transition-transform duration-300">
                   {content.description}
                 </p>
-                
+              </div>
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-xl text-muted-foreground leading-relaxed">
                 <p className="transform hover:translate-x-2 transition-transform duration-300">
                   {content.mission}
                 </p>
-                
-                <p className="transform hover:translate-x-2 transition-transform duration-300 font-medium">
+              </div>
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-2xl text-muted-foreground leading-relaxed">
+                <p className="transform hover:translate-x-2 transition-transform duration-300 font-medium font-cinzel-decorative">
                   {content.closing}
                 </p>
               </div>
@@ -206,10 +216,10 @@ const Index = () => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-cinzel-decorative-bold text-white mb-4 sm:mb-6 lg:mb-8 xl:mb-10">
               {language === 'fr' ? 'Rejoignez le Mouvement' : 'Join the Movement'}
             </h2>
-            <p className="text-mobile-responsive lg:text-xl xl:text-2xl text-white/90 mb-6 sm:mb-8 lg:mb-10 xl:mb-12 px-2 sm:px-0">
+            <p className="text-mobile-responsive lg:text-xl xl:text-2xl text-white/90 mb-6 sm:mb-8 lg:mb-10 xl:mb-12 px-2 sm:px-0 font-cinzel-decorative whitespace-pre-line">
               {language === 'fr' 
-                ? 'Découvrez comment vous pouvez faire partie de l\'avenir du football féminin à Monaco.'
-                : 'Discover how you can be part of the future of women\'s football in Monaco.'
+                ? 'Découvrez comment vous pouvez faire partie de \nl\'avenir du football féminin à Monaco.'
+                : 'Discover how you can be part of the future of \nwomen\'s football in Monaco.'
               }
             </p>
             <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 xl:gap-8 justify-center">

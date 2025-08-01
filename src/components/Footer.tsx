@@ -1,6 +1,18 @@
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Mail, Instagram, Facebook, Twitter } from 'lucide-react';
+import { Mail, Instagram, Facebook } from 'lucide-react';
+
+// Custom X (Twitter) Icon Component
+const XIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    viewBox="0 0 24 24"
+    className={className}
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+);
 
 export const Footer: React.FC = () => {
   const { language } = useLanguage();
@@ -13,7 +25,7 @@ export const Footer: React.FC = () => {
     },
     en: {
       contactUs: "Contact Us",
-      followUs: "Follow Us", 
+      followUs: "Follow Us",
       allRights: "All rights reserved"
     }
   };
@@ -23,7 +35,7 @@ export const Footer: React.FC = () => {
   const socialLinks = [
     { icon: Instagram, href: '#', label: 'Instagram' },
     { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' }
+    { icon: XIcon, href: '#', label: 'Twitter' }
   ];
 
   return (
@@ -34,7 +46,7 @@ export const Footer: React.FC = () => {
           
           {/* Follow Us Section - Left Side */}
           <div className="lg:absolute lg:left-0 lg:w-1/4">
-            <h4 className="font-bold text-lg mb-4 text-center lg:text-left">
+            <h4 className="font-bold text-lg mb-4 text-center lg:text-left font-cinzel-decorative">
               {currentContent.followUs}
             </h4>
             <div className="flex justify-center lg:justify-start space-x-4">
@@ -64,7 +76,7 @@ export const Footer: React.FC = () => {
 
             {/* Contact Information - Right Side */}
             <div className="text-center lg:text-left">
-              <h2 className="text-2xl font-bold mb-2">
+              <h2 className="text-2xl font-bold mb-2 font-cinzel-decorative">
                 {currentContent.contactUs}
               </h2>
               <div className="space-y-1">

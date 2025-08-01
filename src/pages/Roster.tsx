@@ -12,7 +12,7 @@ const Roster = () => {
   const rosterInfo = {
     fr: {
       title: "Notre Équipe",
-      subtitle: "AS Monaco Football Féminin competes in FFF Division 3 — A national stage for rising talent and the next generation of women's football in France.",
+      subtitle: "AS Monaco Football Féminin competes in FFF Division 3 —\nA national stage for rising talent and the next generation of women's football in France.",
       positions: {
         goalkeeper: "Gardienne",
         defender: "Défenseure",
@@ -22,7 +22,7 @@ const Roster = () => {
     },
     en: {
       title: "Our Team",
-      subtitle: "AS Monaco Football Féminin competes in FFF Division 3 — A national stage for rising talent and the next generation of women's football in France.",
+      subtitle: "AS Monaco Football Féminin competes in FFF Division 3 —\nA national stage for rising talent and the next generation of women's football in France.",
       positions: {
         goalkeeper: "Goalkeeper",
         defender: "Defender", 
@@ -108,7 +108,7 @@ const Roster = () => {
         {/* Content */}
         <div className="relative z-10 text-center text-white">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-montserrat-extrabold mb-3 sm:mb-4 md:mb-6 mobile-text-shadow">{content.title}</h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-95 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0 font-cinzel-decorative">{content.subtitle}</p>
+          <p className="text-sm sm:text-base md:text-lg lg:text-2xl opacity-95 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0 font-cinzel-decorative whitespace-pre-line">{content.subtitle}</p>
         </div>
       </section>
 
@@ -209,102 +209,6 @@ const Roster = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Personal List Table - Mobile responsive */}
-      <section className="py-8 sm:py-12 md:py-16 bg-muted">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-cinzel-decorative-bold text-foreground text-center mb-6 sm:mb-8 md:mb-12 animate-fade-in">
-            {language === 'fr' ? 'Liste Personnelle' : 'Personal List'}
-          </h2>
-          
-          <div className="w-full">
-            <Card className="overflow-hidden animate-fade-in">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="bg-primary text-primary-foreground">
-                      <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold uppercase text-xs sm:text-sm">
-                        {language === 'fr' ? 'Joueuse' : 'Player'}
-                      </th>
-                      <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold uppercase text-xs sm:text-sm">
-                        {language === 'fr' ? 'Numéro' : 'Jersey #'}
-                      </th>
-                      <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold uppercase text-xs sm:text-sm">
-                        {language === 'fr' ? 'Position' : 'Position'}
-                      </th>
-                      <th className="hidden sm:table-cell px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold uppercase text-xs sm:text-sm">
-                        {language === 'fr' ? 'Origine' : 'Hometown'}
-                      </th>
-                      <th className="hidden md:table-cell px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold uppercase text-xs sm:text-sm">
-                        {language === 'fr' ? 'Taille' : 'Height'}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {players.map((player, index) => (
-                      <tr 
-                        key={player.id}
-                        className={`border-b border-border hover:bg-accent/50 transition-colors duration-200 ${
-                          index % 2 === 0 ? 'bg-background' : 'bg-muted/30'
-                        }`}
-                      >
-                        <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4">
-                          <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-monaco-red rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
-                              <img 
-                                src={player.photo} 
-                                alt={`${player.firstName} ${player.lastName}`}
-                                className="w-full h-full object-cover"
-                                onError={(e) => {
-                                  // Fallback to initials if image fails to load
-                                  const target = e.target as HTMLImageElement;
-                                  target.style.display = 'none';
-                                  const initialsSpan = target.nextElementSibling as HTMLElement;
-                                  if (initialsSpan) {
-                                    initialsSpan.style.display = 'block';
-                                  }
-                                }}
-                              />
-                              <span className="text-white font-bold text-xs sm:text-sm" style={{ display: 'none' }}>
-                                {player.firstName.charAt(0)}{player.lastName.charAt(0)}
-                              </span>
-                            </div>
-                            <div className="min-w-0 flex-1">
-                              <div className="font-semibold text-foreground text-xs sm:text-sm md:text-base truncate">
-                                {player.firstName} {player.lastName}
-                              </div>
-                              {/* Show hometown on mobile */}
-                              <div className="text-muted-foreground text-xs sm:hidden">
-                                {getPlayerHometown(player)}
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4">
-                          <span className="font-mono text-sm sm:text-base md:text-lg font-bold text-primary">
-                            {player.number || '-'}
-                          </span>
-                        </td>
-                        <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4">
-                          <Badge className={`${getPositionColor(player.position)} text-white text-xs sm:text-sm`}>
-                            {getPositionDisplay(player.position)}
-                          </Badge>
-                        </td>
-                        <td className="hidden sm:table-cell px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-muted-foreground text-xs sm:text-sm">
-                          {getPlayerHometown(player)}
-                        </td>
-                        <td className="hidden md:table-cell px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-muted-foreground text-xs sm:text-sm">
-                          {getPlayerHeight(player)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </Card>
           </div>
         </div>
       </section>

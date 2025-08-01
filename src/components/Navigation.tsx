@@ -26,35 +26,42 @@ export const Navigation: React.FC = () => {
   const isActive = (href: string) => location.pathname === href;
 
   return (
-    <nav className="nav-mobile bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b shadow-sm">
-      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
-        <div className="flex items-center justify-between h-14 sm:h-16 md:h-18 lg:h-20">
-          {/* Logo - Fully responsive with proper spacing */}
-          <Link to="/" className="flex items-center space-x-2 sm:space-x-3 hover:scale-105 transition-transform duration-200 touch-friendly flex-shrink-0">
-            <img 
-              src="/teams/AS MONACO FF.png"
-              alt="AS Monaco Football Féminin"
-              className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain flex-shrink-0"
-            />
-            <div className="hidden xs:block flex-shrink-0">
-              <span className="font-montserrat-extrabold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-primary leading-tight block">
-                AS Monaco
-              </span>
-              <span className="font-cinzel-decorative text-xs sm:text-xs md:text-sm lg:text-base text-muted-foreground block leading-tight">
-                Football Féminin
-              </span>
-            </div>
-          </Link>
+    <nav className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b shadow-sm">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        {/* Main Navigation Container with Fixed 50px Spacing */}
+        <div className="flex items-center justify-between nav-height-responsive">
+          
+          {/* Logo Section - Responsive sizing */}
+          <div className="flex-shrink-0">
+            <Link 
+              to="/" 
+              className="flex items-center space-x-2 sm:space-x-3 hover:scale-105 transition-transform duration-200"
+            >
+              <img 
+                src="/teams/AS MONACO FF.png"
+                alt="AS Monaco Football Féminin"
+                className="logo-responsive object-contain"
+              />
+              <div className="hidden sm:block">
+                <span className="font-montserrat-extrabold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-primary leading-tight block">
+                  AS Monaco
+                </span>
+                <span className="font-cinzel-decorative text-xs sm:text-xs md:text-sm lg:text-base text-muted-foreground block leading-tight">
+                  Football Féminin
+                </span>
+              </div>
+            </Link>
+          </div>
 
-          {/* Desktop Navigation - Enhanced responsive with proper text alignment */}
-          <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 2xl:space-x-3 flex-shrink-0">
+          {/* Desktop Navigation Menu - Hidden on mobile/tablet */}
+          <div className="hidden xl:flex items-center space-x-1 2xl:space-x-2">
             {navigationItems.map((item) => (
               <Link
                 key={item.key}
                 to={item.href}
-                className={`px-2 py-2 xl:px-3 xl:py-2 2xl:px-4 2xl:py-3 rounded-md text-xs xl:text-sm 2xl:text-base font-montserrat-extrabold transition-all duration-200 hover:scale-105 touch-friendly text-center whitespace-nowrap flex-shrink-0 ${
+                className={`px-2 py-2 2xl:px-3 2xl:py-2 rounded-md text-xs 2xl:text-sm font-montserrat-extrabold transition-all duration-200 hover:scale-105 text-center whitespace-nowrap ${
                   isActive(item.href)
-                    ? 'bg-primary text-primary-foreground shadow-monaco'
+                    ? 'bg-primary text-primary-foreground shadow-lg'
                     : 'text-foreground hover:bg-accent hover:text-accent-foreground'
                 }`}
               >
@@ -63,91 +70,44 @@ export const Navigation: React.FC = () => {
             ))}
           </div>
 
-          {/* Tablet Navigation - Medium screens with proper spacing */}
-          <div className="hidden md:flex lg:hidden items-center space-x-1 flex-shrink-0">
-            {navigationItems.slice(0, 5).map((item) => (
-              <Link
-                key={item.key}
-                to={item.href}
-                className={`px-1 py-2 rounded-md text-xs font-montserrat-extrabold transition-all duration-200 hover:scale-105 touch-friendly text-center whitespace-nowrap flex-shrink-0 ${
-                  isActive(item.href)
-                    ? 'bg-primary text-primary-foreground shadow-monaco'
-                    : 'text-foreground hover:bg-accent hover:text-accent-foreground'
-                }`}
+          {/* Right Section: Menu Button + 50px + Language Switcher */}
+          <div className="flex items-center">
+            {/* Menu Button - Always visible on mobile/tablet, hidden on desktop */}
+            <div className="xl:hidden">
+              <Button
+                variant="outline"
+                size="sm"
+                className="menu-btn-responsive p-0 flex items-center justify-center"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
-                {t(item.key)}
-              </Link>
-            ))}
-            {/* More button for remaining items */}
-            <Button
-              variant="outline"
-              size="sm"
-              className="px-1 py-1 text-xs touch-friendly flex-shrink-0"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              +{navigationItems.length - 5}
-            </Button>
-          </div>
+                {isMenuOpen ? 
+                  <X className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" /> : 
+                  <Menu className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+                }
+              </Button>
+            </div>
 
-          {/* Language Switcher & Mobile Menu - Responsive with proper spacing */}
-          <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-3 flex-shrink-0">
-            <LanguageSwitcher />
-            
-            {/* Mobile menu button - Enhanced */}
-            <Button
-              variant="outline"
-              size="sm"
-              className="md:hidden touch-friendly p-2 w-10 h-10 sm:w-11 sm:h-11 flex-shrink-0"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
-            </Button>
+            {/* Fixed 50px Spacing */}
+            <div className="nav-spacing-50"></div>
 
-            {/* Tablet overflow menu button */}
-            <Button
-              variant="outline"
-              size="sm"
-              className="hidden md:block lg:hidden touch-friendly p-2 flex-shrink-0"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-            </Button>
+            {/* Language Switcher */}
+            <div className="flex-shrink-0">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
 
-        {/* Mobile Navigation - Enhanced responsive with proper text alignment */}
+        {/* Mobile/Tablet Dropdown Menu */}
         {isMenuOpen && (
-          <div className="md:hidden animate-fade-in bg-background/98 backdrop-blur-sm">
-            <div className="px-2 py-3 space-y-1 border-t">
+          <div className="xl:hidden animate-fade-in bg-background/98 backdrop-blur-sm border-t">
+            <div className="px-4 py-4 space-y-2">
               {navigationItems.map((item) => (
                 <Link
                   key={item.key}
                   to={item.href}
-                  className={`block px-4 py-3 rounded-md text-base font-montserrat-extrabold transition-all duration-200 touch-friendly text-center ${
+                  className={`block px-4 py-3 rounded-md text-sm sm:text-base font-montserrat-extrabold transition-all duration-200 text-center ${
                     isActive(item.href)
-                      ? 'bg-primary text-primary-foreground shadow-monaco'
-                      : 'text-foreground hover:bg-accent hover:text-accent-foreground'
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {t(item.key)}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Tablet overflow menu with proper text alignment */}
-        {isMenuOpen && (
-          <div className="hidden md:block lg:hidden animate-fade-in bg-background/98 backdrop-blur-sm">
-            <div className="px-2 py-3 space-y-1 border-t">
-              {navigationItems.slice(5).map((item) => (
-                <Link
-                  key={item.key}
-                  to={item.href}
-                  className={`block px-4 py-3 rounded-md text-sm font-montserrat-extrabold transition-all duration-200 touch-friendly text-center ${
-                    isActive(item.href)
-                      ? 'bg-primary text-primary-foreground shadow-monaco'
+                      ? 'bg-primary text-primary-foreground shadow-lg'
                       : 'text-foreground hover:bg-accent hover:text-accent-foreground'
                   }`}
                   onClick={() => setIsMenuOpen(false)}

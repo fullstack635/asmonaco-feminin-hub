@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
+import { BookOpen, Users, Trophy } from 'lucide-react';
 
 const Club = () => {
   const { language } = useLanguage();
@@ -31,7 +32,7 @@ const Club = () => {
     },
     en: {
       title: "Our Club",
-      subtitle: "Discover the history, leadership and community that make AS Monaco Football Féminin a unique club",
+      subtitle: "Discover the history, leadership and community that make \nAS Monaco Football Féminin a unique club",
       sections: [
         {
           title: "Club History",
@@ -66,7 +67,7 @@ const Club = () => {
         <div className="relative z-10 text-center text-white">
 
           <h1 className="text-4xl md:text-5xl font-montserrat-extrabold mb-3">{currentContent.title}</h1>
-          <p className="text-lg md:text-xl opacity-95 max-w-4xl mx-auto px-2 leading-relaxed font-cinzel-decorative">{currentContent.subtitle}</p>
+          <p className="text-sm sm:text-base md:text-lg lg:text-2xl opacity-95 max-w-4xl mx-auto px-2 leading-relaxed font-cinzel-decorative whitespace-pre-line">{currentContent.subtitle}</p>
         </div>
       </section>
 
@@ -97,11 +98,19 @@ const Club = () => {
                   <div className="relative z-10 text-center">
                     <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto backdrop-blur-sm border border-white/30">
                       <div className="text-white text-2xl font-bold">
-                        {index === 0 ? '📚' : index === 1 ? '👥' : '🏆'}
+                        {index === 0 ? <BookOpen /> : index === 1 ? <Users /> : <Trophy />}
                       </div>
                     </div>
-                    <div className="text-white/80 text-sm font-medium tracking-wide">
+                    <div className="text-white/80 text-sm font-medium tracking-wide mb-2">
                       {language === 'fr' ? 'Découvrir' : 'Explore'}
+                    </div>
+                    
+                    {/* Title moved to center of red box */}
+                    <div className="text-center">
+                      <h3 className="text-xl lg:text-2xl font-cinzel-decorative-bold text-white mb-2 group-hover:text-monaco-yellow transition-colors duration-300">
+                        {section.title}
+                      </h3>
+                      <div className="w-12 h-0.5 bg-white mx-auto rounded-full group-hover:w-16 transition-all duration-300"></div>
                     </div>
                   </div>
                   
@@ -111,15 +120,7 @@ const Club = () => {
                 
                 {/* Content Area */}
                 <div className="p-6 lg:p-8">
-                  {/* Title with Monaco Styling */}
-                  <div className="text-center mb-6">
-                    <h3 className="text-xl lg:text-2xl font-cinzel-decorative-bold text-foreground mb-3 group-hover:text-monaco-red transition-colors duration-300">
-                      {section.title}
-                    </h3>
-                    <div className="w-12 h-0.5 bg-monaco-red mx-auto rounded-full group-hover:w-16 transition-all duration-300"></div>
-                  </div>
-                  
-                  {/* Centered Description */}
+                  {/* Increased spacing between title and description */}
                   <div className="mb-8 text-center">
                     <p className="text-muted-foreground leading-relaxed text-sm lg:text-base font-medium">
                       {section.text}

@@ -11,14 +11,14 @@ const Matches = () => {
 
   const matchesInfo = {
     fr: {
-      title: "MATCHES SCHEDULE",
-      subtitle: "Retrouvez ici tous les matchs à venir et les résultats de l'AS Monaco Football Féminin.",
+      title: "MATCH SCHEDULE",
+      subtitle: "Retrouvez ici tous les matchs à venir et les résultats de l'\nAS Monaco Football Féminin.",
       upcoming: "PROCHAINS MATCHS",
       results: "RÉSULTATS"
     },
     en: {
-      title: "MATCHES SCHEDULE", 
-      subtitle: "Find all upcoming matches and results for AS Monaco Football Féminin right here.",
+      title: "MATCH SCHEDULE", 
+      subtitle: "Find all upcoming matches and results for \nAS Monaco Football Féminin right here.",
       upcoming: "UPCOMING MATCHES",
       results: "RESULTS"
     }
@@ -40,7 +40,7 @@ const Matches = () => {
     },
     {
       id: 2,
-      date: "OCT. 12, 2025",
+      date: "SEPT. 14, 2025",
       result: null,
       homeTeam: "ALC LONGVIC",
       awayTeam: "AS Monaco Football Féminin",
@@ -50,37 +50,7 @@ const Matches = () => {
     },
     {
       id: 3,
-      date: "OCT. 19, 2025",
-      result: null,
-      homeTeam: "MONTPELLIER HSC 2",
-      awayTeam: "AS Monaco Football Féminin",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 4,
-      date: "NOV. 2, 2025",
-      result: null,
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "CLERMONT FOOT 63",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 5,
-      date: "NOV. 16, 2025",
-      result: null,
-      homeTeam: "AS CHATENOY LE ROYAL",
-      awayTeam: "AS Monaco Football Féminin",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 6,
-      date: "NOV. 30, 2025",
+      date: "SEPT. 21, 2025",
       result: null,
       homeTeam: "AS Monaco Football Féminin",
       awayTeam: "AS CANNES",
@@ -89,18 +59,48 @@ const Matches = () => {
       hasYoutube: false
     },
     {
-      id: 7,
-      date: "DEC. 14, 2025",
+      id: 4,
+      date: "SEPT. 28, 2025",
       result: null,
-      homeTeam: "ALBI MARSSAC TF",
+      homeTeam: "AS CHATENOY LE ROYAL",
       awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
     },
     {
+      id: 5,
+      date: "OCT. 5, 2025",
+      result: null,
+      homeTeam: "AS Monaco Football Féminin",
+      awayTeam: "CLERMONT FOOT 63",
+      status: "upcoming",
+      hasTickets: true,
+      hasYoutube: false
+    },
+    {
+      id: 6,
+      date: "OCT. 12, 2025",
+      result: null,
+      homeTeam: "EXEMPT",
+      awayTeam: "AS Monaco Football Féminin",
+      status: "exempt",
+      hasTickets: false,
+      hasYoutube: false
+    },
+    {
+      id: 7,
+      date: "NOV. 9, 2025",
+      result: null,
+      homeTeam: "AS Monaco Football Féminin",
+      awayTeam: "ALBI MARSSAC TF",
+      status: "upcoming",
+      hasTickets: true,
+      hasYoutube: false
+    },
+    {
       id: 8,
-      date: "JAN. 11, 2026",
+      date: "NOV. 16, 2025",
       result: null,
       homeTeam: "AS Monaco Football Féminin",
       awayTeam: "OLYMPIQUE LYONNAIS 2",
@@ -110,9 +110,9 @@ const Matches = () => {
     },
     {
       id: 9,
-      date: "JAN. 25, 2026",
+      date: "DEC. 7, 2025",
       result: null,
-      homeTeam: "MONTAUBAN FC TG",
+      homeTeam: "MONTPELLIER HSC 2",
       awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
@@ -120,19 +120,19 @@ const Matches = () => {
     },
     {
       id: 10,
-      date: "FEB. 8, 2026",
+      date: "DEC. 21, 2025",
       result: null,
       homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "LE PUY FOOT 43 AUV",
+      awayTeam: "MONTAUBAN FC TG",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
     },
     {
       id: 11,
-      date: "FEB. 22, 2026",
+      date: "JAN. 18, 2026",
       result: null,
-      homeTeam: "GIRONDINS BORDEAUX",
+      homeTeam: "LE PUY FOOT 43 AUV.",
       awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
@@ -140,7 +140,7 @@ const Matches = () => {
     },
     {
       id: 12,
-      date: "MAR. 8, 2026",
+      date: "FEB. 1, 2026",
       result: null,
       homeTeam: "AS Monaco Football Féminin",
       awayTeam: "ALC LONGVIC",
@@ -150,27 +150,27 @@ const Matches = () => {
     },
     {
       id: 13,
-      date: "MAR. 22, 2026",
+      date: "FEB. 15, 2026",
       result: null,
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "MONTPELLIER HSC 2",
+      homeTeam: "AS CANNES",
+      awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
     },
     {
       id: 14,
-      date: "MAR. 29, 2026",
+      date: "FEB. 22, 2026",
       result: null,
       homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "EXEMPT",
-      status: "exempt",
-      hasTickets: false,
+      awayTeam: "AS CHATENOY LE ROYAL",
+      status: "upcoming",
+      hasTickets: true,
       hasYoutube: false
     },
     {
       id: 15,
-      date: "APR. 12, 2026",
+      date: "MAR. 22, 2026",
       result: null,
       homeTeam: "CLERMONT FOOT 63",
       awayTeam: "AS Monaco Football Féminin",
@@ -180,19 +180,19 @@ const Matches = () => {
     },
     {
       id: 16,
-      date: "APR. 26, 2026",
+      date: "MAR. 29, 2026",
       result: null,
       homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "AS CHATENOY LE ROYAL",
-      status: "upcoming",
-      hasTickets: true,
+      awayTeam: "EXEMPT",
+      status: "exempt",
+      hasTickets: false,
       hasYoutube: false
     },
     {
       id: 17,
-      date: "MAY. 3, 2026",
+      date: "APR. 5, 2026",
       result: null,
-      homeTeam: "AS CANNES",
+      homeTeam: "ALBI MARSSAC TF",
       awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
@@ -200,19 +200,49 @@ const Matches = () => {
     },
     {
       id: 18,
-      date: "MAY. 17, 2026",
+      date: "APR. 26, 2026",
       result: null,
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "ALBI MARSSAC TF",
+      homeTeam: "OLYMPIQUE LYONNAIS 2",
+      awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
     },
     {
       id: 19,
+      date: "MAY. 3, 2026",
+      result: null,
+      homeTeam: "AS Monaco Football Féminin",
+      awayTeam: "MONTPELLIER HSC 2",
+      status: "upcoming",
+      hasTickets: true,
+      hasYoutube: false
+    },
+    {
+      id: 20,
+      date: "MAY. 17, 2026",
+      result: null,
+      homeTeam: "MONTAUBAN FC TG",
+      awayTeam: "AS Monaco Football Féminin",
+      status: "upcoming",
+      hasTickets: true,
+      hasYoutube: false
+    },
+    {
+      id: 21,
+      date: "MAY. 24, 2026",
+      result: null,
+      homeTeam: "AS Monaco Football Féminin",
+      awayTeam: "LE PUY FOOT 43 AUV.",
+      status: "upcoming",
+      hasTickets: true,
+      hasYoutube: false
+    },
+    {
+      id: 22,
       date: "MAY. 31, 2026",
       result: null,
-      homeTeam: "OLYMPIQUE LYONNAIS 2",
+      homeTeam: "GIRONDINS BORDEAUX",
       awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
@@ -412,7 +442,7 @@ const Matches = () => {
       <section className="relative h-48 sm:h-56 md:h-64 lg:h-[250px] bg-monaco-red flex items-center justify-center spacing-mobile">
         <div className="relative z-10 text-center text-white">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 mobile-text-shadow">{content.title}</h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-95 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">{content.subtitle}</p>
+          <p className="text-sm sm:text-base md:text-lg lg:text-2xl font-cinzel-decorative opacity-95 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0 whitespace-pre-line">{content.subtitle}</p>
         </div>
       </section>
 
@@ -428,11 +458,11 @@ const Matches = () => {
                   : 'text-gray-600 border-transparent hover:text-red-600 hover:border-red-600 hover:bg-gray-50'
               }`}
             >
-              Matches
+              Match
             </button>
             <button
               onClick={() => {
-                window.open('https://epreuves.fff.fr/competition/engagement/436508-d3-feminine/phase/1/2/resultats-et-calendrier', '_blank');
+                window.open('https://epreuves.fff.fr/competition/engagement/436508-d3-feminine/phase/1/2/classement', '_blank');
               }}
               className="font-semibold text-sm sm:text-base md:text-lg transition-all duration-200 border-b-2 pb-2 touch-friendly px-6 py-2 rounded-md min-w-[120px] text-center text-gray-600 border-transparent hover:text-red-600 hover:border-red-600 hover:bg-gray-50"
             >

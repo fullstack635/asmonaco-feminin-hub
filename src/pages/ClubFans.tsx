@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Instagram, Mail, Heart, Users, Megaphone, Star } from 'lucide-react';
+import { ArrowLeft, Instagram, Mail, Heart, Users, Megaphone, Star, Globe, Sparkles, Building2, Trophy, Zap, Rocket, Target, Flag } from 'lucide-react';
 
 const ClubFans = () => {
   const { language } = useLanguage();
@@ -11,7 +11,7 @@ const ClubFans = () => {
   const content = {
     fr: {
       title: "Supporters",
-      subtitle: "❤️🤍 Restez Connectés au Cœur d'AS Monaco Football Féminin",
+      subtitle: "Restez Connectés au Cœur d'AS Monaco Football Féminin",
       backButton: "Retour au Club",
       content: `Pour la saison 2025/26, nous voulons rapprocher encore plus nos supporters de l'équipe.
 
@@ -19,8 +19,8 @@ Que vous encouragiez depuis les tribunes du Sud de la France ou que vous nous su
 
 Nous n'avons peut-être pas encore d'adhésion officielle, mais nous construisons quelque chose de spécial — et vous en faites partie.
 
-👉 Suivez-nous sur Instagram
-📬 Inscrivez-vous à notre newsletter
+Suivez-nous sur Instagram
+Inscrivez-vous à notre newsletter
 
 Parce que cette saison, chaque supporter compte.
 Ensemble, écrivons le prochain chapitre d'AS Monaco Football Féminin.
@@ -28,7 +28,7 @@ Ensemble, écrivons le prochain chapitre d'AS Monaco Football Féminin.
     },
     en: {
       title: "Fans",
-      subtitle: "❤️🤍 Stay Connected to the Heart of AS Monaco Football Féminin",
+      subtitle: "Stay Connected to the Heart of AS Monaco Football Féminin",
       backButton: "Back to Club",
       content: `For the 2025/26 season, we want to bring our supporters even closer to the team.
 
@@ -36,8 +36,8 @@ Whether you're cheering from the stands in the South of France or following us f
 
 We may not have an official membership yet, but we're building something special — and you're part of it.
 
-👉 Follow us on Instagram
-📬 Sign up for our newsletter
+Follow us on Instagram
+Sign up for our newsletter
 
 Because this season, every supporter counts.
 Together, let's write the next chapter of AS Monaco Football Féminin.
@@ -133,7 +133,7 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                           <div className="flex flex-col md:flex-row items-center gap-6">
                             <div className="flex-shrink-0">
                               <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg">
-                                <span className="text-3xl">🌍</span>
+                                <Globe className="w-12 h-12 text-white" />
                               </div>
                             </div>
                             <div className="flex-1 text-center md:text-left">
@@ -145,11 +145,13 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                               </p>
                               
                               <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-6">
-                                <span className="bg-white rounded-full px-4 py-2 text-sm font-medium text-blue-600 shadow-sm border border-blue-200">
-                                  🏟️ {language === 'fr' ? 'Sud de la France' : 'South of France'}
+                                <span className="bg-white rounded-full px-4 py-2 text-sm font-medium text-blue-600 shadow-sm border border-blue-200 flex items-center gap-2">
+                                  <Building2 className="w-4 h-4" />
+                                  {language === 'fr' ? 'Sud de la France' : 'South of France'}
                                 </span>
-                                <span className="bg-white rounded-full px-4 py-2 text-sm font-medium text-indigo-600 shadow-sm border border-indigo-200">
-                                  🌐 {language === 'fr' ? 'Partout dans le monde' : 'Around the world'}
+                                <span className="bg-white rounded-full px-4 py-2 text-sm font-medium text-indigo-600 shadow-sm border border-indigo-200 flex items-center gap-2">
+                                  <Globe className="w-4 h-4" />
+                                  {language === 'fr' ? 'Partout dans le monde' : 'Around the world'}
                                 </span>
                               </div>
                             </div>
@@ -165,10 +167,10 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                       <div key={index} className="mb-12">
                         <div className="bg-gradient-to-r from-monaco-yellow/10 to-orange-50 rounded-2xl p-8 border-2 border-monaco-yellow/20 shadow-lg">
                           <div className="text-center">
-                            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-monaco-yellow to-orange-400 rounded-full mb-6 shadow-lg">
-                              <span className="text-2xl">✨</span>
-                            </div>
-                            <h3 className="text-2xl font-cinzel-decorative-bold text-monaco-yellow mb-4">
+                            {/* <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-monaco-red to-orange-400 rounded-full mb-6 shadow-lg">
+                              <Sparkles className="w-12 h-12 text-white" />
+                            </div> */}
+                            <h3 className="text-2xl font-cinzel-decorative-bold text-monaco-red mb-4">
                               {language === 'fr' ? 'Construisons Ensemble' : 'Building Together'}
                             </h3>
                             <p className="text-muted-foreground leading-relaxed text-lg max-w-2xl mx-auto">
@@ -181,7 +183,7 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                   }
                   
                   // Instagram - Social media focused design
-                  else if (paragraph.includes('👉 Follow us on Instagram') || paragraph.includes('👉 Suivez-nous sur Instagram')) {
+                  else if (paragraph.includes('Follow us on Instagram') || paragraph.includes('Suivez-nous sur Instagram')) {
                     return (
                       <div key={index} className="mb-8">
                         <div className="bg-gradient-to-br from-pink-100 via-purple-50 to-indigo-100 rounded-3xl p-8 border border-pink-200/50 shadow-xl">
@@ -192,7 +194,7 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                                   <Instagram className="w-12 h-12 text-white" />
                                 </div>
                                 <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                                  <span className="text-white text-xs font-bold">●</span>
+                                  <div className="w-2 h-2 bg-white rounded-full"></div>
                                 </div>
                               </div>
                             </div>
@@ -209,7 +211,7 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                               <Button className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white px-8 py-3 rounded-full font-montserrat-extrabold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                                 <Instagram className="w-5 h-5 mr-2" />
                                 {language === 'fr' ? 'Rejoindre Instagram' : 'Join Instagram'}
-                              </Button>
+              </Button>
                             </div>
                           </div>
                         </div>
@@ -218,7 +220,7 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                   }
                   
                   // Newsletter - Email focused design
-                  else if (paragraph.includes('📬 Sign up for our newsletter') || paragraph.includes('📬 Inscrivez-vous à notre newsletter')) {
+                  else if (paragraph.includes('Sign up for our newsletter') || paragraph.includes('Inscrivez-vous à notre newsletter')) {
                     return (
                       <div key={index} className="mb-12">
                         <div className="bg-gradient-to-r from-monaco-red/5 via-white to-monaco-yellow/5 rounded-3xl p-8 border-2 border-monaco-red/10 shadow-xl">
@@ -229,7 +231,7 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                                   <Mail className="w-12 h-12 text-white" />
                                 </div>
                                 <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                                  <span className="text-white text-sm">📧</span>
+                                  <Mail className="w-4 h-4 text-white" />
                                 </div>
                               </div>
                             </div>
@@ -249,7 +251,7 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                               >
                                 <Mail className="w-5 h-5 mr-2" />
                                 {language === 'fr' ? 'S\'abonner Maintenant' : 'Subscribe Now'}
-                              </Button>
+              </Button>
                             </div>
                           </div>
                         </div>
@@ -270,7 +272,7 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                           <div className="relative z-10 text-center">
                             <div className="flex justify-center mb-8">
                               <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
-                                <span className="text-4xl">🏟️</span>
+                                <Trophy className="w-12 h-12 text-white" />
                               </div>
                             </div>
                             
@@ -282,19 +284,23 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                             </h2>
                             
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-                              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                                <div className="text-4xl mb-4">⚡</div>
-                                <p className="text-xl font-medium">
-                                  {language === 'fr' ? 'Chaque Supporter Compte' : 'Every Supporter Counts'}
-                                </p>
+                                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                                  <div className="flex justify-center mb-4">
+                                    <Zap className="w-8 h-8 text-white" />
+                                  </div>
+                                  <p className="text-xl font-medium">
+                                    {language === 'fr' ? 'Chaque Supporter Compte' : 'Every Supporter Counts'}
+                                  </p>
+                                </div>
+                                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                                  <div className="flex justify-center mb-4">
+                                    <Rocket className="w-8 h-8 text-white" />
+                                  </div>
+                                  <p className="text-xl font-medium">
+                                    {language === 'fr' ? 'Écrivons L\'Histoire' : 'Write History'}
+                                  </p>
+                                </div>
                               </div>
-                              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                                <div className="text-4xl mb-4">🚀</div>
-                                <p className="text-xl font-medium">
-                                  {language === 'fr' ? 'Écrivons L\'Histoire' : 'Write History'}
-                                </p>
-                              </div>
-                            </div>
                             
                             <p className="text-2xl font-cinzel-decorative mb-8 opacity-90">
                               {language === 'fr' 
@@ -303,10 +309,10 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                               }
                             </p>
                             
-                            <div className="flex justify-center gap-4 text-3xl mb-6">
-                              <span className="animate-bounce">⚽</span>
-                              <span className="animate-bounce delay-100">❤️</span>
-                              <span className="animate-bounce delay-200">🤍</span>
+                            <div className="flex justify-center gap-4 mb-6">
+                              <Zap className="w-8 h-8 text-white animate-bounce" />
+                              <Heart className="w-8 h-8 text-white animate-bounce delay-100" />
+                              <Users className="w-8 h-8 text-white animate-bounce delay-200" />
                             </div>
                             
                             <div className="text-lg opacity-75 font-medium">
