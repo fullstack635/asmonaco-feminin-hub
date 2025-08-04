@@ -112,10 +112,10 @@ const Index = () => {
             <Link to="/roster" className="w-full sm:w-auto">
               <Button 
                 size="lg" 
-                className="btn-mobile group bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
+                className="btn-mobile group bg-secondary text-secondary-foreground hover:bg-secondary/90 border-2 border-transparent hover:border-white/20 shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-[200px] lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
               >
                 <span className="relative z-10">{t('roster')}</span>
-                <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" />
+                {/* <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" /> */}
                 <div className="absolute inset-0 bg-white/20 transform -skew-x-12 group-hover:animate-shimmer"></div>
               </Button>
             </Link>
@@ -123,9 +123,9 @@ const Index = () => {
             <Link to="/matches" className="w-full sm:w-auto">
               <Button 
                 size="lg"
-                className="btn-mobile group bg-monaco-red text-white hover:bg-monaco-red/90 border-2 border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-110 transform-gpu shadow-lg hover:shadow-xl w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
+                className="btn-mobile group bg-monaco-red text-white hover:bg-monaco-red/90 border-2 border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-110 transform-gpu shadow-lg hover:shadow-xl w-[200px] lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
               >
-                <ArrowRight className="mr-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" />
+                {/* <ArrowRight className="mr-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" /> */}
                 {t('matches')}
               </Button>
             </Link>
@@ -161,8 +161,8 @@ const Index = () => {
                   {content.mission}
                 </p>
               </div>
-              <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-2xl text-muted-foreground leading-relaxed">
-                <p className="transform hover:translate-x-2 transition-transform duration-300 font-medium font-cinzel-decorative">
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-xl text-muted-foreground leading-relaxed">
+                <p className="transform hover:translate-x-2 transition-transform duration-300">
                   {content.closing}
                 </p>
               </div>
@@ -171,16 +171,27 @@ const Index = () => {
                 <Link to="/academy" className="w-full sm:w-auto">
                   <Button className="btn-mobile group shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl">
                     <span className="relative z-10">{t('academy')}</span>
-                    <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" />
+                    {/* <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" /> */}
                     <div className="absolute inset-0 bg-white/10 transform -skew-x-12 group-hover:animate-shimmer"></div>
                   </Button>
                 </Link>
                 
                 <Link to="/club" className="w-full sm:w-auto">
-                  <Button variant="outline" className="btn-mobile group hover:scale-110 transition-all duration-500 transform-gpu border-secondary/30 hover:border-secondary w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl">
-                    {t('learn_more')}
+                  <Button 
+                    size="lg" 
+                    className="btn-mobile group bg-secondary text-secondary-foreground hover:bg-secondary/90 border-2 border-transparent hover:border-white/20 shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-[200px] lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
+                  >
+                    <span className="relative z-10">{t('Learn More')}</span>
+                    {/* <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" /> */}
+                    <div className="absolute inset-0 bg-white/20 transform -skew-x-12 group-hover:animate-shimmer"></div>
                   </Button>
                 </Link>
+
+                {/* <Link to="/club" className="w-full sm:w-auto">
+                  <Button variant="secondary" className="btn-mobile group hover:scale-110 transition-all duration-500 transform-gpu border-2 border-secondary/50 hover:border-secondary bg-white/10 hover:bg-white/20 text-foreground hover:text-secondary w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl">
+                    {t('learn_more')}
+                  </Button>
+                </Link> */}
               </div>
             </div>
             
@@ -230,7 +241,7 @@ const Index = () => {
                   className="btn-mobile group shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
                 >
                   {t('sponsor')}
-                  <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-1 transition-transform duration-200" />
+                  {/* <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-1 transition-transform duration-200" /> */}
                 </Button>
               </Link>
             

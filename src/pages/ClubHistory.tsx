@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, TrendingUp, Star, Rocket, Globe } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 
 const ClubHistory = () => {
   const { language } = useLanguage();
@@ -125,16 +125,15 @@ Join us on the journey.
                     return (
                       <div key={index} className="mb-6 sm:mb-10 relative">
                         <div className="absolute -left-8 sm:-left-12 top-2 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-monaco-red to-red-600 rounded-full flex items-center justify-center shadow-lg">
-                          <Star className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                         </div>
                         <div className="bg-gradient-to-r from-monaco-red/5 to-transparent rounded-r-xl sm:rounded-r-2xl p-4 sm:p-6 border-l-2 sm:border-l-4 border-monaco-red">
-                          <div className="flex flex-col sm:flex-row sm:items-center mb-3 gap-2 sm:gap-0">
-                            <span className="bg-monaco-red text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-montserrat-extrabold mr-0 sm:mr-3 w-fit">1976</span>
+                          <div className="flex flex-col sm:flex-row sm:items-center mb-3 gap-2 sm:gap-0 text-center sm:text-left">
+                            <span className="bg-monaco-red text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-montserrat-extrabold mr-0 sm:mr-3 w-fit mx-auto sm:mx-0">1976</span>
                             <h3 className="text-base sm:text-lg font-cinzel-decorative-bold text-monaco-red m-0">
                               {language === 'fr' ? 'Les Fondations' : 'The Foundation'}
                             </h3>
                           </div>
-                          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed m-0">
+                          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed m-0 text-center">
                             {paragraph}
                           </p>
                         </div>
@@ -147,16 +146,15 @@ Join us on the journey.
                     return (
                       <div key={index} className="mb-6 sm:mb-10 relative">
                         <div className="absolute -left-8 sm:-left-12 top-2 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-monaco-red to-red-500 rounded-full flex items-center justify-center shadow-lg">
-                          <Rocket className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                         </div>
                         <div className="bg-gradient-to-r from-monaco-red/5 to-transparent rounded-r-xl sm:rounded-r-2xl p-4 sm:p-6 border-l-2 sm:border-l-4 border-monaco-red">
-                          <div className="flex flex-col sm:flex-row sm:items-center mb-3 gap-2 sm:gap-0">
-                            <span className="bg-monaco-red text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-montserrat-extrabold mr-0 sm:mr-3 w-fit">2019</span>
+                          <div className="flex flex-col sm:flex-row sm:items-center mb-3 gap-2 sm:gap-0 text-center sm:text-left">
+                            <span className="bg-monaco-red text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-montserrat-extrabold mr-0 sm:mr-3 w-fit mx-auto sm:mx-0">2019</span>
                             <h3 className="text-base sm:text-lg font-cinzel-decorative-bold text-monaco-red m-0">
                               {language === 'fr' ? 'La Renaissance' : 'The Renaissance'}
                             </h3>
                           </div>
-                          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed m-0">
+                          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed m-0 text-center">
                             {paragraph}
                           </p>
                         </div>
@@ -169,16 +167,15 @@ Join us on the journey.
                     return (
                       <div key={index} className="mb-6 sm:mb-10 relative">
                         <div className="absolute -left-8 sm:-left-12 top-2 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-red-600 to-red-700 rounded-full flex items-center justify-center shadow-lg">
-                          <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                         </div>
                         <div className="bg-gradient-to-r from-red-50 to-transparent rounded-r-xl sm:rounded-r-2xl p-4 sm:p-6 border-l-2 sm:border-l-4 border-red-600">
-                          <div className="flex flex-col sm:flex-row sm:items-center mb-3 gap-2 sm:gap-0">
-                            <span className="bg-red-600 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-montserrat-extrabold mr-0 sm:mr-3 w-fit">2022-2024</span>
+                          <div className="flex flex-col sm:flex-row sm:items-center mb-3 gap-2 sm:gap-0 text-center sm:text-left">
+                            <span className="bg-red-600 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-montserrat-extrabold mr-0 sm:mr-3 w-fit mx-auto sm:mx-0">2022-2024</span>
                             <h3 className="text-base sm:text-lg font-cinzel-decorative-bold text-red-700 m-0">
                               {language === 'fr' ? 'Le Retour' : 'The Return'}
                             </h3>
                           </div>
-                          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed m-0">
+                          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed m-0 text-center">
                             {paragraph}
                           </p>
                         </div>
@@ -191,37 +188,25 @@ Join us on the journey.
                     return (
                       <div key={index} className="text-center border-t-2 border-gradient-to-r from-monaco-red to-monaco-yellow pt-8 sm:pt-12 mt-8 sm:mt-12">
                         <div className="bg-gradient-to-r from-monaco-red/10 via-monaco-yellow/10 to-monaco-red/10 rounded-2xl sm:rounded-3xl p-4 sm:p-8 mb-6 sm:mb-8">
-                          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-monaco-red to-monaco-yellow rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
-                            <Globe className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-                          </div>
-                          <h2 className="text-lg sm:text-2xl lg:text-3xl font-cinzel-decorative-bold text-foreground mb-6 sm:mb-8">
+                          <h2 className="text-lg sm:text-2xl lg:text-3xl font-cinzel-decorative-bold text-foreground mb-6 sm:mb-8 text-center">
                             {language === 'fr' ? 'AS Monaco FF est plus qu\'un club.' : 'AS Monaco FF is more than a club.'}
                           </h2>
                           
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
                             <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-monaco-red/20 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                                <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-monaco-red" />
-                              </div>
-                              <p className="text-sm sm:text-lg font-medium text-monaco-red">
+                              <p className="text-sm sm:text-lg font-medium text-monaco-red text-center">
                                 {language === 'fr' ? 'Une histoire de résurgence' : 'A story of resurgence'}
                               </p>
                             </div>
                             
                             <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-monaco-yellow/20 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                                <Star className="w-5 h-5 sm:w-6 sm:h-6 text-monaco-yellow" />
-                              </div>
-                              <p className="text-sm sm:text-lg font-medium text-monaco-red">
+                              <p className="text-sm sm:text-lg font-medium text-monaco-red text-center">
                                 {language === 'fr' ? 'Un foyer pour les talents émergents' : 'A home for rising talent'}
                               </p>
                             </div>
                             
                             <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                                <Rocket className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500" />
-                              </div>
-                              <p className="text-sm sm:text-lg font-medium text-red-600">
+                              <p className="text-sm sm:text-lg font-medium text-monaco-red text-center">
                                 {language === 'fr' ? 'L\'avenir du football féminin à Monaco' : 'The future of women\'s football in Monaco'}
                               </p>
                             </div>
@@ -267,7 +252,7 @@ Join us on the journey.
                   // Default paragraph styling
                   else {
                     return (
-                      <p key={index} className="text-muted-foreground leading-relaxed mb-4 sm:mb-6 text-sm sm:text-lg">
+                      <p key={index} className="text-muted-foreground leading-relaxed mb-4 sm:mb-6 text-sm sm:text-lg text-center">
                   {paragraph}
                 </p>
                     );

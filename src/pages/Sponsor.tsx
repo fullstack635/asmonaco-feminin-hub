@@ -287,9 +287,9 @@ This form was submitted through the AS Monaco Football Féminin website.
                 className="p-6 text-center hover:shadow-monaco transition-all duration-300 hover:scale-105 animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="w-16 h-16 bg-monaco-red rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
+                {/* <div className="w-16 h-16 bg-monaco-red rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
                   <benefit.icon className="w-8 h-8 text-white" />
-                </div>
+                </div> */}
                 <h3 className="text-lg font-semibold text-foreground mb-3">
                   {benefit.title}
                 </h3>

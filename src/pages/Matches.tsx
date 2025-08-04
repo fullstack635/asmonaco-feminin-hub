@@ -31,7 +31,7 @@ const Matches = () => {
     {
       id: 1,
       date: "SEPT. 7, 2025",
-      result: "W: 1-0",
+      result: "TBD",
       homeTeam: "AS Monaco Football Féminin",
       awayTeam: "GIRONDINS BORDEAUX",
       status: "completed",
@@ -82,7 +82,7 @@ const Matches = () => {
       id: 6,
       date: "OCT. 12, 2025",
       result: null,
-      homeTeam: "EXEMPT",
+      homeTeam: "FC ROUSSET",
       awayTeam: "AS Monaco Football Féminin",
       status: "exempt",
       hasTickets: false,
@@ -132,7 +132,7 @@ const Matches = () => {
       id: 11,
       date: "JAN. 18, 2026",
       result: null,
-      homeTeam: "LE PUY FOOT 43 AUV.",
+      homeTeam: "LE PUY FOOT 43 AUV",
       awayTeam: "AS Monaco Football Féminin",
       status: "upcoming",
       hasTickets: true,
@@ -183,7 +183,7 @@ const Matches = () => {
       date: "MAR. 29, 2026",
       result: null,
       homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "EXEMPT",
+      awayTeam: "FC ROUSSET",
       status: "exempt",
       hasTickets: false,
       hasYoutube: false
@@ -233,7 +233,7 @@ const Matches = () => {
       date: "MAY. 24, 2026",
       result: null,
       homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "LE PUY FOOT 43 AUV.",
+      awayTeam: "LE PUY FOOT 43 AUV",
       status: "upcoming",
       hasTickets: true,
       hasYoutube: false
@@ -263,9 +263,10 @@ const Matches = () => {
       'OLYMPIQUE LYONNAIS 2': '/teams/OLYMPIQUE LYONNAIS 2.png',
       'MONTAUBAN FC TG': '/teams/MONTAUBAN FC TG.png',
       'LE PUY FOOT 43 AUV': '/teams/LE PUY FOOT 43 AUV.png',
-      'EXEMPT': '/teams/EXEMPT.png'
+      'EXEMPT': '/teams/EXEMPT.png',
+      'FC ROUSSET': '/teams/FC ROUSSET.png'
     };
-    return logoMap[teamName] || '/teams/EXEMPT.png';
+    return logoMap[teamName];
   };
 
   const MatchCard = ({ match }: { match: any }) => (

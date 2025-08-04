@@ -57,22 +57,18 @@ const Partners = () => {
       tagline: "Together, we are building something special",
       values: [
         {
-          icon: <Handshake className="w-8 h-8" />,
           title: "Continued Support",
           description: "We extend our sincere thanks for your commitment"
         },
         {
-          icon: <Globe className="w-8 h-8" />,
           title: "Growing Football",
           description: "Helping us grow women's football in Monaco"
         },
         {
-          icon: <Star className="w-8 h-8" />,
           title: "Next Generation",
           description: "Empowering the next generation of players"
         },
         {
-          icon: <Trophy className="w-8 h-8" />,
           title: "Excellence",
           description: "Both on and off the pitch"
         }
@@ -146,11 +142,11 @@ const Partners = () => {
       <h2 className="text-3xl font-bold text-foreground text-center mb-8 animate-fade-in">
         {title}
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="flex flex-wrap justify-center gap-6">
         {partners.map((partner, index) => (
           <Card 
             key={index}
-            className="p-6 text-center hover:shadow-monaco transition-all duration-300 hover:scale-105 animate-fade-in bg-white"
+            className="p-6 text-center hover:shadow-monaco transition-all duration-300 hover:scale-105 animate-fade-in bg-white w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(25%-18px)] max-w-[280px]"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             <div className="flex justify-center items-center mb-4 h-20">
@@ -245,13 +241,10 @@ const Partners = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <Card className="p-6 text-center hover:shadow-monaco transition-all duration-300 animate-fade-in">
-              <div className="w-16 h-16 bg-monaco-red rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
-                <Handshake className="w-8 h-8 text-white" />
-              </div>
               <h3 className="text-xl font-bold text-foreground mb-3 font-cinzel-decorative">
                 {language === 'fr' ? 'Réseau d\'Excellence' : 'Excellence Network'}
               </h3>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-center">
                 {language === 'fr' 
                   ? 'Rejoignez un réseau de partenaires prestigieux dans la Principauté'
                   : 'Join a network of prestigious partners in the Principality'
@@ -260,13 +253,10 @@ const Partners = () => {
             </Card>
 
             <Card className="p-6 text-center hover:shadow-monaco transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              <div className="w-16 h-16 bg-monaco-red rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
-                <Heart className="w-8 h-8 text-white" />
-              </div>
               <h3 className="text-xl font-bold text-foreground mb-3 font-cinzel-decorative">
                 {language === 'fr' ? 'Impact Communautaire' : 'Community Impact'}
               </h3>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-center">
                 {language === 'fr' 
                   ? 'Soutenez le développement du sport féminin et inspirez la prochaine génération'
                   : 'Support women\'s sports development and inspire the next generation'
@@ -275,13 +265,10 @@ const Partners = () => {
             </Card>
 
             <Card className="p-6 text-center hover:shadow-monaco transition-all duration-300 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="w-16 h-16 bg-monaco-red rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow">
-                <Star className="w-8 h-8 text-white" />
-              </div>
               <h3 className="text-xl font-bold text-foreground mb-3 font-cinzel-decorative">
                 {language === 'fr' ? 'Visibilité de Marque' : 'Brand Visibility'}
               </h3>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-center">
                 {language === 'fr' 
                   ? 'Profitez d\'une exposition unique dans le football féminin monégasque'
                   : 'Enjoy unique exposure in Monaco women\'s football'

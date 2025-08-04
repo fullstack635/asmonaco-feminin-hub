@@ -36,29 +36,114 @@ const Roster = () => {
 
   // Real player data from provided spreadsheet
   const players = [
-    { id: 1, firstName: "Manelle", lastName: "Ben Mohammed", number: 1, position: "GK", instagram: "maanelle_bm", hometown: "Monaco, Monaco", height: "170", photo: "/players/sample.png" },
-    { id: 2, firstName: "Manon", lastName: "Frey", number: 2, position: "Defendeur", instagram: "manfoot_al1", hometown: "Nice, France", height: "165", photo: "/players/sample.png" },
-    { id: 3, firstName: "Elise", lastName: "Gaucher", number: 3, position: "Defendeur", instagram: "elise.gaucher", hometown: "Cannes, France", height: "168", photo: "/players/sample.png" },
-    { id: 4, firstName: "Julie", lastName: "Lievremont", number: 4, position: "Defendeur", instagram: "julie_lvmt", hometown: "Monaco, Monaco", height: "172", photo: "/players/sample.png" },
-    { id: 5, firstName: "Solène", lastName: "Noizat", number: 5, position: "Defendeur", instagram: "solene.noizat", hometown: "Menton, France", height: "169", photo: "/players/sample.png" },
-    { id: 6, firstName: "Lina", lastName: "Chabanne", number: 6, position: "Midfield", instagram: "linaachabane22", hometown: "Monaco, Monaco", height: "166", photo: "/players/sample.png" },
-    { id: 7, firstName: "Maureen", lastName: "Bigot", number: 7, position: "Midfield", instagram: "bigotmaureen", hometown: "Antibes, France", height: "164", photo: "/players/sample.png" },
-    { id: 8, firstName: "Jade", lastName: "Gaiffe", number: 8, position: "Midfield", instagram: "jadegatffe_", hometown: "Monaco, Monaco", height: "167", photo: "/players/sample.png" },
-    { id: 9, firstName: "Marie", lastName: "Lextrayt", number: 9, position: "Strike", instagram: "marie_lextrayt", hometown: "Nice, France", height: "170", photo: "/players/sample.png" },
-    { id: 10, firstName: "Laure", lastName: "Robert", number: 10, position: "Defendeur", instagram: "laure_robert_4", hometown: "Monaco, Monaco", height: "171", photo: "/players/sample.png" },
-    { id: 11, firstName: "Manon", lastName: "Issert", number: 14, position: "Midfield", instagram: "TBD", hometown: "Cannes, France", height: "165", photo: "/players/sample.png" },
-    { id: 12, firstName: "Enola", lastName: "Dumontet", number: 18, position: "Midfield", instagram: "userrr.83", hometown: "Monaco, Monaco", height: "168", photo: "/players/sample.png" },
-    { id: 13, firstName: "Ines", lastName: "Koré", number: 20, position: "Strike", instagram: "kore_ines", hometown: "Nice, France", height: "169", photo: "/players/sample.png" },
-    { id: 14, firstName: "Fatoumata", lastName: "Baldé", number: 21, position: "Strike", instagram: "fatoudinho_b", hometown: "Monaco, Monaco", height: "166", photo: "/players/sample.png" },
-    { id: 15, firstName: "Salma", lastName: "Zeitouni", number: 22, position: "Defendeur", instagram: "salma_zei", hometown: "Monaco, Monaco", height: "170", photo: "/players/sample.png" },
-    { id: 16, firstName: "Chelsea", lastName: "Abrin", number: 23, position: "Strike", instagram: "chelsea_abrin", hometown: "Nice, France", height: "167", photo: "/players/sample.png" },
-    { id: 17, firstName: "Melie", lastName: "Lacolla", number: 27, position: "Defendeur", instagram: "meelie.l08", hometown: "Monaco, Monaco", height: "165", photo: "/players/sample.png" },
-    { id: 18, firstName: "Anais", lastName: "Leclerc", number: 28, position: "Defendeur", instagram: "anais_lb", hometown: "Cannes, France", height: "172", photo: "/players/sample.png" },
-    { id: 19, firstName: "Pauline", lastName: "Moitrel", number: 30, position: "GK", instagram: "pauline_moitrel", hometown: "Monaco, Monaco", height: "175", photo: "/players/sample.png" },
-    { id: 20, firstName: "Yrma", lastName: "Mze Issa", number: null, position: "Strike", instagram: "yrmaajr", hometown: "Monaco, Monaco", height: "168", photo: "/players/sample.png" },
-    { id: 21, firstName: "Adama", lastName: "Tamba", number: null, position: "TBD", instagram: "TBD", hometown: "Monaco, Monaco", height: "N/A", photo: "/players/sample.png" },
-    { id: 22, firstName: "Ramsey", lastName: "Davis", number: null, position: "Strike", instagram: "ramsdavis", hometown: "Monaco, Monaco", height: "170", photo: "/players/sample.png" },
+    { id: 1, firstName: "Manelle", lastName: "Ben Mohammed", number: 1, position: "GK", instagram: "maanelle_bm", hometown: "Monaco, Monaco", height: "175", photo:"/photo/Manelle_Ben_Mohamed.jpg" },
+    { id: 2, firstName: "Manon", lastName: "Frey", number: 2, position: "Defendeur", instagram: "manfoot_al1", hometown: "Nice, France", height: "165", photo: "/photo/Manon_Frey.jpg" },
+    { id: 3, firstName: "Elise", lastName: "Gaucher", number: 3, position: "Defendeur", instagram: "elise.gaucher", hometown: "Cannes, France", height: "168", photo: "/photo/Elise_Gaucher.jpg" },
+    { id: 4, firstName: "Julie", lastName: "Lievremont", number: 4, position: "Defendeur", instagram: "julie_lvmt", hometown: "Monaco, Monaco", height: "172", photo: "/photo/Julie_Lieveremont.jpg" },
+    { id: 5, firstName: "Solène", lastName: "Noizat", number: 5, position: "Defendeur", instagram: "solene.noizat", hometown: "Menton, France", height: "169", photo: "/photo/Solene_Noizat.jpg" },
+    { id: 6, firstName: "Lina", lastName: "Chabanne", number: 6, position: "Midfield", instagram: "linaachabane22", hometown: "Monaco, Monaco", height: "166", photo: "/photo/Lina_Chabane.jpg" },
+    { id: 7, firstName: "Maureen", lastName: "Bigot", number: 7, position: "Midfield", instagram: "bigotmaureen", hometown: "Antibes, France", height: "164", photo: "/photo/Maureen_Bigot.jpg" },
+    { id: 8, firstName: "Jade", lastName: "Gaiffe", number: 8, position: "Midfield", instagram: "jadegatffe_", hometown: "Monaco, Monaco", height: "167", photo: "/photo/Jade_Gaiffe.jpg" },
+    { id: 9, firstName: "Marie", lastName: "Lextrayt", number: 9, position: "Strike", instagram: "marie_lextrayt", hometown: "Nice, France", height: "170", photo: "/photo/Marie_Lextrayt.jpg" },
+    { id: 10, firstName: "Laure", lastName: "Robert", number: 10, position: "Defendeur", instagram: "laure_robert_4", hometown: "Monaco, Monaco", height: "171", photo: "/photo/Laure_Robert.jpg" },
+    { id: 11, firstName: "Manon", lastName: "Issert", number: 14, position: "Midfield", instagram: "TBD", hometown: "Cannes, France", height: "165", photo: "/photo/Manon_Issert.jpg" },
+    { id: 12, firstName: "Enola", lastName: "Dumontet", number: 18, position: "Midfield", instagram: "userrr.83", hometown: "Monaco, Monaco", height: "168", photo: "/photo/Enola_Dumontet.jpg" },
+    { id: 13, firstName: "Ines", lastName: "Koré", number: 20, position: "Strike", instagram: "kore_ines", hometown: "Nice, France", height: "169", photo: "/photo/sample.png" },
+    { id: 14, firstName: "Fatoumata", lastName: "Baldé", number: 21, position: "Strike", instagram: "fatoudinho_b", hometown: "Monaco, Monaco", height: "166", photo: "/photo/Fatoumata_Balde.jpg" },
+    { id: 15, firstName: "Salma", lastName: "Zeitouni", number: 22, position: "Defendeur", instagram: "salma_zei", hometown: "Monaco, Monaco", height: "170", photo: "/photo/Salma_Zeitouni.jpg" },
+    { id: 16, firstName: "Chelsea", lastName: "Abrin", number: 26, position: "Strike", instagram: "chelsea_abrin", hometown: "Nice, France", height: "167", photo: "/photo/Chelsea_Abrin.jpg" },
+    { id: 17, firstName: "Melie", lastName: "Lacolla", number: 27, position: "Defendeur", instagram: "meelie.l08", hometown: "Monaco, Monaco", height: "165", photo: "/photo/Melie_Iacolla.jpg" },
+    { id: 18, firstName: "Anais", lastName: "Leclerc", number: 28, position: "Defendeur", instagram: "anais_lb", hometown: "Cannes, France", height: "172", photo: "/photo/Anaia_Leclerc.jpg" },
+    { id: 19, firstName: "Pauline", lastName: "Moitrel", number: 30, position: "GK", instagram: "pauline_moitrel", hometown: "Monaco, Monaco", height: "175", photo: "/photo/Pauline_Moitrel.jpg" },
+    { id: 20, firstName: "Yrma", lastName: "Mze Issa", number: 19, position: "Strike", instagram: "yrmaajr", hometown: "Monaco, Monaco", height: "168", photo: "/photo/Yrma_Mze_Issa.jpg" },
+    { id: 21, firstName: "Adama", lastName: "Tamba", number: null, position: "TBD", instagram: "TBD", hometown: "Monaco, Monaco", height: "N/A", photo: "/photo/sample.png" },
+    { id: 22, firstName: "Ramsey", lastName: "Davis", number: 31, position: "Strike", instagram: "ramsdavis", hometown: "Monaco, Monaco", height: "170", photo: "/photo/Ramsey_David.jpg" },
   ].sort((a, b) => (a.number || 999) - (b.number || 999)); // Sort by jersey number
+
+  // Coaching Staff data
+  const coachingStaff = [
+    { 
+      id: 'coach1', 
+      firstName: "Chloé", 
+      lastName: "Rochetaing", 
+      number: null, 
+      position: "Coach", 
+      instagram: null, 
+      hometown: "Monaco", 
+      height: "N/A", 
+      photo: "/photo/Chloe_Rochetaing.jpg",
+      isCoach: true,
+      specialty: language === 'fr' ? "Coach Principal" : "Head Coach"
+    },
+    { 
+      id: 'coach2', 
+      firstName: "Soriana", 
+      lastName: "Constant", 
+      number: null, 
+      position: "Coach", 
+      instagram: null, 
+      hometown: "Monaco", 
+      height: "N/A", 
+      photo: "/photo/sample.png",
+      isCoach: true,
+      specialty: language === 'fr' ? "Coach Adjoint" : "Assistant Coach"
+    },
+    { 
+      id: 'coach3', 
+      firstName: "Jean Christophe", 
+      lastName: "Deleau", 
+      number: null, 
+      position: "Coach", 
+      instagram: null, 
+      hometown: "Monaco", 
+      height: "N/A", 
+      photo: "/photo/Jean_Christophe_Deleau.jpg",
+      isCoach: true,
+      specialty: language === 'fr' ? "Entraîneur des Gardiennes" : "Goalkeeper Coach"
+    },
+    { 
+      id: 'coach4', 
+      firstName: "Antoine", 
+      lastName: "Briançon", 
+      number: null, 
+      position: "Coach", 
+      instagram: null, 
+      hometown: "Monaco", 
+      height: "N/A", 
+      photo: "/photo/Antoine_Briancon.jpg",
+      isCoach: true,
+      specialty: language === 'fr' ? "Préparateur Physique" : "Fitness Coach"
+    },
+    { 
+      id: 'coach5', 
+      firstName: "Julian", 
+      lastName: "Garber", 
+      number: null, 
+      position: "Coach", 
+      instagram: null, 
+      hometown: "Monaco", 
+      height: "N/A", 
+      photo: "/photo/sample.png",
+      isCoach: true,
+      specialty: language === 'fr' ? "Analyste Vidéo" : "Video Analyst"
+    },
+    { 
+      id: 'coach6', 
+      firstName: "Maria", 
+      lastName: "Rochetaing", 
+      number: null, 
+      position: "Coach", 
+      instagram: null, 
+      hometown: "Monaco", 
+      height: "N/A", 
+      photo: "/photo/sample.png",
+      isCoach: true,
+      specialty: language === 'fr' ? "Intendante" : "Team Manager (Logistics/Equipment Manager)"
+    }
+  ];
+
+  // Combine players and coaching staff
+  const allTeamMembers = [...players, ...coachingStaff];
 
   const getPositionColor = (position: string) => {
     switch (position.toLowerCase()) {
@@ -112,9 +197,12 @@ const Roster = () => {
         </div>
       </section>
 
-      {/* Team Grid - Mobile responsive */}
+      {/* Players Section */}
       <section className="py-8 sm:py-12 md:py-16">
         <div className="w-full px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-cinzel-decorative-bold text-center mb-8 sm:mb-12">
+            {language === 'fr' ? 'Joueuses' : 'Players'}
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {players.map((player, index) => (
               <div 
@@ -203,6 +291,80 @@ const Roster = () => {
                             <span className="sm:hidden">@{player.instagram.split('_')[0]}</span>
                           </a>
                         )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Coaching Staff Section */}
+      <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-cinzel-decorative-bold text-center mb-8 sm:mb-12">
+            {language === 'fr' ? 'Équipe Technique' : 'Coaching Staff'}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {coachingStaff.map((coach, index) => (
+              <div 
+                key={coach.id}
+                className="relative group cursor-pointer animate-fade-in touch-friendly"
+                style={{ animationDelay: `${index * 0.05}s` }}
+                onClick={() => navigate(`/roster/${coach.id}`)}
+              >
+                {/* Coach Card - Mobile optimized with doubled width */}
+                <div className="relative overflow-hidden rounded-lg bg-background aspect-[3/4] shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 pr-4 sm:pr-6">
+                  {/* Coach Badge - Responsive sizing */}
+                  <div className="absolute top-1 sm:top-2 right-1 sm:right-2 z-10">
+                    <div className="bg-monaco-yellow text-black px-2 py-1 rounded-lg text-xs sm:text-sm font-bold">
+                      {language === 'fr' ? 'STAFF' : 'COACH'}
+                    </div>
+                  </div>
+                  
+                  {/* Coach Photo Placeholder - Red Background */}
+                  <div className="absolute inset-0 bg-monaco-red">
+                    <div className="flex items-center justify-center h-full">
+                      {/* Coach Photo */}
+                      <img 
+                        src={coach.photo} 
+                        alt={`${coach.firstName} ${coach.lastName}`}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          // Fallback to initials if image fails to load
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const initialsDiv = target.nextElementSibling as HTMLElement;
+                          if (initialsDiv) {
+                            initialsDiv.style.display = 'flex';
+                          }
+                        }}
+                      />
+                      {/* Fallback Initials */}
+                      <div className="text-white/30 text-6xl sm:text-8xl lg:text-9xl font-bold absolute inset-0 flex items-center justify-center" style={{ display: 'none' }}>
+                        {coach.firstName.charAt(0)}{coach.lastName.charAt(0)}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Coach Info Overlay - Black Bottom Section - Mobile responsive */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-black p-3 sm:p-4 md:p-6 rounded-b-lg">
+                    <div className="text-white">
+                      <h3 className="font-bold text-base sm:text-lg md:text-xl lg:text-2xl mb-1 leading-tight">
+                        {coach.firstName}
+                      </h3>
+                      <h3 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl mb-2 sm:mb-3 leading-tight">
+                        {coach.lastName}
+                      </h3>
+                      
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
+                        <Badge 
+                          className={`${getPositionColor(coach.position)} text-white text-sm sm:text-base md:text-lg px-3 sm:px-4 py-1 sm:py-2 rounded-full`}
+                        >
+                          {coach.specialty}
+                        </Badge>
                       </div>
                     </div>
                   </div>

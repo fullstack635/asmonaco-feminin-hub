@@ -58,7 +58,7 @@ const Academy = () => {
         ? 'Le voyage commence par le plaisir et les fondamentaux. Nos plus jeunes joueuses développent leurs compétences à travers des jeux à effectifs réduits, des tournois et des plateaux régionaux axés sur la joie, le mouvement et l\'esprit d\'équipe.'
         : 'The journey begins with fun and fundamentals. Our youngest players build their skills through small-sided games, tournaments, and regional plateaus focused on joy, movement, and team spirit.',
       icon: Heart,
-      color: 'bg-monaco-yellow text-black',
+      color: 'bg-monaco-red text-black',
       image: academyImage1
     },
     {
@@ -67,7 +67,7 @@ const Academy = () => {
         ? 'Alors que les joueuses grandissent, l\'accent aussi. Ces années clés portent sur la conscience tactique, la croissance technique et le développement physique pour des niveaux de jeu plus élevés.'
         : 'As players grow, so does the focus. These key years are about tactical awareness, technical growth, and physical development for higher levels of play.',
       icon: Users,
-      color: 'bg-monaco-yellow text-black',
+      color: 'bg-monaco-red text-black',
       image: academyImage2
     },
     {

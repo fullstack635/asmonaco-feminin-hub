@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Mail, Globe, Users, Video, Megaphone, ArrowRight } from 'lucide-react';
+import { Mail, ArrowRight } from 'lucide-react';
 
 const News = () => {
   const { language } = useLanguage();
@@ -14,22 +14,18 @@ const News = () => {
       tagline: "Ne manquez jamais un moment !",
       features: [
         {
-          icon: <Globe className="w-8 h-8" />,
           title: "Résultats de Matchs",
           description: "Résultats passionnants et analyses"
         },
         {
-          icon: <Users className="w-8 h-8" />,
           title: "Actualités Joueurs",
           description: "Mises à jour exclusives de l'équipe"
         },
         {
-          icon: <Video className="w-8 h-8" />,
           title: "Coulisses",
           description: "Contenu exclusif des coulisses"
         },
         {
-          icon: <Megaphone className="w-8 h-8" />,
           title: "Annonces du Club",
           description: "Toutes les actualités officielles"
         }
@@ -49,22 +45,18 @@ const News = () => {
       tagline: "Never miss a moment!",
       features: [
         {
-          icon: <Globe className="w-8 h-8" />,
           title: "Match Results",
           description: "Thrilling results and analysis"
         },
         {
-          icon: <Users className="w-8 h-8" />,
           title: "Player Updates",
           description: "Exclusive team updates"
         },
         {
-          icon: <Video className="w-8 h-8" />,
           title: "Behind-the-Scenes",
           description: "Exclusive behind-the-scenes content"
         },
         {
-          icon: <Megaphone className="w-8 h-8" />,
           title: "Club Announcements",
           description: "All official news and updates"
         }
@@ -118,9 +110,6 @@ const News = () => {
                 className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-center group"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="flex justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  {feature.icon}
-                </div>
                 <h3 className="text-lg font-cinzel-decorative-bold text-foreground mb-3 group-hover:text-monaco-red transition-colors duration-300">
                   {feature.title}
                 </h3>
@@ -157,9 +146,6 @@ const News = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
               {[1, 2, 3].map((item) => (
                 <div key={item} className="bg-muted rounded-lg p-6 text-center">
-                  <div className="w-16 h-16 bg-monaco-yellow rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <div className="text-foreground font-bold text-lg">?</div>
-                  </div>
                   <h3 className="font-semibold text-foreground mb-2">
                     {language === 'fr' ? 'Article à venir' : 'Article Coming Soon'}
                   </h3>

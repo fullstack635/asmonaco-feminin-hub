@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Instagram, Mail, Heart, Users, Megaphone, Star, Globe, Sparkles, Building2, Trophy, Zap, Rocket, Target, Flag } from 'lucide-react';
+import { ArrowLeft, Instagram, Mail } from 'lucide-react';
 
 const ClubFans = () => {
   const { language } = useLanguage();
@@ -94,8 +94,8 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
             <div className="absolute inset-0 opacity-5">
               <div className="absolute top-10 left-10 w-20 h-20 rounded-full border-2 border-monaco-red"></div>
               <div className="absolute top-20 right-20 w-16 h-16 rounded-full border-2 border-monaco-yellow"></div>
-              <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full border-2 border-blue-500"></div>
-              <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full border-2 border-purple-500"></div>
+              <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full border-2 border-monaco-red"></div>
+              <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full border-2 border-monaco-yellow"></div>
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full border border-monaco-red/20"></div>
             </div>
             
@@ -125,35 +125,26 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                     );
                   }
                   
-                  // Global community - Social media card style
+                  // Global community - Updated to Monaco colors
                   else if (paragraph.includes('Whether you\'re cheering from the stands') || paragraph.includes('Que vous encouragiez depuis les tribunes')) {
                     return (
                       <div key={index} className="mb-12">
-                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100 shadow-lg">
-                          <div className="flex flex-col md:flex-row items-center gap-6">
-                            <div className="flex-shrink-0">
-                              <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg">
-                                <Globe className="w-12 h-12 text-white" />
-                              </div>
-                            </div>
-                            <div className="flex-1 text-center md:text-left">
-                              <h3 className="text-2xl font-cinzel-decorative-bold text-blue-700 mb-4">
-                                {language === 'fr' ? 'Notre Communauté Mondiale' : 'Our Global Community'}
-                              </h3>
-                              <p className="text-muted-foreground leading-relaxed text-lg">
-                                {paragraph}
-                              </p>
-                              
-                              <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-6">
-                                <span className="bg-white rounded-full px-4 py-2 text-sm font-medium text-blue-600 shadow-sm border border-blue-200 flex items-center gap-2">
-                                  <Building2 className="w-4 h-4" />
-                                  {language === 'fr' ? 'Sud de la France' : 'South of France'}
-                                </span>
-                                <span className="bg-white rounded-full px-4 py-2 text-sm font-medium text-indigo-600 shadow-sm border border-indigo-200 flex items-center gap-2">
-                                  <Globe className="w-4 h-4" />
-                                  {language === 'fr' ? 'Partout dans le monde' : 'Around the world'}
-                                </span>
-                              </div>
+                        <div className="bg-gradient-to-r from-monaco-red/10 to-monaco-yellow/10 rounded-2xl p-8 border border-monaco-red/20 shadow-lg">
+                          <div className="text-center">
+                            <h3 className="text-2xl font-cinzel-decorative-bold text-monaco-red mb-4">
+                              {language === 'fr' ? 'Notre Communauté Mondiale' : 'Our Global Community'}
+                            </h3>
+                            <p className="text-muted-foreground leading-relaxed text-lg mb-6">
+                              {paragraph}
+                            </p>
+                            
+                            <div className="flex flex-wrap justify-center gap-3">
+                              <span className="bg-white rounded-full px-4 py-2 text-sm font-medium text-monaco-red shadow-sm border border-monaco-red/20">
+                                {language === 'fr' ? 'Sud de la France' : 'South of France'}
+                              </span>
+                              <span className="bg-white rounded-full px-4 py-2 text-sm font-medium text-monaco-red shadow-sm border border-monaco-red/20">
+                                {language === 'fr' ? 'Partout dans le monde' : 'Around the world'}
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -165,11 +156,8 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                   else if (paragraph.includes('We may not have an official membership') || paragraph.includes('Nous n\'avons peut-être pas encore d\'adhésion')) {
                     return (
                       <div key={index} className="mb-12">
-                        <div className="bg-gradient-to-r from-monaco-yellow/10 to-orange-50 rounded-2xl p-8 border-2 border-monaco-yellow/20 shadow-lg">
+                        <div className="bg-gradient-to-r from-monaco-yellow/10 to-monaco-red/10 rounded-2xl p-8 border-2 border-monaco-yellow/20 shadow-lg">
                           <div className="text-center">
-                            {/* <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-monaco-red to-orange-400 rounded-full mb-6 shadow-lg">
-                              <Sparkles className="w-12 h-12 text-white" />
-                            </div> */}
                             <h3 className="text-2xl font-cinzel-decorative-bold text-monaco-red mb-4">
                               {language === 'fr' ? 'Construisons Ensemble' : 'Building Together'}
                             </h3>
@@ -182,24 +170,24 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                     );
                   }
                   
-                  // Instagram - Social media focused design
+                  // Instagram - Updated to Monaco colors
                   else if (paragraph.includes('Follow us on Instagram') || paragraph.includes('Suivez-nous sur Instagram')) {
                     return (
                       <div key={index} className="mb-8">
-                        <div className="bg-gradient-to-br from-pink-100 via-purple-50 to-indigo-100 rounded-3xl p-8 border border-pink-200/50 shadow-xl">
+                        <div className="bg-gradient-to-br from-monaco-red/10 via-monaco-yellow/10 to-monaco-red/10 rounded-3xl p-8 border border-monaco-red/20 shadow-xl">
                           <div className="flex flex-col md:flex-row items-center gap-8">
                             <div className="flex-shrink-0">
                               <div className="relative">
-                                <div className="w-24 h-24 bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3">
+                                <div className="w-24 h-24 bg-gradient-to-br from-monaco-red to-monaco-yellow rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3">
                                   <Instagram className="w-12 h-12 text-white" />
                                 </div>
-                                <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+                                <div className="absolute -top-2 -right-2 w-6 h-6 bg-monaco-red rounded-full flex items-center justify-center">
                                   <div className="w-2 h-2 bg-white rounded-full"></div>
                                 </div>
                               </div>
                             </div>
                             <div className="flex-1 text-center md:text-left">
-                              <h3 className="text-2xl font-cinzel-decorative-bold text-purple-700 mb-3">
+                              <h3 className="text-2xl font-cinzel-decorative-bold text-monaco-red mb-3">
                                 {language === 'fr' ? 'Suivez Notre Aventure' : 'Follow Our Journey'}
                               </h3>
                               <p className="text-muted-foreground mb-6">
@@ -208,10 +196,10 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                                   : 'Exclusive content • Behind-the-scenes • Live stories • Team interactions'
                                 }
                               </p>
-                              <Button className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white px-8 py-3 rounded-full font-montserrat-extrabold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                              <Button className="bg-gradient-to-r from-monaco-red to-monaco-yellow hover:from-monaco-red/90 hover:to-monaco-yellow/90 text-white px-8 py-3 rounded-full font-montserrat-extrabold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                                 <Instagram className="w-5 h-5 mr-2" />
-                                {language === 'fr' ? 'Rejoindre Instagram' : 'Join Instagram'}
-              </Button>
+                                {language === 'fr' ? 'Rejoindre Instagram' : 'Follow Us on Instagram'}
+                              </Button>
                             </div>
                           </div>
                         </div>
@@ -230,7 +218,7 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                                 <div className="w-24 h-24 bg-gradient-to-br from-monaco-red to-monaco-yellow rounded-xl flex items-center justify-center shadow-2xl">
                                   <Mail className="w-12 h-12 text-white" />
                                 </div>
-                                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-monaco-yellow rounded-full flex items-center justify-center">
                                   <Mail className="w-4 h-4 text-white" />
                                 </div>
                               </div>
@@ -251,7 +239,7 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                               >
                                 <Mail className="w-5 h-5 mr-2" />
                                 {language === 'fr' ? 'S\'abonner Maintenant' : 'Subscribe Now'}
-              </Button>
+                              </Button>
                             </div>
                           </div>
                         </div>
@@ -270,12 +258,6 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                           <div className="absolute top-0 left-1/2 w-2 h-full bg-gradient-to-b from-white/30 to-transparent"></div>
                           
                           <div className="relative z-10 text-center">
-                            <div className="flex justify-center mb-8">
-                              <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
-                                <Trophy className="w-12 h-12 text-white" />
-                              </div>
-                            </div>
-                            
                             <h2 className="text-3xl lg:text-4xl font-cinzel-decorative-bold mb-8">
                               {language === 'fr' 
                                 ? 'Ensemble, Nous Sommes Plus Forts' 
@@ -285,17 +267,11 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                             
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                                  <div className="flex justify-center mb-4">
-                                    <Zap className="w-8 h-8 text-white" />
-                                  </div>
                                   <p className="text-xl font-medium">
                                     {language === 'fr' ? 'Chaque Supporter Compte' : 'Every Supporter Counts'}
                                   </p>
                                 </div>
                                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                                  <div className="flex justify-center mb-4">
-                                    <Rocket className="w-8 h-8 text-white" />
-                                  </div>
                                   <p className="text-xl font-medium">
                                     {language === 'fr' ? 'Écrivons L\'Histoire' : 'Write History'}
                                   </p>
@@ -308,12 +284,6 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                                 : 'Together, let\'s write the next chapter of AS Monaco Football Féminin.'
                               }
                             </p>
-                            
-                            <div className="flex justify-center gap-4 mb-6">
-                              <Zap className="w-8 h-8 text-white animate-bounce" />
-                              <Heart className="w-8 h-8 text-white animate-bounce delay-100" />
-                              <Users className="w-8 h-8 text-white animate-bounce delay-200" />
-                            </div>
                             
                             <div className="text-lg opacity-75 font-medium">
                               #UneÉquipeUneAmbition #ASMonacoFF
