@@ -8,7 +8,7 @@ import { ArrowLeft } from 'lucide-react';
 import AndreImage from '@/assets/leader/STAFF-21-22-370x370_Andre.jpg';
 import ThomasImage from '@/assets/leader/STAFF-21-227-370x370_Thomas.jpg';
 import JulienImage from '@/assets/leader/Julien.jpg';
-import GaryImage from '@/assets/leader/67eb9_Gary LaDrido Headshot.jpg';
+import GaryImage from '@/assets/leader/GaryLadrido.jpg';
 import MarcyImage from '@/assets/leader/1548694377276_marcy.jpg';
 
 const ClubLeadership = () => {
