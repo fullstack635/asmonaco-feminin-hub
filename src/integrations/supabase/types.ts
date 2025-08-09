@@ -14,7 +14,165 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admin_users: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+          name: string
+          password_hash: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: string
+          name: string
+          password_hash: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+          name?: string
+          password_hash?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      matches: {
+        Row: {
+          away_team: string
+          created_at: string | null
+          has_tickets: boolean | null
+          has_youtube: boolean | null
+          home_team: string
+          id: string
+          match_date: string
+          result: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          away_team: string
+          created_at?: string | null
+          has_tickets?: boolean | null
+          has_youtube?: boolean | null
+          home_team: string
+          id?: string
+          match_date: string
+          result?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          away_team?: string
+          created_at?: string | null
+          has_tickets?: boolean | null
+          has_youtube?: boolean | null
+          home_team?: string
+          id?: string
+          match_date?: string
+          result?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      news: {
+        Row: {
+          content_en: string
+          content_fr: string
+          created_at: string | null
+          excerpt_en: string | null
+          excerpt_fr: string | null
+          featured_image_url: string | null
+          id: string
+          published: boolean | null
+          published_at: string | null
+          title_en: string
+          title_fr: string
+          updated_at: string | null
+        }
+        Insert: {
+          content_en: string
+          content_fr: string
+          created_at?: string | null
+          excerpt_en?: string | null
+          excerpt_fr?: string | null
+          featured_image_url?: string | null
+          id?: string
+          published?: boolean | null
+          published_at?: string | null
+          title_en: string
+          title_fr: string
+          updated_at?: string | null
+        }
+        Update: {
+          content_en?: string
+          content_fr?: string
+          created_at?: string | null
+          excerpt_en?: string | null
+          excerpt_fr?: string | null
+          featured_image_url?: string | null
+          id?: string
+          published?: boolean | null
+          published_at?: string | null
+          title_en?: string
+          title_fr?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      players: {
+        Row: {
+          created_at: string | null
+          first_name: string
+          height: string | null
+          hometown: string | null
+          id: string
+          instagram: string | null
+          is_coach: boolean | null
+          jersey_number: number | null
+          last_name: string
+          photo_url: string | null
+          position: string
+          specialty: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          first_name: string
+          height?: string | null
+          hometown?: string | null
+          id?: string
+          instagram?: string | null
+          is_coach?: boolean | null
+          jersey_number?: number | null
+          last_name: string
+          photo_url?: string | null
+          position: string
+          specialty?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          first_name?: string
+          height?: string | null
+          hometown?: string | null
+          id?: string
+          instagram?: string | null
+          is_coach?: boolean | null
+          jersey_number?: number | null
+          last_name?: string
+          photo_url?: string | null
+          position?: string
+          specialty?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
