@@ -31,11 +31,28 @@ const Matches = () => {
     try {
       const { data, error } = await supabase
         .from('matches')
-        .select('*')
-        .order('created_at', { ascending: true });
+        .select('*');
 
       if (error) throw error;
-      if (data) setMatches(data);
+      
+      if (data) {
+        // Sort matches by date - convert match_date strings to Date objects for proper sorting
+        const sortedMatches = data.sort((a, b) => {
+          // Try to parse the dates - handle different date formats
+          const dateA = new Date(a.match_date);
+          const dateB = new Date(b.match_date);
+          
+          // If dates are invalid, fall back to string comparison
+          if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) {
+            return a.match_date.localeCompare(b.match_date);
+          }
+          
+          // Sort chronologically (earliest dates first)
+          return dateA.getTime() - dateB.getTime();
+        });
+        
+        setMatches(sortedMatches);
+      }
     } catch (error) {
       console.error('Error loading matches:', error);
     } finally {
