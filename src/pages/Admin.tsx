@@ -81,6 +81,7 @@ const Admin = () => {
     'OLYMPIQUE LYONNAIS 2',
     'MONTAUBAN FC TG',
     'LE PUY FOOT 43 AUV',
+    'EXEMPT',
     'FC ROUSSET'
   ];
 

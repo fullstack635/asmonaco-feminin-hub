@@ -41,8 +41,42 @@ const Roster = () => {
       if (data) {
         const playersList = data.filter(p => !p.is_coach);
         const coachesList = data.filter(p => p.is_coach);
+        
+        // Sort coaching staff by hierarchy
+        const sortedCoaches = coachesList.sort((a, b) => {
+          const getCoachPriority = (specialty: string | undefined) => {
+            if (!specialty) return 999; // Unknown roles go last
+            
+            const priorities: { [key: string]: number } = {
+              'Head coach': 1,
+              'Head Coach': 1,
+              'Assistant coach': 2,
+              'Assistant Coach': 2,
+              'GoalKeeper coach': 3,
+              'Goalkeeper Coach': 3,
+              'Fitness coach': 4,
+              'Fitness Coach': 4,
+              'Video Analyst': 5,
+              'Team manager': 6,
+              'Team Manager': 6
+            };
+            
+            return priorities[specialty] || 999;
+          };
+          
+          const priorityA = getCoachPriority(a.specialty);
+          const priorityB = getCoachPriority(b.specialty);
+          
+          // If same priority, sort alphabetically by last name
+          if (priorityA === priorityB) {
+            return a.last_name.localeCompare(b.last_name);
+          }
+          
+          return priorityA - priorityB;
+        });
+        
         setPlayersData(playersList);
-        setCoachingStaffData(coachesList);
+        setCoachingStaffData(sortedCoaches);
       }
     } catch (error) {
       console.error('Error loading players:', error);
