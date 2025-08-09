@@ -8,7 +8,7 @@ import { ShoppingCart, Star, Truck, Shield, ArrowRight } from 'lucide-react';
 const Shop = () => {
   return (
     <div className="min-h-[60vh] flex flex-col items-center justify-center text-center">
-      <p className="text-lg text-muted-foreground">Coming Soon!</p>
+      <p className="text-lg text-muted-foreground font-cinzel-decorative">Coming Soon!</p>
     </div>
   );
 };

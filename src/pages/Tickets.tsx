@@ -8,7 +8,7 @@ import { Ticket, Calendar, MapPin, Clock, Users, ArrowRight, Phone, Globe, Credi
 const Tickets = () => {
   return (
     <div className="min-h-[60vh] flex flex-col items-center justify-center text-center">
-      <p className="text-lg text-muted-foreground">Coming Soon!</p>
+      <p className="text-lg text-muted-foreground font-cinzel-decorative">Coming Soon!</p>
     </div>
   );
 };

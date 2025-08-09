@@ -3,7 +3,6 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Instagram } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 
 interface Player {
@@ -22,7 +21,6 @@ interface Player {
 
 const Roster = () => {
   const { language } = useLanguage();
-  const navigate = useNavigate();
   const [playersData, setPlayersData] = useState<Player[]>([]);
   const [coachingStaffData, setCoachingStaffData] = useState<Player[]>([]);
   const [loading, setLoading] = useState(true);
@@ -277,9 +275,8 @@ const Roster = () => {
             {playersData.map((player, index) => (
               <div 
                 key={player.id}
-                className="relative group cursor-pointer animate-fade-in touch-friendly"
+                className="relative group animate-fade-in touch-friendly"
                 style={{ animationDelay: `${index * 0.05}s` }}
-                onClick={() => navigate(`/roster/${player.id}`)}
               >
                 {/* Player Card - Mobile optimized with doubled width */}
                 <div className="relative overflow-hidden rounded-lg bg-background aspect-[3/4] shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 pr-4 sm:pr-6">
@@ -381,9 +378,8 @@ const Roster = () => {
             {coachingStaffData.map((coach, index) => (
               <div 
                 key={coach.id}
-                className="relative group cursor-pointer animate-fade-in touch-friendly"
+                className="relative group animate-fade-in touch-friendly"
                 style={{ animationDelay: `${index * 0.05}s` }}
-                onClick={() => navigate(`/roster/${coach.id}`)}
               >
                 {/* Coach Card - Mobile optimized with doubled width */}
                 <div className="relative overflow-hidden rounded-lg bg-background aspect-[3/4] shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 pr-4 sm:pr-6">
