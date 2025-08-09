@@ -234,7 +234,10 @@ const Index = () => {
               }
             </p>
             <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 xl:gap-8 justify-center">
-              <Link to="/sponsor" className="w-full sm:w-auto">
+              <button
+                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSezKsdbcK52jzKe9_ch7scBY0TVGgrdhr9Ro76ce7jW_N3Dtg/viewform', '_blank', 'noopener,noreferrer')}
+                className="w-full sm:w-auto"
+              >
                 <Button 
                   variant="secondary" 
                   size="lg"
@@ -243,7 +246,7 @@ const Index = () => {
                   {t('sponsor')}
                   {/* <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-1 transition-transform duration-200" /> */}
                 </Button>
-              </Link>
+              </button>
             
             </div>
           </div>
