@@ -462,10 +462,10 @@ const Admin = () => {
                         <SelectValue placeholder="Select Position" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="GoalKeeper">GoalKeeper</SelectItem>
-                        <SelectItem value="Defender">Defender</SelectItem>
-                        <SelectItem value="Midfielder">Midfielder</SelectItem>
-                        <SelectItem value="Strike">Strike</SelectItem>
+                        <SelectItem value="GK">Goalkeeper</SelectItem>
+                        <SelectItem value="Defendeur">Defender</SelectItem>
+                        <SelectItem value="Midfield">Midfielder</SelectItem>
+                        <SelectItem value="Strike">Forward</SelectItem>
                       </SelectContent>
                     </Select>
                   )}
@@ -591,7 +591,6 @@ const Admin = () => {
                             size="sm"
                             variant="outline"
                             onClick={() => {
-                              console.log('Editing player:', player); // Debug log
                               setPlayerForm(player);
                               setEditingId(player.id);
                             }}
