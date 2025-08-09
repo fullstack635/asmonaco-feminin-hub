@@ -1,11 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Mail, ArrowRight } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+
+interface NewsArticle {
+  id: string;
+  title_fr: string;
+  title_en: string;
+  content_fr: string;
+  content_en: string;
+  excerpt_fr?: string;
+  excerpt_en?: string;
+  featured_image_url?: string;
+  published: boolean;
+  created_at: string;
+}
 
 const News = () => {
   const { language } = useLanguage();
+  const [news, setNews] = useState<NewsArticle[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadNews();
+  }, []);
+
+  const loadNews = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('news')
+        .select('*')
+        .eq('published', true)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      if (data) setNews(data);
+    } catch (error) {
+      console.error('Error loading news:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const content = {
     fr: {
@@ -129,33 +166,61 @@ const News = () => {
         </div>
       </section>
 
-      {/* Coming Soon Section */}
+      {/* News Articles Section */}
       <section className="py-16">
         <div className="max-w-[1200px] mx-auto px-2">
-          <div className="bg-white rounded-lg shadow-lg p-12 text-center">
-            <div className="mb-8">
-              <h2 className="text-3xl font-cinzel-decorative-bold text-foreground mb-4">
-                {currentContent.comingSoon}
+          {loading ? (
+            <div className="text-center py-12">
+              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-monaco-red mx-auto"></div>
+              <p className="mt-4 text-gray-600">Loading news...</p>
+            </div>
+          ) : news.length > 0 ? (
+            <>
+              <h2 className="text-3xl font-cinzel-decorative-bold text-foreground mb-8 text-center">
+                {language === 'fr' ? 'Dernières Actualités' : 'Latest News'}
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {currentContent.comingSoonText}
-              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {news.map((article) => (
+                  <Card key={article.id} className="hover:shadow-lg transition-shadow duration-300">
+                    {article.featured_image_url && (
+                      <div className="aspect-video w-full overflow-hidden rounded-t-lg">
+                        <img
+                          src={article.featured_image_url}
+                          alt={language === 'fr' ? article.title_fr : article.title_en}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-foreground mb-3">
+                        {language === 'fr' ? article.title_fr : article.title_en}
+                      </h3>
+                      <p className="text-muted-foreground mb-4">
+                        {language === 'fr' ? 
+                          (article.excerpt_fr || article.content_fr.substring(0, 150) + '...') :
+                          (article.excerpt_en || article.content_en.substring(0, 150) + '...')
+                        }
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {new Date(article.created_at).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US')}
+                      </p>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="bg-white rounded-lg shadow-lg p-12 text-center">
+              <div className="mb-8">
+                <h2 className="text-3xl font-cinzel-decorative-bold text-foreground mb-4">
+                  {currentContent.comingSoon}
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {currentContent.comingSoonText}
+                </p>
+              </div>
             </div>
-            
-            {/* Placeholder for future news content */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-              {[1, 2, 3].map((item) => (
-                <div key={item} className="bg-muted rounded-lg p-6 text-center">
-                  <h3 className="font-semibold text-foreground mb-2">
-                    {language === 'fr' ? 'Article à venir' : 'Article Coming Soon'}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {language === 'fr' ? 'Contenu passionnant en préparation' : 'Exciting content in preparation'}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+          )}
         </div>
       </section>
 

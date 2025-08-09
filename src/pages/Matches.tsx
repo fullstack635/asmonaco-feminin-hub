@@ -1,13 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Calendar, MapPin, Clock, ExternalLink, ArrowRight, Play } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+
+interface Match {
+  id: string;
+  match_date: string;
+  home_team: string;
+  away_team: string;
+  result?: string;
+  status: string;
+  has_tickets: boolean;
+  has_youtube: boolean;
+}
 
 const Matches = () => {
   const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState<'wpsl' | 'tst'>('wpsl');
+  const [matches, setMatches] = useState<Match[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadMatches();
+  }, []);
+
+  const loadMatches = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('matches')
+        .select('*')
+        .order('created_at', { ascending: true });
+
+      if (error) throw error;
+      if (data) setMatches(data);
+    } catch (error) {
+      console.error('Error loading matches:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const matchesInfo = {
     fr: {
@@ -26,229 +60,6 @@ const Matches = () => {
 
   const content = matchesInfo[language];
 
-  // WPSL match data
-  const wpslMatches = [
-    {
-      id: 1,
-      date: "SEPT. 7, 2025",
-      result: "TBD",
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "GIRONDINS BORDEAUX",
-      status: "completed",
-      hasTickets: false,
-      hasYoutube: true
-    },
-    {
-      id: 2,
-      date: "SEPT. 14, 2025",
-      result: null,
-      homeTeam: "ALC LONGVIC",
-      awayTeam: "AS Monaco Football Féminin",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 3,
-      date: "SEPT. 21, 2025",
-      result: null,
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "AS CANNES",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 4,
-      date: "SEPT. 28, 2025",
-      result: null,
-      homeTeam: "AS CHATENOY LE ROYAL",
-      awayTeam: "AS Monaco Football Féminin",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 5,
-      date: "OCT. 5, 2025",
-      result: null,
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "CLERMONT FOOT 63",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 6,
-      date: "OCT. 12, 2025",
-      result: null,
-      homeTeam: "FC ROUSSET",
-      awayTeam: "AS Monaco Football Féminin",
-      status: "exempt",
-      hasTickets: false,
-      hasYoutube: false
-    },
-    {
-      id: 7,
-      date: "NOV. 9, 2025",
-      result: null,
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "ALBI MARSSAC TF",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 8,
-      date: "NOV. 16, 2025",
-      result: null,
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "OLYMPIQUE LYONNAIS 2",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 9,
-      date: "DEC. 7, 2025",
-      result: null,
-      homeTeam: "MONTPELLIER HSC 2",
-      awayTeam: "AS Monaco Football Féminin",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 10,
-      date: "DEC. 21, 2025",
-      result: null,
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "MONTAUBAN FC TG",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 11,
-      date: "JAN. 18, 2026",
-      result: null,
-      homeTeam: "LE PUY FOOT 43 AUV",
-      awayTeam: "AS Monaco Football Féminin",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 12,
-      date: "FEB. 1, 2026",
-      result: null,
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "ALC LONGVIC",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 13,
-      date: "FEB. 15, 2026",
-      result: null,
-      homeTeam: "AS CANNES",
-      awayTeam: "AS Monaco Football Féminin",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 14,
-      date: "FEB. 22, 2026",
-      result: null,
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "AS CHATENOY LE ROYAL",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 15,
-      date: "MAR. 22, 2026",
-      result: null,
-      homeTeam: "CLERMONT FOOT 63",
-      awayTeam: "AS Monaco Football Féminin",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 16,
-      date: "MAR. 29, 2026",
-      result: null,
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "FC ROUSSET",
-      status: "exempt",
-      hasTickets: false,
-      hasYoutube: false
-    },
-    {
-      id: 17,
-      date: "APR. 5, 2026",
-      result: null,
-      homeTeam: "ALBI MARSSAC TF",
-      awayTeam: "AS Monaco Football Féminin",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 18,
-      date: "APR. 26, 2026",
-      result: null,
-      homeTeam: "OLYMPIQUE LYONNAIS 2",
-      awayTeam: "AS Monaco Football Féminin",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 19,
-      date: "MAY. 3, 2026",
-      result: null,
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "MONTPELLIER HSC 2",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 20,
-      date: "MAY. 17, 2026",
-      result: null,
-      homeTeam: "MONTAUBAN FC TG",
-      awayTeam: "AS Monaco Football Féminin",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 21,
-      date: "MAY. 24, 2026",
-      result: null,
-      homeTeam: "AS Monaco Football Féminin",
-      awayTeam: "LE PUY FOOT 43 AUV",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    },
-    {
-      id: 22,
-      date: "MAY. 31, 2026",
-      result: null,
-      homeTeam: "GIRONDINS BORDEAUX",
-      awayTeam: "AS Monaco Football Féminin",
-      status: "upcoming",
-      hasTickets: true,
-      hasYoutube: false
-    }
-  ];
 
   const getTeamLogo = (teamName: string) => {
     const logoMap: { [key: string]: string } = {
@@ -269,14 +80,14 @@ const Matches = () => {
     return logoMap[teamName];
   };
 
-  const MatchCard = ({ match }: { match: any }) => (
+  const MatchCard = ({ match }: { match: Match }) => (
     <div className="py-3 sm:py-4 md:py-6 last:border-b-0 border-b border-gray-100 lg:border-b-0">
       {/* Mobile Layout */}
       <div className="block sm:hidden">
         <div className="flex flex-col space-y-3 p-4 bg-gray-50 rounded-lg">
           {/* Date and Result */}
           <div className="flex justify-between items-center">
-            <span className="font-bold text-sm text-gray-900">{match.date}</span>
+            <span className="font-bold text-sm text-gray-900">{match.match_date}</span>
             <span className={`text-sm font-medium ${
               match.result ? 'text-gray-900' : 'text-gray-500'
             }`}>
@@ -288,13 +99,13 @@ const Matches = () => {
           <div className="flex items-center justify-center space-x-3">
             <div className="text-center flex-1">
               <div className="text-sm font-semibold text-[#1A2A44] uppercase tracking-wide">
-                {match.homeTeam}
+                {match.home_team}
               </div>
             </div>
             <div className="text-gray-900 font-bold text-sm px-2">VS</div>
             <div className="text-center flex-1">
               <div className="text-sm font-semibold text-[#1A2A44] uppercase tracking-wide">
-                {match.awayTeam}
+                {match.away_team}
               </div>
             </div>
           </div>
@@ -306,7 +117,7 @@ const Matches = () => {
         <div className="grid grid-cols-12 items-center gap-2">
           {/* Date and Result */}
           <div className="col-span-3 text-center">
-            <div className="font-bold text-sm text-gray-900">{match.date}</div>
+            <div className="font-bold text-sm text-gray-900">{match.match_date}</div>
             <div className={`text-sm font-medium mt-1 ${
               match.result ? 'text-gray-900' : 'text-gray-500'
             }`}>
@@ -319,12 +130,12 @@ const Matches = () => {
             <div className="flex items-center space-x-2 w-full">
               <div className="flex items-center space-x-2 flex-1 justify-end">
                 <div className="text-sm font-semibold text-[#1A2A44] text-right uppercase tracking-wide">
-                  {match.homeTeam}
+                  {match.home_team}
                 </div>
                 <div className="w-8 h-8 bg-white flex items-center justify-center flex-shrink-0">
                   <img 
-                    src={getTeamLogo(match.homeTeam)}
-                    alt={match.homeTeam}
+                    src={getTeamLogo(match.home_team)}
+                    alt={match.home_team}
                     className="w-8 h-8 object-contain"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -339,8 +150,8 @@ const Matches = () => {
               <div className="flex items-center space-x-2 flex-1 justify-start">
                 <div className="w-8 h-8 bg-white flex items-center justify-center flex-shrink-0">
                   <img 
-                    src={getTeamLogo(match.awayTeam)}
-                    alt={match.awayTeam}
+                    src={getTeamLogo(match.away_team)}
+                    alt={match.away_team}
                     className="w-8 h-8 object-contain"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -349,7 +160,7 @@ const Matches = () => {
                   />
                 </div>
                 <div className="text-sm font-semibold text-[#1A2A44] text-left uppercase tracking-wide">
-                  {match.awayTeam}
+                  {match.away_team}
                 </div>
               </div>
             </div>
@@ -362,7 +173,7 @@ const Matches = () => {
         <div className="grid grid-cols-12 items-center gap-4">
           {/* Date and Result - Left Column */}
           <div className="col-span-2 text-center">
-            <div className="font-bold text-sm text-gray-900">{match.date}</div>
+            <div className="font-bold text-sm text-gray-900">{match.match_date}</div>
             <div className={`text-base font-medium mt-1 ${
               match.result ? 'text-gray-900' : 'text-gray-500'
             }`}>
@@ -375,12 +186,12 @@ const Matches = () => {
             {/* Home Team */}
             <div className="flex items-center space-x-4 w-1/3 justify-end">
               <div className="text-lg font-cinzel-decorative font-semibold text-[#1A2A44] text-right uppercase tracking-wide flex-1">
-                {match.homeTeam}
+                {match.home_team}
               </div>
               <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white flex items-center justify-center flex-shrink-0">
                 <img 
-                  src={getTeamLogo(match.homeTeam)}
-                  alt={match.homeTeam}
+                  src={getTeamLogo(match.home_team)}
+                  alt={match.home_team}
                   className="w-16 h-16 lg:w-20 lg:h-20 object-contain"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
@@ -399,8 +210,8 @@ const Matches = () => {
             <div className="flex items-center space-x-4 w-1/3 justify-start">
               <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white flex items-center justify-center flex-shrink-0">
                 <img 
-                  src={getTeamLogo(match.awayTeam)}
-                  alt={match.awayTeam}
+                  src={getTeamLogo(match.away_team)}
+                  alt={match.away_team}
                   className="w-16 h-16 lg:w-20 lg:h-20 object-contain"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
@@ -409,7 +220,7 @@ const Matches = () => {
                 />
               </div>
               <div className="text-lg font-cinzel-decorative font-semibold text-[#1A2A44] text-left uppercase tracking-wide flex-1">
-                {match.awayTeam}
+                {match.away_team}
               </div>
             </div>
           </div>
@@ -418,7 +229,7 @@ const Matches = () => {
     </div>
   );
 
-  const MatchesList = ({ matches, title }: { matches: any[], title: string }) => (
+  const MatchesList = ({ matches, title }: { matches: Match[], title: string }) => (
     <section className="py-8 sm:py-12 md:py-16 bg-white">
       <div className="container-mobile">
         <h2 className="text-2xl sm:text-3xl font-cinzel-decorative font-bold text-gray-900 mb-6 sm:mb-8 text-center">{title}</h2>
@@ -436,6 +247,17 @@ const Matches = () => {
       </div>
     </section>
   );
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-monaco-red"></div>
+          <p className="mt-4 text-gray-600">Loading matches...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -478,7 +300,7 @@ const Matches = () => {
       </section>
 
       {/* WPSL Matches */}
-      <MatchesList matches={wpslMatches} title="D3 FEMININE - French Football Federation" />
+      <MatchesList matches={matches} title="D3 FEMININE - French Football Federation" />
 
       {/* Season Stats - Responsive */}
       <section className="py-8 sm:py-12 md:py-16 bg-gray-50">

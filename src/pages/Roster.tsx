@@ -1,13 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Instagram } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
+
+interface Player {
+  id: string;
+  first_name: string;
+  last_name: string;
+  jersey_number?: number;
+  position: string;
+  instagram?: string;
+  hometown?: string;
+  height?: string;
+  photo_url?: string;
+  is_coach: boolean;
+  specialty?: string;
+}
 
 const Roster = () => {
   const { language } = useLanguage();
   const navigate = useNavigate();
+  const [playersData, setPlayersData] = useState<Player[]>([]);
+  const [coachingStaffData, setCoachingStaffData] = useState<Player[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadPlayers();
+  }, []);
+
+  const loadPlayers = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('players')
+        .select('*')
+        .order('jersey_number', { ascending: true, nullsFirst: false });
+
+      if (error) throw error;
+
+      if (data) {
+        const playersList = data.filter(p => !p.is_coach);
+        const coachesList = data.filter(p => p.is_coach);
+        setPlayersData(playersList);
+        setCoachingStaffData(coachesList);
+      }
+    } catch (error) {
+      console.error('Error loading players:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const rosterInfo = {
     fr: {
@@ -143,7 +187,7 @@ const Roster = () => {
   ];
 
   // Combine players and coaching staff
-  const allTeamMembers = [...players, ...coachingStaff];
+  const allTeamMembers = [...playersData, ...coachingStaffData];
 
   const getPositionColor = (position: string) => {
     switch (position.toLowerCase()) {
@@ -175,16 +219,42 @@ const Roster = () => {
     return displays[language][position as keyof typeof displays[typeof language]] || position;
   };
 
-  const getPlayerHometown = (player: any) => {
+  const getPlayerHometown = (player: Player) => {
     return player.hometown || 'N/A';
   };
 
-  const getPlayerHeight = (player: any) => {
+  const getPlayerHeight = (player: Player) => {
     if (player.height && player.height !== 'N/A') {
       return `${player.height} cm`;
     }
     return 'N/A';
   };
+
+  const getSpecialty = (player: Player) => {
+    if (!player.is_coach || !player.specialty) return '';
+    
+    const specialtyTranslations: { [key: string]: { fr: string; en: string } } = {
+      'Head Coach': { fr: 'Coach Principal', en: 'Head Coach' },
+      'Assistant Coach': { fr: 'Coach Adjoint', en: 'Assistant Coach' },
+      'Goalkeeper Coach': { fr: 'Entraîneur des Gardiennes', en: 'Goalkeeper Coach' },
+      'Fitness Coach': { fr: 'Préparateur Physique', en: 'Fitness Coach' },
+      'Video Analyst': { fr: 'Analyste Vidéo', en: 'Video Analyst' },
+      'Team Manager': { fr: 'Intendante', en: 'Team Manager (Logistics/Equipment Manager)' }
+    };
+
+    return specialtyTranslations[player.specialty]?.[language] || player.specialty;
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-monaco-red"></div>
+          <p className="mt-4 text-gray-600">Loading roster...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -204,7 +274,7 @@ const Roster = () => {
             {language === 'fr' ? 'Joueuses' : 'Players'}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {players.map((player, index) => (
+            {playersData.map((player, index) => (
               <div 
                 key={player.id}
                 className="relative group cursor-pointer animate-fade-in touch-friendly"
@@ -226,10 +296,10 @@ const Roster = () => {
                             textShadow: '3px 3px 0 red, -3px -3px 0 red, 3px -3px 0 red, -3px 3px 0 red, 0 3px 0 red, 0 -3px 0 red, 3px 0 0 red, -3px 0 0 red',
                             letterSpacing: '2px',
                             lineHeight: '1',
-                            marginRight: (player.number && player.number > 9) ? '10px' : '0px'
+                            marginRight: (player.jersey_number && player.jersey_number > 9) ? '10px' : '0px'
                           }}
                         >
-                          {player.number || '?'}
+                          {player.jersey_number || '?'}
                         </span>
                       </div>
                     </div>
@@ -238,10 +308,10 @@ const Roster = () => {
                   {/* Player Photo Placeholder - Red Background */}
                   <div className="absolute inset-0 bg-monaco-red">
                     <div className="flex items-center justify-center h-full">
-                      {/* Player Photo */}
+                  {/* Player Photo */}
                       <img 
-                        src={player.photo} 
-                        alt={`${player.firstName} ${player.lastName}`}
+                        src={player.photo_url} 
+                        alt={`${player.first_name} ${player.last_name}`}
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           // Fallback to initials if image fails to load
@@ -255,7 +325,7 @@ const Roster = () => {
                       />
                       {/* Fallback Initials */}
                       <div className="text-white/30 text-6xl sm:text-8xl lg:text-9xl font-bold absolute inset-0 flex items-center justify-center" style={{ display: 'none' }}>
-                        {player.firstName.charAt(0)}{player.lastName.charAt(0)}
+                        {player.first_name.charAt(0)}{player.last_name.charAt(0)}
                       </div>
                     </div>
                   </div>
@@ -264,10 +334,10 @@ const Roster = () => {
                   <div className="absolute bottom-0 left-0 right-0 bg-black p-3 sm:p-4 md:p-6 rounded-b-lg">
                     <div className="text-white">
                       <h3 className="font-bold text-base sm:text-lg md:text-xl lg:text-2xl mb-1 leading-tight">
-                        {player.firstName}
+                        {player.first_name}
                       </h3>
                       <h3 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl mb-2 sm:mb-3 leading-tight">
-                        {player.lastName}
+                        {player.last_name}
                       </h3>
                       
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
@@ -308,7 +378,7 @@ const Roster = () => {
             {language === 'fr' ? 'Équipe Technique' : 'Coaching Staff'}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {coachingStaff.map((coach, index) => (
+            {coachingStaffData.map((coach, index) => (
               <div 
                 key={coach.id}
                 className="relative group cursor-pointer animate-fade-in touch-friendly"
@@ -329,8 +399,8 @@ const Roster = () => {
                     <div className="flex items-center justify-center h-full">
                       {/* Coach Photo */}
                       <img 
-                        src={coach.photo} 
-                        alt={`${coach.firstName} ${coach.lastName}`}
+                        src={coach.photo_url} 
+                        alt={`${coach.first_name} ${coach.last_name}`}
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           // Fallback to initials if image fails to load
@@ -344,7 +414,7 @@ const Roster = () => {
                       />
                       {/* Fallback Initials */}
                       <div className="text-white/30 text-6xl sm:text-8xl lg:text-9xl font-bold absolute inset-0 flex items-center justify-center" style={{ display: 'none' }}>
-                        {coach.firstName.charAt(0)}{coach.lastName.charAt(0)}
+                        {coach.first_name.charAt(0)}{coach.last_name.charAt(0)}
                       </div>
                     </div>
                   </div>
@@ -353,10 +423,10 @@ const Roster = () => {
                   <div className="absolute bottom-0 left-0 right-0 bg-black p-3 sm:p-4 md:p-6 rounded-b-lg">
                     <div className="text-white">
                       <h3 className="font-bold text-base sm:text-lg md:text-xl lg:text-2xl mb-1 leading-tight">
-                        {coach.firstName}
+                        {coach.first_name}
                       </h3>
                       <h3 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl mb-2 sm:mb-3 leading-tight">
-                        {coach.lastName}
+                        {coach.last_name}
                       </h3>
                       
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
