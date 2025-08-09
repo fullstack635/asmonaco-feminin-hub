@@ -311,25 +311,25 @@ const Matches = () => {
           
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
             <div className="text-center animate-fade-in">
-              <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">19</div>
+              <div className="text-2xl sm:text-3xl font-bold text-black-900 mb-2">22</div>
               <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 {language === 'fr' ? 'Matchs programmés' : 'Scheduled Matches'}
               </p>
             </div>
             <div className="text-center animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-2">1</div>
+              <div className="text-2xl sm:text-3xl font-bold text-black-600 mb-2">0</div>
               <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 {language === 'fr' ? 'Victoires' : 'Wins'}
               </p>
             </div>
             <div className="text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">0</div>
+              <div className="text-2xl sm:text-3xl font-bold text-black-600 mb-2">0</div>
               <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 {language === 'fr' ? 'Nuls' : 'Draws'}
               </p>
             </div>
             <div className="text-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              <div className="text-2xl sm:text-3xl font-bold text-red-600 mb-2">0</div>
+              <div className="text-2xl sm:text-3xl font-bold text-black-600 mb-2">0</div>
               <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 {language === 'fr' ? 'Défaites' : 'Losses'}
               </p>

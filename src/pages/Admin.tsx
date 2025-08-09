@@ -5,10 +5,14 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Calendar } from '@/components/ui/calendar';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { Users, Calendar, FileText, Upload, Trash2, Edit, Plus, LogOut } from 'lucide-react';
+import { Users, Calendar as CalendarIcon, FileText, Upload, Trash2, Edit, Plus, LogOut } from 'lucide-react';
+import { format } from 'date-fns';
 
 interface Player {
   id: string;
@@ -55,12 +59,30 @@ const Admin = () => {
   const [news, setNews] = useState<News[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('players');
+  const [uploadingPhoto, setUploadingPhoto] = useState(false);
+  const [matchDate, setMatchDate] = useState<Date>();
 
   // Form states
   const [playerForm, setPlayerForm] = useState<Partial<Player>>({});
   const [matchForm, setMatchForm] = useState<Partial<Match>>({});
   const [newsForm, setNewsForm] = useState<Partial<News>>({});
   const [editingId, setEditingId] = useState<string | null>(null);
+
+  // Team names for dropdowns
+  const teamNames = [
+    'AS Monaco Football Féminin',
+    'GIRONDINS BORDEAUX',
+    'ALC LONGVIC',
+    'MONTPELLIER HSC 2',
+    'CLERMONT FOOT 63',
+    'AS CHATENOY LE ROYAL',
+    'AS CANNES',
+    'ALBI MARSSAC TF',
+    'OLYMPIQUE LYONNAIS 2',
+    'MONTAUBAN FC TG',
+    'LE PUY FOOT 43 AUV',
+    'FC ROUSSET'
+  ];
 
   useEffect(() => {
     // Check if admin is logged in
@@ -124,6 +146,40 @@ const Admin = () => {
         variant: "destructive",
       });
       return null;
+    }
+  };
+
+  const handlePhotoUpload = async (file: File) => {
+    setUploadingPhoto(true);
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `player_${Date.now()}.${fileExt}`;
+      const filePath = `players/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('media')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('media')
+        .getPublicUrl(filePath);
+
+      setPlayerForm({...playerForm, photo_url: publicUrl});
+      
+      toast({
+        title: "Photo uploaded successfully",
+        description: "Player photo has been uploaded",
+      });
+    } catch (error) {
+      toast({
+        title: "Upload failed",
+        description: "Failed to upload photo",
+        variant: "destructive",
+      });
+    } finally {
+      setUploadingPhoto(false);
     }
   };
 
@@ -194,6 +250,7 @@ const Admin = () => {
         toast({ title: "Match added successfully" });
       }
       setMatchForm({});
+      setMatchDate(undefined);
       setEditingId(null);
       loadData();
     } catch (error) {
@@ -227,17 +284,22 @@ const Admin = () => {
   const handleNewsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      const newsData = {
+        ...newsForm,
+        published_at: newsForm.published ? new Date().toISOString() : null
+      };
+      
       if (editingId) {
         const { error } = await supabase
           .from('news')
-          .update(newsForm)
+          .update(newsData)
           .eq('id', editingId);
         if (error) throw error;
         toast({ title: "News updated successfully" });
       } else {
         const { error } = await supabase
           .from('news')
-          .insert([newsForm as any]);
+          .insert([newsData as any]);
         if (error) throw error;
         toast({ title: "News added successfully" });
       }
@@ -306,7 +368,7 @@ const Admin = () => {
               Roster Management
             </TabsTrigger>
             <TabsTrigger value="matches" className="flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
+              <CalendarIcon className="w-4 h-4" />
               Match Management
             </TabsTrigger>
             <TabsTrigger value="news" className="flex items-center gap-2">
@@ -319,7 +381,7 @@ const Admin = () => {
           <TabsContent value="players" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Add/Edit Player</CardTitle>
+                <CardTitle>{playerForm.is_coach ? 'Add/Edit Staff' : 'Add/Edit Player'}</CardTitle>
                 <CardDescription>Manage team roster and coaching staff</CardDescription>
               </CardHeader>
               <CardContent>
@@ -339,15 +401,75 @@ const Admin = () => {
                   <Input
                     type="number"
                     placeholder="Jersey Number"
-                    value={playerForm.jersey_number || ''}
+                    value={playerForm.jersey_number !== undefined && playerForm.jersey_number !== null ? playerForm.jersey_number : ''}
                     onChange={(e) => setPlayerForm({...playerForm, jersey_number: parseInt(e.target.value)})}
+                    disabled={playerForm.is_coach || false}
+                    className={playerForm.is_coach ? "opacity-50 cursor-not-allowed" : ""}
                   />
-                  <Input
-                    placeholder="Position"
-                    value={playerForm.position || ''}
-                    onChange={(e) => setPlayerForm({...playerForm, position: e.target.value})}
-                    required
-                  />
+                  
+                  {/* Position field - dropdown for players, text input for coaches */}
+                  {playerForm.is_coach ? (
+                    <div className="space-y-2">
+                      <Select
+                        value={['GoalKeeper coach', 'Video Analyst', 'Team manager', 'Fitness coach', 'Head coach', 'Assistant coach'].includes(playerForm.position || '') 
+                          ? playerForm.position 
+                          : 'Other'}
+                        onValueChange={(value) => {
+                          if (value === 'Other') {
+                            // Keep the current position if it's not in the predefined list
+                            if (!['GoalKeeper coach', 'Video Analyst', 'Team manager', 'Fitness coach', 'Head coach', 'Assistant coach'].includes(playerForm.position || '')) {
+                              // Don't change the position, just trigger the input field to show
+                              setPlayerForm({...playerForm});
+                            } else {
+                              setPlayerForm({...playerForm, position: ''});
+                            }
+                          } else {
+                            setPlayerForm({...playerForm, position: value});
+                          }
+                        }}
+                        required
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select Coach Position" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Head coach">Head coach</SelectItem>
+                          <SelectItem value="Assistant coach">Assistant coach</SelectItem>
+                          <SelectItem value="GoalKeeper coach">GoalKeeper coach</SelectItem>
+                          <SelectItem value="Fitness coach">Fitness coach</SelectItem>
+                          <SelectItem value="Video Analyst">Video Analyst</SelectItem>
+                          <SelectItem value="Team manager">Team manager</SelectItem>
+                          <SelectItem value="Other">Other (manual entry)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      {/* Show text input for custom positions or when position is not in predefined list */}
+                      {(!['GoalKeeper coach', 'Video Analyst', 'Team manager', 'Fitness coach', 'Head coach', 'Assistant coach'].includes(playerForm.position || '')) && (
+                        <Input
+                          placeholder="Enter custom position/role"
+                          value={playerForm.position || ''}
+                          onChange={(e) => setPlayerForm({...playerForm, position: e.target.value})}
+                          required
+                        />
+                      )}
+                    </div>
+                  ) : (
+                    <Select
+                      value={playerForm.position || ''}
+                      onValueChange={(value) => setPlayerForm({...playerForm, position: value})}
+                      required
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Position" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="GoalKeeper">GoalKeeper</SelectItem>
+                        <SelectItem value="Defender">Defender</SelectItem>
+                        <SelectItem value="Midfielder">Midfielder</SelectItem>
+                        <SelectItem value="Strike">Strike</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
+
                   <Input
                     placeholder="Instagram Handle"
                     value={playerForm.instagram || ''}
@@ -362,18 +484,57 @@ const Admin = () => {
                     placeholder="Height (cm)"
                     value={playerForm.height || ''}
                     onChange={(e) => setPlayerForm({...playerForm, height: e.target.value})}
+                    disabled={playerForm.is_coach || false}
+                    className={playerForm.is_coach ? "opacity-50 cursor-not-allowed" : ""}
                   />
-                  <Input
-                    placeholder="Photo URL"
-                    value={playerForm.photo_url || ''}
-                    onChange={(e) => setPlayerForm({...playerForm, photo_url: e.target.value})}
-                  />
+                  
+                  {/* Photo upload field */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            handlePhotoUpload(file);
+                          }
+                        }}
+                        disabled={uploadingPhoto}
+                        className="file:mr-4 file:py-2 file:px-4 h-15 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-monaco-red file:text-white hover:file:bg-monaco-red/90"
+                      />
+                      {uploadingPhoto && (
+                        <div className="flex items-center gap-1 text-sm text-gray-600">
+                          <Upload className="w-4 h-4 animate-spin" />
+                          Uploading...
+                        </div>
+                      )}
+                    </div>
+                    {playerForm.photo_url && (
+                      <div className="text-xs text-green-600">✓ Photo uploaded successfully</div>
+                    )}
+                  </div>
+
                   <div className="flex items-center gap-2">
                     <input
                       type="checkbox"
                       id="is_coach"
                       checked={playerForm.is_coach || false}
-                      onChange={(e) => setPlayerForm({...playerForm, is_coach: e.target.checked})}
+                      onChange={(e) => {
+                        const isCoach = e.target.checked;
+                        const wasPlayer = !playerForm.is_coach;
+                        
+                        setPlayerForm({
+                          ...playerForm, 
+                          is_coach: isCoach,
+                          // Only clear jersey_number and height when switching from player to coach
+                          // and only for new entries (not when editing existing entries)
+                          ...(isCoach && wasPlayer && !editingId && { 
+                            jersey_number: undefined, 
+                            height: '' 
+                          })
+                        });
+                      }}
                     />
                     <label htmlFor="is_coach">Is Coach/Staff</label>
                   </div>
@@ -384,7 +545,10 @@ const Admin = () => {
                   />
                   <div className="md:col-span-2">
                     <Button type="submit" className="bg-monaco-red hover:bg-monaco-red/90">
-                      {editingId ? 'Update Player' : 'Add Player'}
+                      {editingId ? 
+                        (playerForm.is_coach ? 'Update Staff' : 'Update Player') : 
+                        (playerForm.is_coach ? 'Add Staff' : 'Add Player')
+                      }
                     </Button>
                     {editingId && (
                       <Button
@@ -427,6 +591,7 @@ const Admin = () => {
                             size="sm"
                             variant="outline"
                             onClick={() => {
+                              console.log('Editing player:', player); // Debug log
                               setPlayerForm(player);
                               setEditingId(player.id);
                             }}
@@ -462,24 +627,65 @@ const Admin = () => {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleMatchSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Input
-                    placeholder="Match Date (e.g. SEPT. 7, 2025)"
-                    value={matchForm.match_date || ''}
-                    onChange={(e) => setMatchForm({...matchForm, match_date: e.target.value})}
-                    required
-                  />
-                  <Input
-                    placeholder="Home Team"
+                  {/* Date Picker */}
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className="w-full justify-start text-left font-normal"
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {matchForm.match_date ? matchForm.match_date : <span>Pick a date</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        selected={matchDate}
+                        onSelect={(date) => {
+                          setMatchDate(date);
+                          if (date) {
+                            setMatchForm({...matchForm, match_date: format(date, "MMM d, yyyy").toUpperCase()});
+                          }
+                        }}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  
+                  {/* Home Team Dropdown */}
+                  <Select
                     value={matchForm.home_team || ''}
-                    onChange={(e) => setMatchForm({...matchForm, home_team: e.target.value})}
-                    required
-                  />
-                  <Input
-                    placeholder="Away Team"
+                    onValueChange={(value) => setMatchForm({...matchForm, home_team: value})}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select Home Team" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {teamNames.map((team) => (
+                        <SelectItem key={team} value={team}>
+                          {team}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  
+                  {/* Away Team Dropdown */}
+                  <Select
                     value={matchForm.away_team || ''}
-                    onChange={(e) => setMatchForm({...matchForm, away_team: e.target.value})}
-                    required
-                  />
+                    onValueChange={(value) => setMatchForm({...matchForm, away_team: value})}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select Away Team" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {teamNames.map((team) => (
+                        <SelectItem key={team} value={team}>
+                          {team}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <Input
                     placeholder="Result (optional)"
                     value={matchForm.result || ''}
@@ -524,6 +730,7 @@ const Admin = () => {
                         onClick={() => {
                           setEditingId(null);
                           setMatchForm({});
+                          setMatchDate(undefined);
                         }}
                       >
                         Cancel
@@ -561,6 +768,16 @@ const Admin = () => {
                             onClick={() => {
                               setMatchForm(match);
                               setEditingId(match.id);
+                              // Try to parse the existing date for the date picker
+                              try {
+                                const parsedDate = new Date(match.match_date);
+                                if (!isNaN(parsedDate.getTime())) {
+                                  setMatchDate(parsedDate);
+                                }
+                              } catch (error) {
+                                // If parsing fails, leave matchDate undefined
+                                setMatchDate(undefined);
+                              }
                             }}
                           >
                             <Edit className="w-4 h-4" />
@@ -634,11 +851,11 @@ const Admin = () => {
                       rows={6}
                     />
                   </div>
-                  <Input
+                  {/* <Input
                     placeholder="Featured Image URL"
                     value={newsForm.featured_image_url || ''}
                     onChange={(e) => setNewsForm({...newsForm, featured_image_url: e.target.value})}
-                  />
+                  /> */}
                   <div className="flex items-center gap-2">
                     <input
                       type="checkbox"
