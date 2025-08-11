@@ -328,14 +328,14 @@ const Academy = () => {
                 : 'Join an academy that believes in your potential and helps you achieve it.'
               }
             </p>
-            <Button 
+            {/* <Button 
               variant="secondary" 
               size="lg"
               className="btn-mobile group shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
             >
               {language === 'fr' ? 'Commencer le Voyage' : 'Start the Journey'}
               <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" />
-            </Button>
+            </Button> */}
           </div>
         </div>
       </section>

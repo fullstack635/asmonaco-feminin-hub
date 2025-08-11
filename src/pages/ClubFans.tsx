@@ -1,12 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Instagram, Mail } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 const ClubFans = () => {
   const { language } = useLanguage();
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscriptionMessage, setSubscriptionMessage] = useState('');
+
+  const handleNewsletterSubscribe = async () => {
+    if (!email || !email.includes('@')) {
+      setSubscriptionMessage(language === 'fr' ? 'Veuillez entrer une adresse email valide' : 'Please enter a valid email address');
+      return;
+    }
+
+    setIsSubscribing(true);
+    setSubscriptionMessage('');
+
+    try {
+      // Check if email already exists
+      const { data: existingSubscriber } = await supabase
+        .from('newsletter_subscribers')
+        .select('id, subscribed')
+        .eq('email', email)
+        .single();
+
+      if (existingSubscriber) {
+        if (existingSubscriber.subscribed) {
+          setSubscriptionMessage(language === 'fr' ? 'Vous êtes déjà abonné à notre newsletter!' : 'You are already subscribed to our newsletter!');
+        } else {
+          // Resubscribe
+          const { error } = await supabase
+            .from('newsletter_subscribers')
+            .update({ subscribed: true })
+            .eq('email', email);
+          
+          if (error) throw error;
+          setSubscriptionMessage(language === 'fr' ? 'Bienvenue de retour! Vous êtes maintenant réabonné.' : 'Welcome back! You are now resubscribed.');
+        }
+      } else {
+        // New subscription
+        const { error } = await supabase
+          .from('newsletter_subscribers')
+          .insert([{ email, subscribed: true }]);
+        
+        if (error) throw error;
+        setSubscriptionMessage(language === 'fr' ? 'Merci! Vous êtes maintenant abonné à notre newsletter.' : 'Thank you! You are now subscribed to our newsletter.');
+      }
+
+      setEmail('');
+    } catch (error) {
+      console.error('Error subscribing to newsletter:', error);
+      setSubscriptionMessage(language === 'fr' ? 'Une erreur est survenue. Veuillez réessayer.' : 'An error occurred. Please try again.');
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
 
   const content = {
     fr: {
@@ -196,7 +249,10 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                                   : 'Exclusive content • Behind-the-scenes • Live stories • Team interactions'
                                 }
                               </p>
-                              <Button className="bg-gradient-to-r from-monaco-red to-monaco-yellow hover:from-monaco-red/90 hover:to-monaco-yellow/90 text-white px-8 py-3 rounded-full font-montserrat-extrabold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                              <Button 
+                                onClick={() => window.open('https://instagram.com/asmff_officiel', '_blank', 'noopener,noreferrer')}
+                                className="bg-gradient-to-r from-monaco-red to-monaco-yellow hover:from-monaco-red/90 hover:to-monaco-yellow/90 text-white px-8 py-3 rounded-full font-montserrat-extrabold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                              >
                                 <Instagram className="w-5 h-5 mr-2" />
                                 {language === 'fr' ? 'Rejoindre Instagram' : 'Follow Us on Instagram'}
                               </Button>
@@ -233,13 +289,31 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                                   : 'Breaking news first • Expert analysis • Special invitations • VIP content'
                                 }
                               </p>
-                              <Button 
-                                variant="outline" 
-                                className="border-2 border-monaco-red text-monaco-red hover:bg-monaco-red hover:text-white px-8 py-3 rounded-full font-montserrat-extrabold transition-all duration-300 transform hover:scale-105"
-                              >
-                                <Mail className="w-5 h-5 mr-2" />
-                                {language === 'fr' ? 'S\'abonner Maintenant' : 'Subscribe Now'}
-                              </Button>
+                              <div className="flex flex-col md:flex-row items-center gap-3">
+                                <input
+                                  type="email"
+                                  placeholder={language === 'fr' ? 'Votre adresse email' : 'Your email address'}
+                                  value={email}
+                                  onChange={(e) => setEmail(e.target.value)}
+                                  onKeyPress={(e) => {
+                                    if (e.key === 'Enter') {
+                                      handleNewsletterSubscribe();
+                                    }
+                                  }}
+                                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-monaco-red focus:border-transparent"
+                                  disabled={isSubscribing}
+                                />
+                                <Button
+                                  onClick={handleNewsletterSubscribe}
+                                  className="bg-monaco-red hover:bg-monaco-red/90 text-white px-6 py-2 rounded-lg font-montserrat-extrabold shadow-md transition-all duration-300"
+                                  disabled={isSubscribing}
+                                >
+                                  {isSubscribing ? 'Abonnement...' : language === 'fr' ? 'S\'abonner' : 'Subscribe'}
+                                </Button>
+                              </div>
+                              {subscriptionMessage && (
+                                <p className="mt-4 text-sm text-monaco-red">{subscriptionMessage}</p>
+                              )}
                             </div>
                           </div>
                         </div>

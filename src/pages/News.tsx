@@ -22,6 +22,9 @@ const News = () => {
   const { language } = useLanguage();
   const [news, setNews] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
+  const [email, setEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscriptionMessage, setSubscriptionMessage] = useState('');
 
   useEffect(() => {
     loadNews();
@@ -41,6 +44,57 @@ const News = () => {
       console.error('Error loading news:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleNewsletterSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !email.includes('@')) {
+      setSubscriptionMessage(language === 'fr' ? 'Veuillez entrer une adresse email valide' : 'Please enter a valid email address');
+      return;
+    }
+
+    setIsSubscribing(true);
+    setSubscriptionMessage('');
+
+    try {
+      // Check if email already exists
+      const { data: existingSubscriber } = await supabase
+        .from('newsletter_subscribers')
+        .select('id, subscribed')
+        .eq('email', email)
+        .single();
+
+      if (existingSubscriber) {
+        if (existingSubscriber.subscribed) {
+          setSubscriptionMessage(language === 'fr' ? 'Vous êtes déjà abonné à notre newsletter!' : 'You are already subscribed to our newsletter!');
+        } else {
+          // Resubscribe
+          const { error } = await supabase
+            .from('newsletter_subscribers')
+            .update({ subscribed: true })
+            .eq('email', email);
+          
+          if (error) throw error;
+          setSubscriptionMessage(language === 'fr' ? 'Bienvenue de retour! Vous êtes maintenant réabonné.' : 'Welcome back! You are now resubscribed.');
+        }
+      } else {
+        // New subscription
+        const { error } = await supabase
+          .from('newsletter_subscribers')
+          .insert([{ email, subscribed: true }]);
+        
+        if (error) throw error;
+        setSubscriptionMessage(language === 'fr' ? 'Merci! Vous êtes maintenant abonné à notre newsletter.' : 'Thank you! You are now subscribed to our newsletter.');
+      }
+
+      setEmail('');
+    } catch (error) {
+      console.error('Error subscribing to newsletter:', error);
+      setSubscriptionMessage(language === 'fr' ? 'Une erreur est survenue. Veuillez réessayer.' : 'An error occurred. Please try again.');
+    } finally {
+      setIsSubscribing(false);
     }
   };
 
@@ -235,19 +289,34 @@ const News = () => {
               {currentContent.newsletterSubtitle}
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+            <form onSubmit={handleNewsletterSubscribe} className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
               <input 
                 type="email" 
                 placeholder={currentContent.emailPlaceholder}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 px-4 py-3 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-monaco-red focus:border-monaco-red transition-colors"
+                required
               />
               <Button 
-                className="bg-monaco-red hover:bg-monaco-red/90 text-white flex items-center gap-2 shadow-monaco hover:shadow-xl transition-all duration-300 hover:scale-105"
+                type="submit"
+                disabled={isSubscribing}
+                className="bg-monaco-red hover:bg-monaco-red/90 text-white flex items-center gap-2 shadow-monaco hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Mail className="w-4 h-4" />
-                {currentContent.subscribe}
+                {isSubscribing ? (language === 'fr' ? 'Inscription...' : 'Subscribing...') : currentContent.subscribe}
               </Button>
-            </div>
+            </form>
+            
+            {subscriptionMessage && (
+              <div className={`mt-4 p-3 rounded-md text-sm ${
+                subscriptionMessage.includes('error') || subscriptionMessage.includes('erreur') 
+                  ? 'bg-red-100 text-red-700 border border-red-200' 
+                  : 'bg-green-100 text-green-700 border border-green-200'
+              }`}>
+                {subscriptionMessage}
+              </div>
+            )}
             
             <p className="text-sm text-muted-foreground mt-4">
               {language === 'fr' 
@@ -272,13 +341,14 @@ const News = () => {
                 : 'Be the first to know the latest news from AS Monaco Football Féminin'
               }
             </p>
-            <Button 
+            {/* <Button 
+              onClick={() => window.open('https://instagram.com/asmff_officiel', '_blank', 'noopener,noreferrer')}
               variant="outline" 
               className="bg-white text-monaco-red hover:bg-white/90 border-white hover:border-white/90"
             >
               {language === 'fr' ? 'Suivez-nous' : 'Follow Us'}
               <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
+            </Button> */}
           </div>
         </div>
       </section>

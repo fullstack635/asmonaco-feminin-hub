@@ -11,7 +11,7 @@ import { Calendar } from '@/components/ui/calendar';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { Users, Calendar as CalendarIcon, FileText, Upload, Trash2, Edit, Plus, LogOut } from 'lucide-react';
+import { Users, Calendar as CalendarIcon, FileText, Upload, Trash2, Edit, Plus, LogOut, Mail } from 'lucide-react';
 import { format } from 'date-fns';
 
 interface Player {
@@ -51,12 +51,21 @@ interface News {
   published: boolean;
 }
 
+interface NewsletterSubscriber {
+  id: string;
+  email: string;
+  subscribed: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 const Admin = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [players, setPlayers] = useState<Player[]>([]);
   const [matches, setMatches] = useState<Match[]>([]);
   const [news, setNews] = useState<News[]>([]);
+  const [newsletterSubscribers, setNewsletterSubscribers] = useState<NewsletterSubscriber[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('players');
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
@@ -98,15 +107,17 @@ const Admin = () => {
 
   const loadData = async () => {
     try {
-      const [playersRes, matchesRes, newsRes] = await Promise.all([
+      const [playersRes, matchesRes, newsRes, subscribersRes] = await Promise.all([
         supabase.from('players').select('*').order('jersey_number', { ascending: true, nullsFirst: false }),
         supabase.from('matches').select('*').order('created_at', { ascending: false }),
-        supabase.from('news').select('*').order('created_at', { ascending: false })
+        supabase.from('news').select('*').order('created_at', { ascending: false }),
+        supabase.from('newsletter_subscribers').select('*').order('created_at', { ascending: false })
       ]);
 
       if (playersRes.data) setPlayers(playersRes.data);
       if (matchesRes.data) setMatches(matchesRes.data);
       if (newsRes.data) setNews(newsRes.data);
+      if (subscribersRes.data) setNewsletterSubscribers(subscribersRes.data);
     } catch (error) {
       toast({
         title: "Error loading data",
@@ -334,6 +345,45 @@ const Admin = () => {
     }
   };
 
+  const toggleSubscriberStatus = async (id: string, currentStatus: boolean) => {
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .update({ subscribed: !currentStatus })
+        .eq('id', id);
+      if (error) throw error;
+      toast({ 
+        title: "Subscriber status updated successfully",
+        description: `Subscriber ${!currentStatus ? 'subscribed' : 'unsubscribed'} successfully`
+      });
+      loadData();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to update subscriber status",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const deleteSubscriber = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .delete()
+        .eq('id', id);
+      if (error) throw error;
+      toast({ title: "Subscriber deleted successfully" });
+      loadData();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to delete subscriber",
+        variant: "destructive",
+      });
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -363,7 +413,7 @@ const Admin = () => {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="players" className="flex items-center gap-2">
               <Users className="w-4 h-4" />
               Roster Management
@@ -375,6 +425,10 @@ const Admin = () => {
             <TabsTrigger value="news" className="flex items-center gap-2">
               <FileText className="w-4 h-4" />
               News Management
+            </TabsTrigger>
+            <TabsTrigger value="subscribers" className="flex items-center gap-2">
+              <Mail className="w-4 h-4" />
+              Newsletter Subscribers
             </TabsTrigger>
           </TabsList>
 
@@ -919,6 +973,48 @@ const Admin = () => {
                             size="sm"
                             variant="destructive"
                             onClick={() => deleteNews(article.id)}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Newsletter Subscribers Management */}
+          <TabsContent value="subscribers" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Newsletter Subscribers ({newsletterSubscribers.length})</CardTitle>
+                <CardDescription>Manage subscribers for the newsletter</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {newsletterSubscribers.map((subscriber) => (
+                    <div key={subscriber.id} className="border rounded-lg p-4">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h3 className="font-semibold">{subscriber.email}</h3>
+                          <p className="text-sm text-gray-600">Subscribed: {subscriber.subscribed ? 'Yes' : 'No'}</p>
+                          <p className="text-sm text-gray-600">Created: {new Date(subscriber.created_at).toLocaleDateString()}</p>
+                          <p className="text-sm text-gray-600">Updated: {new Date(subscriber.updated_at).toLocaleDateString()}</p>
+                        </div>
+                        <div className="flex gap-1">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => toggleSubscriberStatus(subscriber.id, subscriber.subscribed)}
+                          >
+                            {subscriber.subscribed ? 'Unsubscribe' : 'Subscribe'}
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="destructive"
+                            onClick={() => deleteSubscriber(subscriber.id)}
                           >
                             <Trash2 className="w-4 h-4" />
                           </Button>

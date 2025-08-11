@@ -297,13 +297,7 @@ const Partners = () => {
                 {content.becomePartner}
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="group hover:scale-105 transition-all duration-300"
-              >
-                {language === 'fr' ? 'Nous Contacter' : 'Contact Us'}
-              </Button>
+             
             </div>
           </div>
         </div>
