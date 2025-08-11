@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
   const socialLinks = [
     { icon: Instagram, href: 'https://instasmff_officielf_officiel', label: 'asmff_officiel' },
     { icon: Facebook, href: 'https://www.facebook.com/ASMFootFeminin', label: 'ASMFootFeminin' },
-    { icon: XIcon, href: 'https://www.facebook.com/ASMFootFeminin', label: 'ASMFootFeminin' }
+    { icon: XIcon, href: 'https://www.twitter.com/ASMFootFeminin', label: 'ASMFootFeminin' }
   ];
 
   return (
