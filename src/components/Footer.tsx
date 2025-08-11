@@ -33,9 +33,9 @@ export const Footer: React.FC = () => {
   const currentContent = content[language];
 
   const socialLinks = [
-    { icon: Instagram, href: 'https://instasmff_officielf_officiel', label: 'asmff_officiel' },
-    { icon: Facebook, href: 'https://www.facebook.com/ASMFootFeminin', label: 'ASMFootFeminin' },
-    { icon: XIcon, href: 'https://www.twitter.com/ASMFootFeminin', label: 'ASMFootFeminin' }
+    { icon: Instagram, href: 'https://instagram.com/asmfootballfeminin', label: 'asmfootballfeminin' },
+    { icon: Facebook, href: 'https://www.facebook.com/ASMonacoFootballFeminin', label: 'ASMonacoFootballFeminin' },
+    { icon: XIcon, href: 'https://x.com/ASMFootFem', label: '@ASMFootFem' }
   ];
 
   return (
@@ -54,6 +54,8 @@ export const Footer: React.FC = () => {
                 <a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-200"
                   aria-label={social.label}
                 >

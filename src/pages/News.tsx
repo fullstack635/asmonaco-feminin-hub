@@ -342,7 +342,7 @@ const News = () => {
               }
             </p>
             {/* <Button 
-              onClick={() => window.open('https://instagram.com/asmff_officiel', '_blank', 'noopener,noreferrer')}
+              onClick={() => window.open('https://instagram.com/asmfootballfeminin', '_blank', 'noopener,noreferrer')}
               variant="outline" 
               className="bg-white text-monaco-red hover:bg-white/90 border-white hover:border-white/90"
             >

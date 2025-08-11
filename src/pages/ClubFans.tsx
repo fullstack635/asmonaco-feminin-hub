@@ -250,7 +250,7 @@ Together, let's write the next chapter of AS Monaco Football Féminin.
                                 }
                               </p>
                               <Button 
-                                onClick={() => window.open('https://instagram.com/asmff_officiel', '_blank', 'noopener,noreferrer')}
+                                onClick={() => window.open('https://instagram.com/asmfootballfeminin', '_blank', 'noopener,noreferrer')}
                                 className="bg-gradient-to-r from-monaco-red to-monaco-yellow hover:from-monaco-red/90 hover:to-monaco-yellow/90 text-white px-8 py-3 rounded-full font-montserrat-extrabold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                               >
                                 <Instagram className="w-5 h-5 mr-2" />
