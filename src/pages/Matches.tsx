@@ -12,7 +12,8 @@ interface Match {
   home_team: string;
   away_team: string;
   result?: string;
-  status: string;
+  status?: string;
+
   has_tickets: boolean;
   has_youtube: boolean;
 }
@@ -51,7 +52,7 @@ const Matches = () => {
           return dateA.getTime() - dateB.getTime();
         });
         
-        setMatches(sortedMatches);
+        setMatches(sortedMatches as Match[]);
       }
     } catch (error) {
       console.error('Error loading matches:', error);
@@ -59,6 +60,45 @@ const Matches = () => {
       setLoading(false);
     }
   };
+
+  // Compute season stats for AS Monaco Football Féminin
+  const TEAM_NAME = 'AS Monaco Football Féminin';
+
+  const parseScore = (score?: string): { home: number; away: number } | null => {
+    if (!score) return null;
+    // Accept formats like "3:1", "3 : 1", "3-1", "3 - 1"
+    const match = score.match(/(\d+)\s*[:\-]\s*(\d+)/);
+    if (!match) return null;
+    const home = parseInt(match[1], 10);
+    const away = parseInt(match[2], 10);
+    if (Number.isNaN(home) || Number.isNaN(away)) return null;
+    return { home, away };
+  };
+
+  const stats = matches.reduce(
+    (acc, m) => {
+      const parsed = parseScore(m.result);
+      if (!parsed) return acc;
+
+      // Only consider matches where our team is involved
+      const isHome = m.home_team === TEAM_NAME;
+      const isAway = m.away_team === TEAM_NAME;
+      if (!isHome && !isAway) return acc;
+
+      const ourGoals = isHome ? parsed.home : parsed.away;
+      const oppGoals = isHome ? parsed.away : parsed.home;
+
+      if (ourGoals > oppGoals) acc.wins += 1;
+      else if (ourGoals === oppGoals) acc.draws += 1;
+      else acc.losses += 1;
+
+      acc.played += 1;
+      return acc;
+    },
+    { played: 0, wins: 0, draws: 0, losses: 0 }
+  );
+
+  const scheduledCount = matches.length;
 
   const matchesInfo = {
     fr: {
@@ -328,25 +368,25 @@ const Matches = () => {
           
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
             <div className="text-center animate-fade-in">
-              <div className="text-2xl sm:text-3xl font-bold text-black-900 mb-2">22</div>
+              <div className="text-2xl sm:text-3xl font-bold text-black-900 mb-2">{scheduledCount}</div>
               <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 {language === 'fr' ? 'Matchs programmés' : 'Scheduled Matches'}
               </p>
             </div>
             <div className="text-center animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              <div className="text-2xl sm:text-3xl font-bold text-black-600 mb-2">0</div>
+              <div className="text-2xl sm:text-3xl font-bold text-black-600 mb-2">{stats.wins}</div>
               <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 {language === 'fr' ? 'Victoires' : 'Wins'}
               </p>
             </div>
             <div className="text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="text-2xl sm:text-3xl font-bold text-black-600 mb-2">0</div>
+              <div className="text-2xl sm:text-3xl font-bold text-black-600 mb-2">{stats.draws}</div>
               <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 {language === 'fr' ? 'Nuls' : 'Draws'}
               </p>
             </div>
             <div className="text-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              <div className="text-2xl sm:text-3xl font-bold text-black-600 mb-2">0</div>
+              <div className="text-2xl sm:text-3xl font-bold text-black-600 mb-2">{stats.losses}</div>
               <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 {language === 'fr' ? 'Défaites' : 'Losses'}
               </p>
