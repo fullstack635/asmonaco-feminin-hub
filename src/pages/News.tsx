@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Mail, ArrowRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
 interface NewsArticle {
   id: string;
@@ -25,6 +26,8 @@ const News = () => {
   const [email, setEmail] = useState('');
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [subscriptionMessage, setSubscriptionMessage] = useState('');
+  const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     loadNews();
@@ -235,7 +238,14 @@ const News = () => {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {news.map((article) => (
-                  <Card key={article.id} className="hover:shadow-lg transition-shadow duration-300">
+                  <Card
+                    key={article.id}
+                    onClick={() => {
+                      setSelectedArticle(article);
+                      setIsModalOpen(true);
+                    }}
+                    className="hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+                  >
                     {article.featured_image_url && (
                       <div className="aspect-video w-full overflow-hidden rounded-t-lg">
                         <img
@@ -262,6 +272,42 @@ const News = () => {
                   </Card>
                 ))}
               </div>
+
+              {/* Article Modal */}
+              <Dialog
+                open={isModalOpen}
+                onOpenChange={(open) => {
+                  setIsModalOpen(open);
+                  if (!open) setSelectedArticle(null);
+                }}
+              >
+                <DialogContent className="max-w-3xl w-[95vw] sm:w-full">
+                  {selectedArticle && (
+                    <div className="space-y-4">
+                      <DialogHeader>
+                        <DialogTitle>
+                          {language === 'fr' ? selectedArticle.title_fr : selectedArticle.title_en}
+                        </DialogTitle>
+                        <DialogDescription>
+                          {new Date(selectedArticle.created_at).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US')}
+                        </DialogDescription>
+                      </DialogHeader>
+
+                      {selectedArticle.featured_image_url && (
+                        <img
+                          src={selectedArticle.featured_image_url}
+                          alt={language === 'fr' ? selectedArticle.title_fr : selectedArticle.title_en}
+                          className="w-full h-auto rounded-md"
+                        />
+                      )}
+
+                      <div className="prose max-w-none whitespace-pre-wrap">
+                        {language === 'fr' ? selectedArticle.content_fr : selectedArticle.content_en}
+                      </div>
+                    </div>
+                  )}
+                </DialogContent>
+              </Dialog>
             </>
           ) : (
             <div className="bg-white rounded-lg shadow-lg p-12 text-center">
