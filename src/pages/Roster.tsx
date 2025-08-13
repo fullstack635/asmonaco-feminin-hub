@@ -88,7 +88,7 @@ const Roster = () => {
   const rosterInfo = {
     fr: {
       title: "Notre Équipe",
-      subtitle: "AS Monaco Football Féminin competes in FFF Division 3 —\nA national stage for rising talent and the next generation of women's football in France.",
+      subtitle: "AS Monaco Football Féminin évolue en Division 3 FFF —\nUne scène nationale pour les talents émergents et la prochaine génération du football féminin en France.",
       positions: {
         goalkeeper: "Gardienne",
         defender: "Défenseure",
