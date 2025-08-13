@@ -6,9 +6,13 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Menu, X } from 'lucide-react';
 
 export const Navigation: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const sponsorFormUrl = language === 'fr'
+    ? 'https://docs.google.com/forms/d/e/1FAIpQLSf3H3lJR4k5kD3Gb0uOXCg4YE71fb37MTCUDe4DFejmiA0VeA/viewform?usp=header'
+    : 'https://docs.google.com/forms/d/e/1FAIpQLSezKsdbcK52jzKe9_ch7scBY0TVGgrdhr9Ro76ce7jW_N3Dtg/viewform?usp=header';
 
   const navigationItems = [
     { key: 'home', href: '/' },
@@ -18,7 +22,7 @@ export const Navigation: React.FC = () => {
     { key: 'news', href: '/news' },
     { key: 'academy', href: '/academy' },
     { key: 'partners', href: '/partners' },
-    { key: 'sponsor', href: 'https://docs.google.com/forms/d/e/1FAIpQLSezKsdbcK52jzKe9_ch7scBY0TVGgrdhr9Ro76ce7jW_N3Dtg/viewform', external: true },
+    { key: 'sponsor', href: sponsorFormUrl, external: true },
     { key: 'shop', href: '/shop' },
     { key: 'tickets', href: '/tickets' },
   ];
@@ -32,7 +36,7 @@ export const Navigation: React.FC = () => {
   };
 
   return (
-    <nav className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b shadow-sm">
+    <nav className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b shadow-sm" role="navigation" aria-label="Main Navigation">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         {/* Main Navigation Container with Fixed 50px Spacing */}
         <div className="flex items-center justify-between nav-height-responsive">

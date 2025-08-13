@@ -235,7 +235,12 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 xl:gap-8 justify-center">
               <button
-                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSezKsdbcK52jzKe9_ch7scBY0TVGgrdhr9Ro76ce7jW_N3Dtg/viewform', '_blank', 'noopener,noreferrer')}
+                onClick={() => {
+                  const url = language === 'fr'
+                    ? 'https://docs.google.com/forms/d/e/1FAIpQLSf3H3lJR4k5kD3Gb0uOXCg4YE71fb37MTCUDe4DFejmiA0VeA/viewform?usp=header'
+                    : 'https://docs.google.com/forms/d/e/1FAIpQLSezKsdbcK52jzKe9_ch7scBY0TVGgrdhr9Ro76ce7jW_N3Dtg/viewform?usp=header';
+                  window.open(url, '_blank', 'noopener,noreferrer');
+                }}
                 className="w-full sm:w-auto"
               >
                 <Button 
