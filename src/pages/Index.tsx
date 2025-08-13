@@ -181,7 +181,7 @@ const Index = () => {
                     size="lg" 
                     className="btn-mobile group bg-secondary text-secondary-foreground hover:bg-secondary/90 border-2 border-transparent hover:border-white/20 shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-[200px] lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
                   >
-                    <span className="relative z-10">{t('Learn More')}</span>
+                    <span className="relative z-10">{language === 'fr' ? 'En savoir plus' : 'Learn More'}</span>
                     {/* <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" /> */}
                     <div className="absolute inset-0 bg-white/20 transform -skew-x-12 group-hover:animate-shimmer"></div>
                   </Button>

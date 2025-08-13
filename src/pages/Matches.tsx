@@ -102,13 +102,13 @@ const Matches = () => {
 
   const matchesInfo = {
     fr: {
-      title: "MATCH SCHEDULE",
+      title: "Calendrier des matchs",
       subtitle: "Retrouvez ici tous les matchs à venir et les résultats de l'\nAS Monaco Football Féminin.",
       upcoming: "PROCHAINS MATCHS",
       results: "RÉSULTATS"
     },
     en: {
-      title: "MATCH SCHEDULE", 
+      title: "Match Schedule", 
       subtitle: "Find all upcoming matches and results for \nAS Monaco Football Féminin right here.",
       upcoming: "UPCOMING MATCHES",
       results: "RESULTS"
@@ -117,6 +117,7 @@ const Matches = () => {
 
   const content = matchesInfo[language];
 
+  const TBD_LABEL = language === 'fr' ? 'À déterminer' : 'TBD';
 
   const getTeamLogo = (teamName: string) => {
     const logoMap: { [key: string]: string } = {
@@ -148,7 +149,7 @@ const Matches = () => {
             <span className={`text-sm font-medium ${
               match.result ? 'text-gray-900' : 'text-gray-500'
             }`}>
-              {match.result || (match.status === 'exempt' ? 'EXEMPT' : 'TBD')}
+              {match.result || (match.status === 'exempt' ? 'EXEMPT' : TBD_LABEL)}
             </span>
           </div>
           
@@ -178,7 +179,7 @@ const Matches = () => {
             <div className={`text-sm font-medium mt-1 ${
               match.result ? 'text-gray-900' : 'text-gray-500'
             }`}>
-              {match.result || (match.status === 'exempt' ? 'EXEMPT' : 'TBD')}
+              {match.result || (match.status === 'exempt' ? 'EXEMPT' : TBD_LABEL)}
             </div>
           </div>
 
@@ -234,7 +235,7 @@ const Matches = () => {
             <div className={`text-base font-medium mt-1 ${
               match.result ? 'text-gray-900' : 'text-gray-500'
             }`}>
-              {match.result || (match.status === 'exempt' ? 'EXEMPT' : 'TBD')}
+              {match.result || (match.status === 'exempt' ? 'EXEMPT' : TBD_LABEL)}
             </div>
           </div>
 
@@ -310,11 +311,17 @@ const Matches = () => {
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-monaco-red"></div>
-          <p className="mt-4 text-gray-600">Loading matches...</p>
+          <p className="mt-4 text-gray-600">{language === 'fr' ? 'Chargement des matchs...' : 'Loading matches...'}</p>
         </div>
       </div>
     );
   }
+
+  const standingsLabel = language === 'fr' ? 'Classement' : 'Standings';
+  const tabMatchesLabel = language === 'fr' ? 'Matchs' : 'Match';
+  const listTitle = language === 'fr'
+    ? 'D3 Féminine - Fédération Française de Football'
+    : 'D3 Feminine - French Football Federation';
 
   return (
     <div className="min-h-screen bg-white">
@@ -338,7 +345,7 @@ const Matches = () => {
                   : 'text-gray-600 border-transparent hover:text-red-600 hover:border-red-600 hover:bg-gray-50'
               }`}
             >
-              Match
+              {tabMatchesLabel}
             </button>
             <button
               onClick={() => {
@@ -346,7 +353,7 @@ const Matches = () => {
               }}
               className="font-semibold text-sm sm:text-base md:text-lg transition-all duration-200 border-b-2 pb-2 touch-friendly px-6 py-2 rounded-md min-w-[120px] text-center text-gray-600 border-transparent hover:text-red-600 hover:border-red-600 hover:bg-gray-50"
             >
-              Standings
+              {standingsLabel}
             </button>
           </div>
           {/* Horizontal line under tabs */}
@@ -357,7 +364,7 @@ const Matches = () => {
       </section>
 
       {/* WPSL Matches */}
-      <MatchesList matches={matches} title="D3 FEMININE - French Football Federation" />
+      <MatchesList matches={matches} title={listTitle} />
 
       {/* Season Stats - Responsive */}
       <section className="py-8 sm:py-12 md:py-16 bg-gray-50">

@@ -103,7 +103,7 @@ const News = () => {
 
   const content = {
     fr: {
-      title: "News",
+      title: "Actualités",
       subtitle: "Restez informés avec ASMFF",
       tagline: "Ne manquez jamais un moment !",
       features: [
@@ -229,7 +229,7 @@ const News = () => {
           {loading ? (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-monaco-red mx-auto"></div>
-              <p className="mt-4 text-gray-600">Loading news...</p>
+              <p className="mt-4 text-gray-600">{language === 'fr' ? 'Chargement des actualités...' : 'Loading news...'}</p>
             </div>
           ) : news.length > 0 ? (
             <>
