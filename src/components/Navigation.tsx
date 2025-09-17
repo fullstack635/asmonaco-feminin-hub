@@ -64,7 +64,7 @@ export const Navigation: React.FC = () => {
           </div>
 
           {/* Desktop Navigation Menu - Hidden on mobile/tablet */}
-          <div className="hidden xl:flex items-center space-x-3 2xl:space-x-4">
+          <div className="hidden xl:flex items-center space-x-6 2xl:space-x-8">
             {navigationItems.map((item) => (
               item.external ? (
                 <button
@@ -120,7 +120,7 @@ export const Navigation: React.FC = () => {
         {/* Mobile/Tablet Dropdown Menu */}
         {isMenuOpen && (
           <div className="xl:hidden animate-fade-in bg-background/98 backdrop-blur-sm border-t">
-            <div className="px-4 py-4 space-y-3">
+            <div className="px-4 py-4 space-y-4">
               {navigationItems.map((item) => (
                 item.external ? (
                   <button
