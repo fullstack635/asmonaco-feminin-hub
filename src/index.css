@@ -117,22 +117,22 @@ All colors MUST be HSL.
 
   /* Custom Font Classes */
   .font-montserrat-extrabold {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Arial', sans-serif;
     font-weight: 800;
   }
 
   .font-cinzel-decorative {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Arial', sans-serif;
     font-weight: 400;
   }
 
   .font-cinzel-decorative-bold {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Arial', sans-serif;
     font-weight: 700;
   }
 
   .font-cinzel-decorative-black {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Arial', sans-serif;
     font-weight: 900;
   }
 }

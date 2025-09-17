@@ -100,8 +100,8 @@ export default {
 				'9xl': ['8rem', { lineHeight: '1' }],
 			},
 			fontFamily: {
-				'montserrat-extrabold': ['Montserrat', 'sans-serif'],
-				'cinzel-decorative': ['Cinzel Decorative', 'serif'],
+				'montserrat-extrabold': ['Arial', 'sans-serif'],
+				'cinzel-decorative': ['Arial', 'sans-serif'],
 			},
 			keyframes: {
 				'accordion-down': {
