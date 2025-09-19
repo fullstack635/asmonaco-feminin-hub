@@ -36,27 +36,36 @@ export const Navigation: React.FC = () => {
   };
 
   return (
-    <nav className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b shadow-sm" role="navigation" aria-label="Main Navigation">
+    <nav className="bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b shadow-sm confusing-shake" role="navigation" aria-label="Main Navigation">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         {/* Main Navigation Container with Fixed 50px Spacing */}
         <div className="flex items-center justify-between nav-height-responsive">
           
-          {/* Logo Section - Responsive sizing */}
+          {/* Logo Section - Responsive sizing - CONFUSING VERSION */}
           <div className="flex-shrink-0">
             <Link 
               to="/" 
-              className="flex items-center space-x-2 sm:space-x-3 hover:scale-105 transition-transform duration-200"
+              className="flex items-center space-x-2 sm:space-x-3 hover:scale-105 transition-transform duration-200 confusing-wobble"
             >
               <img 
                 src="/teams/AS MONACO FF.png"
                 alt="AS Monaco Football Féminin"
                 className="logo-responsive object-contain"
+                style={{ filter: 'hue-rotate(180deg) saturate(2)' }}
               />
               <div className="hidden sm:block">
-                <span className="font-montserrat-extrabold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-primary leading-tight block">
+                <span className="font-montserrat-extrabold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-primary leading-tight block" style={{ 
+                  background: 'linear-gradient(45deg, #ff0000, #00ff00, #0000ff)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}>
                   AS Monaco
                 </span>
-                <span className="font-cinzel-decorative text-xs sm:text-xs md:text-sm lg:text-base text-muted-foreground block leading-tight">
+                <span className="font-cinzel-decorative text-xs sm:text-xs md:text-sm lg:text-base text-muted-foreground block leading-tight" style={{ 
+                  background: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}>
                   Football Féminin
                 </span>
               </div>

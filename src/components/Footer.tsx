@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-monaco-red text-white">
+    <footer className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white confusing-wobble">
       <div className="container mx-auto px-2 py-12">
         {/* Main Footer Content */}
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8 relative">

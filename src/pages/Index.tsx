@@ -79,7 +79,7 @@ const Index = () => {
         
         <div className={`relative z-10 text-center text-white max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           
-          {/* Animated Title - Laptop responsive typography */}
+          {/* Animated Title - Laptop responsive typography - CONFUSING VERSION */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-montserrat-extrabold mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 leading-tight transform-gpu mobile-text-shadow">
             <span className="inline-block animate-slide-in-left" style={{ animationDelay: '0.2s' }}>
               {content.title.split('\n').map((line, lineIndex) => (
@@ -91,8 +91,15 @@ const Index = () => {
                   {line.split(' ').map((word, wordIndex) => (
                 <span 
                       key={`${lineIndex}-${wordIndex}`}
-                  className="inline-block mr-1 sm:mr-2 md:mr-4 lg:mr-5 xl:mr-6 hover:text-secondary transition-colors duration-300 hover:scale-105 transform-gpu"
-                      style={{ animationDelay: `${(lineIndex * 5 + wordIndex) * 0.1}s` }}
+                  className={`inline-block mr-1 sm:mr-2 md:mr-4 lg:mr-5 xl:mr-6 hover:text-secondary transition-colors duration-300 hover:scale-105 transform-gpu ${
+                    wordIndex % 3 === 0 ? 'text-red-500' : 
+                    wordIndex % 3 === 1 ? 'text-blue-500' : 
+                    'text-green-500'
+                  }`}
+                      style={{ 
+                        animationDelay: `${(lineIndex * 5 + wordIndex) * 0.1}s`,
+                        transform: wordIndex % 2 === 0 ? 'rotate(2deg)' : 'rotate(-2deg)'
+                      }}
                 >
                   {word}
                 </span>
@@ -107,15 +114,15 @@ const Index = () => {
             {content.subtitle}
           </p>
           
-          {/* CTA Buttons with laptop responsiveness */}
+          {/* CTA Buttons with laptop responsiveness - CONFUSING VERSION */}
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 xl:gap-10 justify-center items-center animate-fade-in px-4 sm:px-0 mb-8 sm:mb-12 lg:mb-16 xl:mb-20" style={{ animationDelay: '0.8s' }}>
             <Link to="/roster" className="w-full sm:w-auto">
               <Button 
                 size="lg" 
-                className="btn-mobile group bg-secondary text-secondary-foreground hover:bg-secondary/90 border-2 border-transparent hover:border-white/20 shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-[200px] lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
+                className="btn-mobile group bg-pink-500 text-white hover:bg-pink-600 border-4 border-yellow-400 hover:border-yellow-300 shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-[200px] lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
+                style={{ transform: 'rotate(-5deg)' }}
               >
                 <span className="relative z-10">{t('roster')}</span>
-                {/* <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" /> */}
                 <div className="absolute inset-0 bg-white/20 transform -skew-x-12 group-hover:animate-shimmer"></div>
               </Button>
             </Link>
@@ -123,9 +130,9 @@ const Index = () => {
             <Link to="/matches" className="w-full sm:w-auto">
               <Button 
                 size="lg"
-                className="btn-mobile group bg-monaco-red text-white hover:bg-monaco-red/90 border-2 border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-110 transform-gpu shadow-lg hover:shadow-xl w-[200px] lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
+                className="btn-mobile group bg-purple-600 text-white hover:bg-purple-700 border-4 border-green-400 hover:border-green-300 transition-all duration-500 hover:scale-110 transform-gpu shadow-lg hover:shadow-xl w-[200px] lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
+                style={{ transform: 'rotate(5deg)' }}
               >
-                {/* <ArrowRight className="mr-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" /> */}
                 {t('matches')}
               </Button>
             </Link>
@@ -133,8 +140,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Section - Laptop responsive */}
-      <section ref={aboutRef} className="py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 bg-background relative overflow-hidden spacing-mobile">
+      {/* About Section - Laptop responsive - CONFUSING VERSION */}
+      <section ref={aboutRef} className="py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 bg-gradient-to-r from-yellow-200 via-pink-200 to-blue-200 relative overflow-hidden spacing-mobile">
         {/* Background Elements - Enhanced for laptop */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 right-0 w-32 sm:w-48 md:w-64 lg:w-80 xl:w-96 h-32 sm:h-48 md:h-64 lg:h-80 xl:h-96 bg-secondary/5 rounded-full blur-3xl animate-float"></div>
@@ -145,24 +152,45 @@ const Index = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-20 2xl:gap-24 items-center max-w-6xl lg:max-w-7xl mx-auto">
             <div className="space-y-6 sm:space-y-8 lg:space-y-10 xl:space-y-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-cinzel-decorative-bold text-foreground leading-tight relative">
-                <span className="inline-block hover:text-secondary transition-colors duration-500">
+                <span className="inline-block hover:text-secondary transition-colors duration-500" style={{ 
+                  background: 'linear-gradient(45deg, #ff0000, #00ff00, #0000ff)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundSize: '200% 200%',
+                  animation: 'rainbow 2s ease-in-out infinite alternate'
+                }}>
                   {language === 'fr' ? 'Notre Mission' : 'Our Mission'}
                 </span>
                 <div className="absolute -bottom-2 left-0 w-12 sm:w-16 lg:w-20 xl:w-24 h-1 lg:h-1.5 xl:h-2 bg-monaco-red rounded-full"></div>
               </h2>
               
               <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-xl text-muted-foreground leading-relaxed">
-                <p className="transform hover:translate-x-2 transition-transform duration-300">
+                <p className="transform hover:translate-x-2 transition-transform duration-300 confusing-shake" style={{ 
+                  background: 'linear-gradient(90deg, #ff0000, #00ff00, #0000ff, #ffff00)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundSize: '400% 100%',
+                  animation: 'rainbow 3s ease-in-out infinite'
+                }}>
                   {content.description}
                 </p>
               </div>
               <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-xl text-muted-foreground leading-relaxed">
-                <p className="transform hover:translate-x-2 transition-transform duration-300">
+                <p className="transform hover:translate-x-2 transition-transform duration-300" style={{ 
+                  transform: 'rotate(1deg)',
+                  background: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff0000)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}>
                   {content.mission}
                 </p>
               </div>
               <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-xl text-muted-foreground leading-relaxed">
-                <p className="transform hover:translate-x-2 transition-transform duration-300">
+                <p className="transform hover:translate-x-2 transition-transform duration-300 confusing-wobble" style={{ 
+                  background: 'linear-gradient(135deg, #00ff00, #ff0000, #0000ff)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}>
                   {content.closing}
                 </p>
               </div>
@@ -220,11 +248,17 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section - Laptop responsive */}
-      <section className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-monaco-red spacing-mobile">
+      {/* CTA Section - Laptop responsive - CONFUSING VERSION */}
+      <section className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-gradient-to-br from-orange-400 via-red-500 to-pink-600 spacing-mobile confusing-shake">
         <div className="container-mobile text-center">
           <div className="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto animate-fade-in">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-cinzel-decorative-bold text-white mb-4 sm:mb-6 lg:mb-8 xl:mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-cinzel-decorative-bold text-white mb-4 sm:mb-6 lg:mb-8 xl:mb-10 confusing-wobble" style={{ 
+              background: 'linear-gradient(45deg, #ffff00, #ff00ff, #00ffff, #ff0000)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundSize: '200% 200%',
+              animation: 'rainbow 2s ease-in-out infinite alternate'
+            }}>
               {language === 'fr' ? 'Rejoignez le Mouvement' : 'Join the Movement'}
             </h2>
             <p className="text-mobile-responsive lg:text-xl xl:text-2xl text-white/90 mb-6 sm:mb-8 lg:mb-10 xl:mb-12 px-2 sm:px-0 font-cinzel-decorative whitespace-pre-line">
