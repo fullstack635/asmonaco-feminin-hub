@@ -39,10 +39,32 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white confusing-wobble">
-      <div className="container mx-auto px-2 py-12">
+    <footer className="bg-monaco-red text-white" style={{
+      paddingTop: '200px',
+      paddingBottom: '150px',
+      paddingLeft: '300px',
+      paddingRight: '250px',
+      marginTop: '100px',
+      marginBottom: '80px'
+    }}>
+      <div className="container mx-auto px-2 py-12" style={{
+        paddingTop: '100px',
+        paddingBottom: '80px',
+        paddingLeft: '150px',
+        paddingRight: '120px',
+        marginTop: '50px',
+        marginBottom: '40px'
+      }}>
         {/* Main Footer Content */}
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 relative">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 relative" style={{
+          paddingTop: '80px',
+          paddingBottom: '60px',
+          paddingLeft: '100px',
+          paddingRight: '80px',
+          marginTop: '40px',
+          marginBottom: '30px',
+          gap: '200px'
+        }}>
           
           {/* Follow Us Section - Left Side */}
           <div className="lg:absolute lg:left-0 lg:w-1/4">

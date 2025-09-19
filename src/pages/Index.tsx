@@ -79,26 +79,31 @@ const Index = () => {
         
         <div className={`relative z-10 text-center text-white max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           
-          {/* Animated Title - Laptop responsive typography - CONFUSING VERSION */}
+          {/* Animated Title - Laptop responsive typography - SPACING ISSUES */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-montserrat-extrabold mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 leading-tight transform-gpu mobile-text-shadow">
             <span className="inline-block animate-slide-in-left" style={{ animationDelay: '0.2s' }}>
               {content.title.split('\n').map((line, lineIndex) => (
                 <div 
                   key={lineIndex}
                   className="block"
-                  style={{ animationDelay: `${lineIndex * 0.1}s` }}
+                  style={{ 
+                    animationDelay: `${lineIndex * 0.1}s`,
+                    marginTop: lineIndex === 0 ? '0' : '50px',
+                    marginBottom: lineIndex === 0 ? '100px' : '20px',
+                    paddingLeft: lineIndex % 2 === 0 ? '80px' : '0px',
+                    paddingRight: lineIndex % 2 === 1 ? '120px' : '0px'
+                  }}
                 >
                   {line.split(' ').map((word, wordIndex) => (
                 <span 
                       key={`${lineIndex}-${wordIndex}`}
-                  className={`inline-block mr-1 sm:mr-2 md:mr-4 lg:mr-5 xl:mr-6 hover:text-secondary transition-colors duration-300 hover:scale-105 transform-gpu ${
-                    wordIndex % 3 === 0 ? 'text-red-500' : 
-                    wordIndex % 3 === 1 ? 'text-blue-500' : 
-                    'text-green-500'
-                  }`}
+                  className="inline-block hover:text-secondary transition-colors duration-300 hover:scale-105 transform-gpu"
                       style={{ 
                         animationDelay: `${(lineIndex * 5 + wordIndex) * 0.1}s`,
-                        transform: wordIndex % 2 === 0 ? 'rotate(2deg)' : 'rotate(-2deg)'
+                        marginRight: wordIndex % 2 === 0 ? '80px' : '10px',
+                        marginLeft: wordIndex % 3 === 0 ? '40px' : '0px',
+                        paddingTop: wordIndex % 4 === 0 ? '20px' : '0px',
+                        paddingBottom: wordIndex % 5 === 0 ? '30px' : '0px'
                       }}
                 >
                   {word}
@@ -109,29 +114,51 @@ const Index = () => {
             </span>
           </h1>
           
-          {/* Animated Subtitle - Laptop responsive */}
-          <p className="text-mobile-responsive lg:text-xl xl:text-2xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 opacity-90 max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto leading-relaxed animate-fade-in transform-gpu px-2 sm:px-0 font-cinzel-decorative" style={{ animationDelay: '0.6s' }}>
+          {/* Animated Subtitle - Laptop responsive - SPACING ISSUES */}
+          <p className="text-mobile-responsive lg:text-xl xl:text-2xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 opacity-90 max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto leading-relaxed animate-fade-in transform-gpu font-cinzel-decorative" style={{ 
+            animationDelay: '0.6s',
+            paddingLeft: '150px',
+            paddingRight: '200px',
+            marginTop: '80px',
+            marginBottom: '120px'
+          }}>
             {content.subtitle}
           </p>
           
-          {/* CTA Buttons with laptop responsiveness - CONFUSING VERSION */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 xl:gap-10 justify-center items-center animate-fade-in px-4 sm:px-0 mb-8 sm:mb-12 lg:mb-16 xl:mb-20" style={{ animationDelay: '0.8s' }}>
-            <Link to="/roster" className="w-full sm:w-auto">
+          {/* CTA Buttons with laptop responsiveness - SPACING ISSUES */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 xl:gap-10 justify-center items-center animate-fade-in mb-8 sm:mb-12 lg:mb-16 xl:mb-20" style={{ 
+            animationDelay: '0.8s',
+            paddingLeft: '300px',
+            paddingRight: '250px',
+            marginTop: '150px',
+            marginBottom: '200px'
+          }}>
+            <Link to="/roster" className="w-full sm:w-auto" style={{ marginRight: '200px', marginLeft: '100px' }}>
               <Button 
                 size="lg" 
-                className="btn-mobile group bg-pink-500 text-white hover:bg-pink-600 border-4 border-yellow-400 hover:border-yellow-300 shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-[200px] lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
-                style={{ transform: 'rotate(-5deg)' }}
+                className="btn-mobile group bg-secondary text-secondary-foreground hover:bg-secondary/90 border-2 border-transparent hover:border-white/20 shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-[200px] lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
+                style={{ 
+                  paddingTop: '50px',
+                  paddingBottom: '30px',
+                  paddingLeft: '80px',
+                  paddingRight: '60px'
+                }}
               >
                 <span className="relative z-10">{t('roster')}</span>
                 <div className="absolute inset-0 bg-white/20 transform -skew-x-12 group-hover:animate-shimmer"></div>
               </Button>
             </Link>
             
-            <Link to="/matches" className="w-full sm:w-auto">
+            <Link to="/matches" className="w-full sm:w-auto" style={{ marginLeft: '150px', marginRight: '50px' }}>
               <Button 
                 size="lg"
-                className="btn-mobile group bg-purple-600 text-white hover:bg-purple-700 border-4 border-green-400 hover:border-green-300 transition-all duration-500 hover:scale-110 transform-gpu shadow-lg hover:shadow-xl w-[200px] lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
-                style={{ transform: 'rotate(5deg)' }}
+                className="btn-mobile group bg-monaco-red text-white hover:bg-monaco-red/90 border-2 border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-110 transform-gpu shadow-lg hover:shadow-xl w-[200px] lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
+                style={{ 
+                  paddingTop: '40px',
+                  paddingBottom: '60px',
+                  paddingLeft: '100px',
+                  paddingRight: '40px'
+                }}
               >
                 {t('matches')}
               </Button>
@@ -140,100 +167,185 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Section - Laptop responsive - CONFUSING VERSION */}
-      <section ref={aboutRef} className="py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 bg-gradient-to-r from-yellow-200 via-pink-200 to-blue-200 relative overflow-hidden spacing-mobile">
+      {/* About Section - Laptop responsive - SPACING ISSUES */}
+      <section ref={aboutRef} className="py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 bg-background relative overflow-hidden spacing-mobile" style={{
+        paddingTop: '200px',
+        paddingBottom: '300px',
+        paddingLeft: '150px',
+        paddingRight: '100px',
+        marginTop: '100px',
+        marginBottom: '150px'
+      }}>
         {/* Background Elements - Enhanced for laptop */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 right-0 w-32 sm:w-48 md:w-64 lg:w-80 xl:w-96 h-32 sm:h-48 md:h-64 lg:h-80 xl:h-96 bg-secondary/5 rounded-full blur-3xl animate-float"></div>
           <div className="absolute bottom-1/4 left-0 w-24 sm:w-32 md:w-48 lg:w-64 xl:w-80 h-24 sm:h-32 md:h-48 lg:h-64 xl:h-80 bg-secondary/5 rounded-full blur-2xl animate-pulse"></div>
         </div>
         
-        <div className="container-mobile relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-20 2xl:gap-24 items-center max-w-6xl lg:max-w-7xl mx-auto">
-            <div className="space-y-6 sm:space-y-8 lg:space-y-10 xl:space-y-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-cinzel-decorative-bold text-foreground leading-tight relative">
-                <span className="inline-block hover:text-secondary transition-colors duration-500" style={{ 
-                  background: 'linear-gradient(45deg, #ff0000, #00ff00, #0000ff)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundSize: '200% 200%',
-                  animation: 'rainbow 2s ease-in-out infinite alternate'
-                }}>
+        <div className="container-mobile relative z-10" style={{
+          paddingLeft: '200px',
+          paddingRight: '250px',
+          marginTop: '100px',
+          marginBottom: '150px'
+        }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-20 2xl:gap-24 items-center max-w-6xl lg:max-w-7xl mx-auto" style={{
+            gap: '300px',
+            paddingTop: '150px',
+            paddingBottom: '200px'
+          }}>
+            <div className="space-y-6 sm:space-y-8 lg:space-y-10 xl:space-y-12 animate-fade-in" style={{ 
+              animationDelay: '0.2s',
+              paddingLeft: '100px',
+              paddingRight: '150px',
+              marginTop: '80px',
+              marginBottom: '120px'
+            }}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-cinzel-decorative-bold text-foreground leading-tight relative" style={{
+                paddingTop: '60px',
+                paddingBottom: '40px',
+                marginLeft: '50px',
+                marginRight: '80px'
+              }}>
+                <span className="inline-block hover:text-secondary transition-colors duration-500">
                   {language === 'fr' ? 'Notre Mission' : 'Our Mission'}
                 </span>
                 <div className="absolute -bottom-2 left-0 w-12 sm:w-16 lg:w-20 xl:w-24 h-1 lg:h-1.5 xl:h-2 bg-monaco-red rounded-full"></div>
               </h2>
               
-              <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-xl text-muted-foreground leading-relaxed">
-                <p className="transform hover:translate-x-2 transition-transform duration-300 confusing-shake" style={{ 
-                  background: 'linear-gradient(90deg, #ff0000, #00ff00, #0000ff, #ffff00)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundSize: '400% 100%',
-                  animation: 'rainbow 3s ease-in-out infinite'
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-xl text-muted-foreground leading-relaxed" style={{
+                paddingLeft: '80px',
+                paddingRight: '120px',
+                marginTop: '100px',
+                marginBottom: '80px'
+              }}>
+                <p className="transform hover:translate-x-2 transition-transform duration-300" style={{
+                  paddingTop: '50px',
+                  paddingBottom: '30px',
+                  paddingLeft: '60px',
+                  paddingRight: '40px',
+                  marginTop: '40px',
+                  marginBottom: '60px'
                 }}>
                   {content.description}
                 </p>
               </div>
-              <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-xl text-muted-foreground leading-relaxed">
-                <p className="transform hover:translate-x-2 transition-transform duration-300" style={{ 
-                  transform: 'rotate(1deg)',
-                  background: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff0000)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent'
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-xl text-muted-foreground leading-relaxed" style={{
+                paddingLeft: '120px',
+                paddingRight: '80px',
+                marginTop: '60px',
+                marginBottom: '100px'
+              }}>
+                <p className="transform hover:translate-x-2 transition-transform duration-300" style={{
+                  paddingTop: '40px',
+                  paddingBottom: '50px',
+                  paddingLeft: '80px',
+                  paddingRight: '60px',
+                  marginTop: '50px',
+                  marginBottom: '40px'
                 }}>
                   {content.mission}
                 </p>
               </div>
-              <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-xl text-muted-foreground leading-relaxed">
-                <p className="transform hover:translate-x-2 transition-transform duration-300 confusing-wobble" style={{ 
-                  background: 'linear-gradient(135deg, #00ff00, #ff0000, #0000ff)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent'
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8 text-mobile-responsive lg:text-xl xl:text-xl text-muted-foreground leading-relaxed" style={{
+                paddingLeft: '100px',
+                paddingRight: '140px',
+                marginTop: '80px',
+                marginBottom: '120px'
+              }}>
+                <p className="transform hover:translate-x-2 transition-transform duration-300" style={{
+                  paddingTop: '60px',
+                  paddingBottom: '40px',
+                  paddingLeft: '70px',
+                  paddingRight: '90px',
+                  marginTop: '30px',
+                  marginBottom: '70px'
                 }}>
                   {content.closing}
                 </p>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 pt-4 sm:pt-6 lg:pt-8">
-                <Link to="/academy" className="w-full sm:w-auto">
-                  <Button className="btn-mobile group shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 pt-4 sm:pt-6 lg:pt-8" style={{
+                paddingTop: '150px',
+                paddingBottom: '100px',
+                paddingLeft: '200px',
+                paddingRight: '180px',
+                marginTop: '120px',
+                marginBottom: '80px',
+                gap: '300px'
+              }}>
+                <Link to="/academy" className="w-full sm:w-auto" style={{ 
+                  marginRight: '250px',
+                  marginLeft: '100px',
+                  paddingTop: '50px',
+                  paddingBottom: '30px'
+                }}>
+                  <Button className="btn-mobile group shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl" style={{
+                    paddingTop: '60px',
+                    paddingBottom: '40px',
+                    paddingLeft: '100px',
+                    paddingRight: '80px'
+                  }}>
                     <span className="relative z-10">{t('academy')}</span>
-                    {/* <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" /> */}
                     <div className="absolute inset-0 bg-white/10 transform -skew-x-12 group-hover:animate-shimmer"></div>
                   </Button>
                 </Link>
                 
-                <Link to="/club" className="w-full sm:w-auto">
+                <Link to="/club" className="w-full sm:w-auto" style={{ 
+                  marginLeft: '200px',
+                  marginRight: '50px',
+                  paddingTop: '40px',
+                  paddingBottom: '60px'
+                }}>
                   <Button 
                     size="lg" 
                     className="btn-mobile group bg-secondary text-secondary-foreground hover:bg-secondary/90 border-2 border-transparent hover:border-white/20 shadow-glow hover:shadow-xl transition-all duration-500 hover:scale-110 transform-gpu relative overflow-hidden w-[200px] lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
+                    style={{
+                      paddingTop: '50px',
+                      paddingBottom: '30px',
+                      paddingLeft: '90px',
+                      paddingRight: '70px'
+                    }}
                   >
                     <span className="relative z-10">{language === 'fr' ? 'En savoir plus' : 'Learn More'}</span>
-                    {/* <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-2 transition-transform duration-300" /> */}
                     <div className="absolute inset-0 bg-white/20 transform -skew-x-12 group-hover:animate-shimmer"></div>
                   </Button>
                 </Link>
-
-                {/* <Link to="/club" className="w-full sm:w-auto">
-                  <Button variant="secondary" className="btn-mobile group hover:scale-110 transition-all duration-500 transform-gpu border-2 border-secondary/50 hover:border-secondary bg-white/10 hover:bg-white/20 text-foreground hover:text-secondary w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl">
-                    {t('learn_more')}
-                  </Button>
-                </Link> */}
               </div>
             </div>
             
-            <div className="relative animate-slide-in-right order-first lg:order-last" style={{ animationDelay: '0.4s' }}>
-              {/* 3D Card Effect - Laptop optimized */}
-              <div className="relative perspective-1000">
+            <div className="relative animate-slide-in-right order-first lg:order-last" style={{ 
+              animationDelay: '0.4s',
+              paddingLeft: '150px',
+              paddingRight: '200px',
+              marginTop: '100px',
+              marginBottom: '150px'
+            }}>
+              {/* 3D Card Effect - Laptop optimized - SPACING ISSUES */}
+              <div className="relative perspective-1000" style={{
+                paddingTop: '80px',
+                paddingBottom: '120px',
+                marginLeft: '100px',
+                marginRight: '80px'
+              }}>
                 <div className="absolute inset-0 bg-monaco-red rounded-2xl transform rotate-6 opacity-20 group-hover:rotate-12 transition-transform duration-700 hidden md:block"></div>
                 <div className="absolute inset-0 bg-monaco-yellow/10 rounded-2xl transform -rotate-3 group-hover:rotate-3 transition-transform duration-700 hidden md:block"></div>
                 
-                <div className="relative group">
+                <div className="relative group" style={{
+                  paddingTop: '60px',
+                  paddingBottom: '40px',
+                  paddingLeft: '50px',
+                  paddingRight: '70px'
+                }}>
                   <img 
                     src={backgound2} 
                     alt="AS Monaco Football Féminin in action"
                     className="img-mobile-responsive relative z-10 w-full h-64 sm:h-80 md:h-96 lg:h-[520px] xl:h-[600px] 2xl:h-[680px] object-cover rounded-2xl shadow-2xl hover:shadow-glow transition-all duration-700 transform-gpu group-hover:scale-105 group-hover:rotate-1"
+                    style={{
+                      marginTop: '40px',
+                      marginBottom: '60px',
+                      marginLeft: '30px',
+                      marginRight: '50px'
+                    }}
                   />
                   
                   {/* Hover Overlay */}
@@ -248,26 +360,59 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section - Laptop responsive - CONFUSING VERSION */}
-      <section className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-gradient-to-br from-orange-400 via-red-500 to-pink-600 spacing-mobile confusing-shake">
-        <div className="container-mobile text-center">
-          <div className="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto animate-fade-in">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-cinzel-decorative-bold text-white mb-4 sm:mb-6 lg:mb-8 xl:mb-10 confusing-wobble" style={{ 
-              background: 'linear-gradient(45deg, #ffff00, #ff00ff, #00ffff, #ff0000)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundSize: '200% 200%',
-              animation: 'rainbow 2s ease-in-out infinite alternate'
+      {/* CTA Section - Laptop responsive - SPACING ISSUES */}
+      <section className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-monaco-red spacing-mobile" style={{
+        paddingTop: '250px',
+        paddingBottom: '300px',
+        paddingLeft: '200px',
+        paddingRight: '150px',
+        marginTop: '150px',
+        marginBottom: '200px'
+      }}>
+        <div className="container-mobile text-center" style={{
+          paddingLeft: '100px',
+          paddingRight: '120px',
+          marginTop: '80px',
+          marginBottom: '100px'
+        }}>
+          <div className="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto animate-fade-in" style={{
+            paddingTop: '120px',
+            paddingBottom: '80px',
+            paddingLeft: '150px',
+            paddingRight: '100px'
+          }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-cinzel-decorative-bold text-white mb-4 sm:mb-6 lg:mb-8 xl:mb-10" style={{
+              paddingTop: '80px',
+              paddingBottom: '60px',
+              paddingLeft: '200px',
+              paddingRight: '180px',
+              marginTop: '100px',
+              marginBottom: '120px'
             }}>
               {language === 'fr' ? 'Rejoignez le Mouvement' : 'Join the Movement'}
             </h2>
-            <p className="text-mobile-responsive lg:text-xl xl:text-2xl text-white/90 mb-6 sm:mb-8 lg:mb-10 xl:mb-12 px-2 sm:px-0 font-cinzel-decorative whitespace-pre-line">
+            <p className="text-mobile-responsive lg:text-xl xl:text-2xl text-white/90 mb-6 sm:mb-8 lg:mb-10 xl:mb-12 font-cinzel-decorative whitespace-pre-line" style={{
+              paddingTop: '60px',
+              paddingBottom: '40px',
+              paddingLeft: '180px',
+              paddingRight: '160px',
+              marginTop: '80px',
+              marginBottom: '100px'
+            }}>
               {language === 'fr' 
                 ? 'Découvrez comment vous pouvez faire partie de \nl\'avenir du football féminin à Monaco.'
                 : 'Discover how you can be part of the future of \nwomen\'s football in Monaco.'
               }
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 xl:gap-8 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 xl:gap-8 justify-center" style={{
+              paddingTop: '150px',
+              paddingBottom: '100px',
+              paddingLeft: '250px',
+              paddingRight: '200px',
+              marginTop: '120px',
+              marginBottom: '80px',
+              gap: '400px'
+            }}>
               <button
                 onClick={() => {
                   const url = language === 'fr'
@@ -276,17 +421,27 @@ const Index = () => {
                   window.open(url, '_blank', 'noopener,noreferrer');
                 }}
                 className="w-full sm:w-auto"
+                style={{
+                  marginRight: '300px',
+                  marginLeft: '150px',
+                  paddingTop: '80px',
+                  paddingBottom: '60px'
+                }}
               >
                 <Button 
                   variant="secondary" 
                   size="lg"
                   className="btn-mobile group shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 w-full sm:w-auto lg:px-8 lg:py-4 xl:px-10 xl:py-5 lg:text-lg xl:text-xl"
+                  style={{
+                    paddingTop: '70px',
+                    paddingBottom: '50px',
+                    paddingLeft: '120px',
+                    paddingRight: '100px'
+                  }}
                 >
                   {t('sponsor')}
-                  {/* <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-1 transition-transform duration-200" /> */}
                 </Button>
               </button>
-            
             </div>
           </div>
         </div>

@@ -36,35 +36,65 @@ export const Navigation: React.FC = () => {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b shadow-sm confusing-shake" role="navigation" aria-label="Main Navigation">
+    <nav className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b shadow-sm" role="navigation" aria-label="Main Navigation" style={{
+      paddingTop: '80px',
+      paddingBottom: '60px',
+      paddingLeft: '200px',
+      paddingRight: '150px',
+      marginTop: '50px',
+      marginBottom: '30px'
+    }}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
         {/* Main Navigation Container with Fixed 50px Spacing */}
         <div className="flex items-center justify-between nav-height-responsive">
           
-          {/* Logo Section - Responsive sizing - CONFUSING VERSION */}
-          <div className="flex-shrink-0">
+          {/* Logo Section - Responsive sizing - SPACING ISSUES */}
+          <div className="flex-shrink-0" style={{
+            paddingTop: '40px',
+            paddingBottom: '30px',
+            paddingLeft: '100px',
+            paddingRight: '80px',
+            marginTop: '20px',
+            marginBottom: '15px'
+          }}>
             <Link 
               to="/" 
-              className="flex items-center space-x-2 sm:space-x-3 hover:scale-105 transition-transform duration-200 confusing-wobble"
+              className="flex items-center space-x-2 sm:space-x-3 hover:scale-105 transition-transform duration-200"
+              style={{
+                paddingTop: '20px',
+                paddingBottom: '15px',
+                paddingLeft: '50px',
+                paddingRight: '40px'
+              }}
             >
               <img 
                 src="/teams/AS MONACO FF.png"
                 alt="AS Monaco Football Féminin"
                 className="logo-responsive object-contain"
-                style={{ filter: 'hue-rotate(180deg) saturate(2)' }}
+                style={{
+                  marginTop: '10px',
+                  marginBottom: '8px',
+                  marginLeft: '20px',
+                  marginRight: '15px'
+                }}
               />
-              <div className="hidden sm:block">
-                <span className="font-montserrat-extrabold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-primary leading-tight block" style={{ 
-                  background: 'linear-gradient(45deg, #ff0000, #00ff00, #0000ff)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent'
+              <div className="hidden sm:block" style={{
+                paddingTop: '15px',
+                paddingBottom: '10px',
+                paddingLeft: '30px',
+                paddingRight: '25px'
+              }}>
+                <span className="font-montserrat-extrabold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-primary leading-tight block" style={{
+                  marginTop: '5px',
+                  marginBottom: '3px',
+                  paddingLeft: '10px'
                 }}>
                   AS Monaco
                 </span>
-                <span className="font-cinzel-decorative text-xs sm:text-xs md:text-sm lg:text-base text-muted-foreground block leading-tight" style={{ 
-                  background: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent'
+                <span className="font-cinzel-decorative text-xs sm:text-xs md:text-sm lg:text-base text-muted-foreground block leading-tight" style={{
+                  marginTop: '3px',
+                  marginBottom: '5px',
+                  paddingLeft: '8px'
                 }}>
                   Football Féminin
                 </span>
